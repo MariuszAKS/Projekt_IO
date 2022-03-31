@@ -4,12 +4,12 @@ import numpy as np
 
 # Konieczna zmiana folderu aby odnalezc modul w projekcie
 sys.path.append('../../analiza_obrazu')
-import HistogramGradientow
+import histogram_gradientow
 
 
-class TestHistogramGradientowJabko(unittest.TestCase):
+class TestHistogramGradientow(unittest.TestCase):
     def test_zamiana(self):
-        tymczasowy = HistogramGradientow.CechyHOG('obrazy/jablko.jpg')
+        tymczasowy = histogram_gradientow.CechyHOG('obrazy/jablko.jpg')
         wynik = tymczasowy.std()
         self.assertEqual(0.19743806519417686, wynik)
         tymczasowy.zmien_obraz('obrazy/czarny.png')
@@ -17,16 +17,16 @@ class TestHistogramGradientowJabko(unittest.TestCase):
         self.assertEqual(0.0, wynik)
 
     def test_std(self):
-        tymczasowy = HistogramGradientow.CechyHOG('obrazy/czarny.png')
+        tymczasowy = histogram_gradientow.CechyHOG('obrazy/czarny.png')
         wynik = tymczasowy.std()
         self.assertEqual(0, wynik)
 
     def test_srednia(self):
-        wynik = HistogramGradientow.CechyHOG('obrazy/czarny.png').srednia()
+        wynik = histogram_gradientow.CechyHOG('obrazy/czarny.png').srednia()
         self.assertEqual(0, wynik)
 
     def test_wektor_cech(self):
-        wynik = HistogramGradientow.CechyHOG('obrazy/jablko.jpg').wektor_cech()
+        wynik = histogram_gradientow.CechyHOG('obrazy/jablko.jpg').wektor_cech()
         oczekiwana = np.array([0., 0., 0., 0., 0., 0., 0., 0., 0.5, 0., 0., 0.,
                                0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
                                0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.5, 0.,
@@ -84,7 +84,7 @@ class TestHistogramGradientowJabko(unittest.TestCase):
 
         # Troche brzydki warunek, komunikat o nieudanym tescie malo mowi
         self.assertEqual((oczekiwana - wynik).any() != 0, False)
-        wynik2 = HistogramGradientow.CechyHOG('obrazy/czarny.png').wektor_cech()
+        wynik2 = histogram_gradientow.CechyHOG('obrazy/czarny.png').wektor_cech()
         self.assertEqual(wynik2.any() != 0, False)
 
 
