@@ -1,7 +1,7 @@
 from operator import imod
 from PyQt6.QtWidgets import *
 import sys
-from Ui_ZASZWECJE import *
+from gui import *
 
 
 
