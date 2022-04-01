@@ -1,11 +1,10 @@
 from operator import imod
 from PyQt6.QtWidgets import *
 import sys
-from gui import *
+from gui import Ui_MainWindow
 
 
-
-app = QApplication(sys.argv)
+aplikacja = QApplication(sys.argv)
 okno = QMainWindow()
 
 okno.setGeometry(200, 200, 800, 600)
@@ -15,4 +14,4 @@ ui = Ui_MainWindow()
 ui.setupUi(okno)
 
 okno.show()
-sys.exit(app.exec())
+sys.exit(aplikacja.exec())
