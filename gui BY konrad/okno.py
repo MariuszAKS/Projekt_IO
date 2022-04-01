@@ -6,13 +6,13 @@ from gui import *
 
 
 app = QApplication(sys.argv)
-window = QMainWindow()
+okno = QMainWindow()
 
-window.setGeometry(200, 200, 800, 600)
-window.setWindowTitle("Tytuł okna")
+okno.setGeometry(200, 200, 800, 600)
+okno.setWindowTitle("Tytuł okna")
 
 ui = Ui_MainWindow()
-ui.setupUi(window)
+ui.setupUi(okno)
 
-window.show()
+okno.show()
 sys.exit(app.exec())
