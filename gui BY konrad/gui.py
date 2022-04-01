@@ -1,4 +1,3 @@
-# Form implementation generated from reading ui file 'c:\Users\konra\OneDrive\Pulpit\repo\Projekt_IO\gui BY konrad\ZASZWECJE.ui'
 #
 # Created by: PyQt6 UI code generator 6.2.3
 #
