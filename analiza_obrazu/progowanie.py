@@ -27,6 +27,7 @@ class ProgowanieOTSU:
     # obraz = sciezka do pliku/numpy array
     # sciezka_wynik = sciezka do zapisu
     def zapisz_maske(self, obraz, sciezka_wynik):
-        wynik = self.maska(self, obraz)
+        wynik = self.maska(obraz)
         skimage.io.imsave(sciezka_wynik, img_as_ubyte(wynik))
         return wynik
+    
