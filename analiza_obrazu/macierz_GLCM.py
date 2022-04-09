@@ -5,7 +5,7 @@ import skimage.io
 
 
 # klasa do analizy tekstury obrazu, cechy macierzy glcm
-# obraz(numpy array lub sciezka string) jako argument do konstruktora
+# obraz(numpy array) jako argument do konstruktora
 # zmien_obraz, aby zmienic aktualnie analizowany obraz
 class CechyGLCM:
     def __init__(self, obraz) -> None:
@@ -41,3 +41,4 @@ class CechyGLCM:
     # zwraca korelacje glcm (float)
     def korelacja(self):
         return graycoprops(self.glcm, 'correlation')[0][0]
+    
