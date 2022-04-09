@@ -3,40 +3,42 @@ from skimage.color import rgb2gray
 from skimage.util import img_as_ubyte
 import skimage.io
 
-#klasas do analizy tekstury obrazu,cechy macierzy glcm
-#obraz(numpy array) jako argument do konstruktora
-#zmien_obraz, aby zmienic aktualnie analizowany obraz
+
+# klasa do analizy tekstury obrazu, cechy macierzy glcm
+# obraz(numpy array) jako argument do konstruktora
+# zmien_obraz, aby zmienic aktualnie analizowany obraz
 class CechyGLCM:
-    def __init__(self,obraz) -> None:
+    def __init__(self, obraz) -> None:
         if type(obraz) == str:
-            obr=img_as_ubyte(rgb2gray(skimage.io.imread(obraz)))
+            obr = img_as_ubyte(rgb2gray(skimage.io.imread(obraz)))
         else:
-            obr=img_as_ubyte(rgb2gray(obraz))
-        self.glcm=graycomatrix(obr,distances=[5],angles=[0],levels=256,symmetric=True,normed=True)
+            obr = img_as_ubyte(rgb2gray(obraz))
+        self.glcm = graycomatrix(obr, distances=[5], angles=[0], levels=256, symmetric=True, normed=True)
 
-    def zmien_obraz(self,obraz):
+    def zmien_obraz(self, obraz):
         if type(obraz) == str:
-            obr=img_as_ubyte(rgb2gray(skimage.io.imread(obraz)))
+            obr = img_as_ubyte(rgb2gray(skimage.io.imread(obraz)))
         else:
-            obr=img_as_ubyte(rgb2gray(obraz))
-        self.glcm=graycomatrix(obr,distances=[5],angles=[0],levels=256,symmetric=True,normed=True)
+            obr = img_as_ubyte(rgb2gray(obraz))
+        self.glcm = graycomatrix(obr, distances=[5], angles=[0], levels=256, symmetric=True, normed=True)
 
-    #zwraca kontrast glcm (float)
+    # zwraca kontrast glcm (float)
     def kontrast(self):
-        return graycoprops(self.glcm,'contrast')[0][0]
-    
-    #zwraca odemiennosc glcm (float)
+        return graycoprops(self.glcm, 'contrast')[0][0]
+
+    # zwraca odemiennosc glcm (float)
     def odmiennosc(self):
-        return graycoprops(self.glcm,'dissimilarity')[0][0]
+        return graycoprops(self.glcm, 'dissimilarity')[0][0]
 
-    #zwraca homogenicznosc glcm (float)
+    # zwraca homogenicznosc glcm (float)
     def homogenicznosc(self):
-        return graycoprops(self.glcm,'homogeneity')[0][0]
-    
-    #zwraca energie glcm (float)
-    def energia(self):
-        return graycoprops(self.glcm,'energy')[0][0]
+        return graycoprops(self.glcm, 'homogeneity')[0][0]
 
-    #zwraca korelacje glcm (float)
+    # zwraca energie glcm (float)
+    def energia(self):
+        return graycoprops(self.glcm, 'energy')[0][0]
+
+    # zwraca korelacje glcm (float)
     def korelacja(self):
-        return graycoprops(self.glcm,'correlation')[0][0]
+        return graycoprops(self.glcm, 'correlation')[0][0]
+    

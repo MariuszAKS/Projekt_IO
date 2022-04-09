@@ -2,100 +2,105 @@ import numpy as np
 import skimage.io
 import skimage.color
 
-#klasa do generacji cech kolorymetrycznych
-#obraz i maska jako argumenty do konstruktora, zmien_obraz aby zmienic obraz/maske
-#image=scierzka do pliku/numpy array
-#mask=maska (numpy bool array from Thresholding)
+
+# klasa do generacji cech kolorymetrycznych
+# obraz i maska jako argumenty do konstruktora, zmien_obraz aby zmienic obraz/maske
+# obraz = sciezka do pliku/numpy array
+# maska = maska (numpy bool array from Thresholding)
 class CechyKolorymetryczne:
-    def __init__(self,image,mask) -> None:
-        if type(image) == str:
-            self.img=skimage.io.imread(image)
+    def __init__(self, obraz, maska) -> None:
+        if type(obraz) == str:
+            self.obraz = skimage.io.imread(obraz)
         else:
-            self.img=image
-        self.mask=mask
+            self.obraz = obraz
+        self.maska = maska
 
-    def zmien_obraz(self,image,mask):
-        if type(image) == str:
-            self.img=skimage.io.imread(image)
+    def zmien_obraz(self, obraz, maska):
+        if type(obraz) == str:
+            self.obraz = skimage.io.imread(obraz)
         else:
-            self.img=image
-        self.mask=mask
+            self.obraz = obraz
+        self.maska = maska
 
-    #zwraca srednia pikseli na kazdym kanale [R,G,B]
-    def srednia_RGB(self):
-        result=[]
-        for channel in range(0,3):
-            value=0.0
-            count=0
-            for i in range(0,self.img.shape[0]):
-                for j in range(0,self.img.shape[1]):
-                    if self.mask[i,j]==True:
-                        value+=self.img[i,j,channel]
-                        count+=1
-            result.append(value/count)
-        return result
+    # zwraca srednia pikseli na kazdym kanale [R,G,B]
+    def srednia_rgb(self):
 
-    #zwraca srednia pikseli na kazdym kanale [H,S,V]
-    def srednia_HSV(self):
-        hsv_img=skimage.color.rgb2hsv(self.img)
-        result=[]
-        for channel in range(0,3):
-            value=0.0
-            count=0
-            for i in range(0,hsv_img.shape[0]):
-                for j in range(0,hsv_img.shape[1]):
-                    if self.mask[i,j]==True:
-                        value+=hsv_img[i,j,channel]
-                        count+=1
-            result.append(value/count)
-        return result
+        wynik = []
+        for channel in range(0, 3):
+            wartosc = 0.0
+            licznik = 0
+            for i in range(0, self.obraz.shape[0]):
+                for j in range(0, self.obraz.shape[1]):
+                    if self.maska[i, j]:
+                        wartosc += self.obraz[i, j, channel]
+                        licznik += 1
+            wynik.append(wartosc/licznik)
+        return wynik
 
-    #zwraca srednia pikseli na kazdym kanale [L,a*,b*]
-    def srednia_LAB(self):
-        lab_img=skimage.color.rgb2lab(self.img,"D65","2")
-        result=[]
-        for channel in range(0,3):
-            value=0.0
-            count=0
-            for i in range(0,lab_img.shape[0]):
-                for j in range(0,lab_img.shape[1]):
-                    if self.mask[i,j]==True:
-                        value+=lab_img[i,j,channel]
-                        count+=1
-            result.append(value/count)
-        return result
+    # zwraca srednia pikseli na kazdym kanale [H,S,V]
+    def srednia_hsv(self):
+        hsv_obr = skimage.color.rgb2hsv(self.obraz)
+        wynik = []
+        for kanal in range(0, 3):
+            wartosc = 0.0
+            licznik = 0
+            for i in range(0, hsv_obr.shape[0]):
+                for j in range(0, hsv_obr.shape[1]):
+                    if self.maska[i, j]:
+                        wartosc += hsv_obr[i, j, kanal]
+                        licznik += 1
+            wynik.append(wartosc/licznik)
+        return wynik
 
-    #zwraca odchylenie standardowe na kazdym kanale [R,G,B]
-    def std_RGB(self):
-        result=[]
-        red=self.img[:,:,0]
-        green=self.img[:,:,1]
-        blue=self.img[:,:,2]
-        result.append(np.std(red[self.mask]))
-        result.append(np.std(green[self.mask]))
-        result.append(np.std(blue[self.mask]))
-        return result
+    # zwraca srednia pikseli na kazdym kanale [L,a*,b*]
+    def srednia_lab(self):
+        lab_obr = skimage.color.rgb2lab(self.obraz, "D65", "2")
+        wynik = []
+        for channel in range(0, 3):
+            wartosc = 0.0
+            licznik = 0
+            for i in range(0, lab_obr.shape[0]):
+                for j in range(0, lab_obr.shape[1]):
+                    if self.maska[i, j]:
+                        wartosc += lab_obr[i, j, channel]
+                        licznik += 1
+            wynik.append(wartosc/licznik)
+        return wynik
 
-    #zwraca odchylenie standardowe na kazdym kanale [H,S,V]
-    def std_HSV(self):
-        hsv_img=skimage.color.rgb2hsv(self.img)
-        result=[]
-        hue=hsv_img[:,:,0]
-        sat=hsv_img[:,:,1]
-        val=hsv_img[:,:,2]
-        result.append(np.std(hue[self.mask]))
-        result.append(np.std(sat[self.mask]))
-        result.append(np.std(val[self.mask]))
-        return result
+    # zwraca odchylenie standardowe na kazdym kanale [R,G,B]
+    def std_rgb(self):
+        wynik = []
+        r = self.obraz[:, :, 0]  # czerwony
+        g = self.obraz[:, :, 1]  # zielony
+        b = self.obraz[:, :, 2]  # niebieski
 
-    #zwraca odchylenie standardowe na kazdym kanale [L,a*,b*]
-    def std_LAB(self):
-        lab_img=skimage.color.rgb2lab(self.img,"D65","2")
-        result=[]
-        l=lab_img[:,:,0]
-        a=lab_img[:,:,1]
-        b=lab_img[:,:,2]
-        result.append(np.std(l[self.mask]))
-        result.append(np.std(a[self.mask]))
-        result.append(np.std(b[self.mask]))
-        return result
+        wynik.append(np.std(r[self.maska]))
+        wynik.append(np.std(g[self.maska]))
+        wynik.append(np.std(b[self.maska]))
+        return wynik
+
+    # zwraca odchylenie standardowe na kazdym kanale [H,S,V]
+    def std_hsv(self):
+        hsv_obr = skimage.color.rgb2hsv(self.obraz)
+        wynik = []
+        h = hsv_obr[:, :, 0]  # odcien
+        s = hsv_obr[:, :, 1]  # nasycenie
+        v = hsv_obr[:, :, 2]  # wartosc
+
+        wynik.append(np.std(h[self.maska]))
+        wynik.append(np.std(s[self.maska]))
+        wynik.append(np.std(v[self.maska]))
+        return wynik
+
+    # zwraca odchylenie standardowe na kazdym kanale [L,a*,b*]
+    def std_lab(self):
+        lab_obr = skimage.color.rgb2lab(self.obraz, "D65", "2")
+        wynik = []
+        l = lab_obr[:, :, 0]  # luminacja
+        a = lab_obr[:, :, 1]  # tienta
+        b = lab_obr[:, :, 2]  # temperatura
+
+        wynik.append(np.std(l[self.maska]))
+        wynik.append(np.std(a[self.maska]))
+        wynik.append(np.std(b[self.maska]))
+        return wynik
