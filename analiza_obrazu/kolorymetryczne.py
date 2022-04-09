@@ -70,9 +70,9 @@ class CechyKolorymetryczne:
     # zwraca odchylenie standardowe na kazdym kanale [R,G,B]
     def std_rgb(self):
         wynik = []
-        r = self.obraz[:, :, 0] # czerwony
-        g = self.obraz[:, :, 1] # zielony
-        b = self.obraz[:, :, 2] # niebieski
+        r = self.obraz[:, :, 0]  # czerwony
+        g = self.obraz[:, :, 1]  # zielony
+        b = self.obraz[:, :, 2]  # niebieski
 
         wynik.append(np.std(r[self.maska]))
         wynik.append(np.std(g[self.maska]))
@@ -83,9 +83,9 @@ class CechyKolorymetryczne:
     def std_hsv(self):
         hsv_obr = skimage.color.rgb2hsv(self.obraz)
         wynik = []
-        h = hsv_obr[:, :, 0] # odcien
-        s = hsv_obr[:, :, 1] # nasycenie
-        v = hsv_obr[:, :, 2] # wartosc
+        h = hsv_obr[:, :, 0]  # odcien
+        s = hsv_obr[:, :, 1]  # nasycenie
+        v = hsv_obr[:, :, 2]  # wartosc
 
         wynik.append(np.std(h[self.maska]))
         wynik.append(np.std(s[self.maska]))
@@ -96,9 +96,9 @@ class CechyKolorymetryczne:
     def std_lab(self):
         lab_obr = skimage.color.rgb2lab(self.obraz, "D65", "2")
         wynik = []
-        l = lab_obr[:, :, 0] # luminacja
-        a = lab_obr[:, :, 1] # tienta
-        b = lab_obr[:, :, 2] # temperatura
+        l = lab_obr[:, :, 0]  # luminacja
+        a = lab_obr[:, :, 1]  # tienta
+        b = lab_obr[:, :, 2]  # temperatura
 
         wynik.append(np.std(l[self.maska]))
         wynik.append(np.std(a[self.maska]))
