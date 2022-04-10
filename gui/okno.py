@@ -2,6 +2,7 @@ from operator import imod
 from PyQt6.QtWidgets import *
 import sys
 from gui import Ui_MainWindow
+from element_listy import ElementListy
 
 
 aplikacja = QApplication(sys.argv)
