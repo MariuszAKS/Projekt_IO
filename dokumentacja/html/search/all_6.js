@@ -1,0 +1,24 @@
+var searchData=
+[
+  ['hist_5fkurt_5fhsv_0',['hist_kurt_hsv',['../classhistogram_1_1_cechy_histogram.html#a79660bfc7c27d562ff92065a6e98a01c',1,'histogram::CechyHistogram']]],
+  ['hist_5fkurt_5flab_1',['hist_kurt_lab',['../classhistogram_1_1_cechy_histogram.html#a66d79c6fd3c3eb32c7f7d53514b9e919',1,'histogram::CechyHistogram']]],
+  ['hist_5fkurt_5frgb_2',['hist_kurt_rgb',['../classhistogram_1_1_cechy_histogram.html#a083d886bbee76b64eb4ae1b900ef18ef',1,'histogram::CechyHistogram']]],
+  ['hist_5fskos_5fhsv_3',['hist_skos_hsv',['../classhistogram_1_1_cechy_histogram.html#a45e4e2ffb6bd579889b497cb3047b6e0',1,'histogram::CechyHistogram']]],
+  ['hist_5fskos_5flab_4',['hist_skos_lab',['../classhistogram_1_1_cechy_histogram.html#a7c32fb137495f0c912d45e5d4e58f861',1,'histogram::CechyHistogram']]],
+  ['hist_5fskos_5frgb_5',['hist_skos_rgb',['../classhistogram_1_1_cechy_histogram.html#a739c356f4efc40b29d5a4358344528b1',1,'histogram::CechyHistogram']]],
+  ['hist_5fsrednia_5fhsv_6',['hist_srednia_hsv',['../classhistogram_1_1_cechy_histogram.html#a5e55a8ec4fade06652e46370d71f03b3',1,'histogram::CechyHistogram']]],
+  ['hist_5fsrednia_5flab_7',['hist_srednia_lab',['../classhistogram_1_1_cechy_histogram.html#ad3bf0c78dc12ae243bfc3398b5bbf345',1,'histogram::CechyHistogram']]],
+  ['hist_5fsrednia_5frgb_8',['hist_srednia_rgb',['../classhistogram_1_1_cechy_histogram.html#a610739f5c3e118677b90a7b3e5f3eaee',1,'histogram::CechyHistogram']]],
+  ['hist_5fvar_5fhsv_9',['hist_var_hsv',['../classhistogram_1_1_cechy_histogram.html#a34fdecd15041a0033e1d8f987568c2c2',1,'histogram::CechyHistogram']]],
+  ['hist_5fvar_5flab_10',['hist_var_lab',['../classhistogram_1_1_cechy_histogram.html#a1597855faa3db00a2e3dd0d0cc5e3601',1,'histogram::CechyHistogram']]],
+  ['hist_5fvar_5frgb_11',['hist_var_rgb',['../classhistogram_1_1_cechy_histogram.html#a6764efd61a9adcfe4f0275337f89ad0c',1,'histogram::CechyHistogram']]],
+  ['histogram_12',['histogram',['../namespacehistogram.html',1,'']]],
+  ['histogram_2epy_13',['histogram.py',['../histogram_8py.html',1,'']]],
+  ['histogram_5fgradientow_14',['histogram_gradientow',['../namespacehistogram__gradientow.html',1,'']]],
+  ['histogram_5fgradientow_2epy_15',['histogram_gradientow.py',['../histogram__gradientow_8py.html',1,'']]],
+  ['homogenicznosc_16',['homogenicznosc',['../classmacierz___g_l_c_m_1_1_cechy_g_l_c_m.html#ab243187581585186ed356870735e21a6',1,'macierz_GLCM::CechyGLCM']]],
+  ['horizontallayout_17',['horizontalLayout',['../classgui_1_1_ui___main_window.html#aeb2f812b753057d1dc7ba6ccaa12af8c',1,'gui::Ui_MainWindow']]],
+  ['horizontallayout_5f2_18',['horizontalLayout_2',['../classgui_1_1_ui___main_window.html#a74ab56472c32e9583a91e8d161b3e12f',1,'gui::Ui_MainWindow']]],
+  ['horizontallayoutwidget_19',['horizontalLayoutWidget',['../classgui_1_1_ui___main_window.html#aad87d20558c4d8692d21f3fd58366f53',1,'gui::Ui_MainWindow']]],
+  ['horizontallayoutwidget_5f2_20',['horizontalLayoutWidget_2',['../classgui_1_1_ui___main_window.html#ab4bf6558864d6660da6f82312dd668eb',1,'gui::Ui_MainWindow']]]
+];
