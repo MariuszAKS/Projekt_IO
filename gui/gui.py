@@ -7,6 +7,8 @@
 
 
 from PyQt6 import QtCore, QtGui, QtWidgets
+from element_listy import *
+from wybor_plikow import wybierz_pliki
 
 
 class Ui_MainWindow(object):
@@ -44,28 +46,8 @@ class Ui_MainWindow(object):
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_2.setContentsMargins(-1, -1, -1, 11)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
-        self.widget = QtWidgets.QWidget(self.scrollAreaWidgetContents)
-        self.widget.setMaximumSize(QtCore.QSize(16777215, 50))
-        self.widget.setLayoutDirection(QtCore.Qt.LayoutDirection.LeftToRight)
-        self.widget.setAutoFillBackground(False)
-        self.widget.setObjectName("widget")
-        self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.widget)
-        self.horizontalLayout_2.setSizeConstraint(QtWidgets.QLayout.SizeConstraint.SetDefaultConstraint)
-        self.horizontalLayout_2.setContentsMargins(11, -1, -1, 11)
-        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-        self.label_3 = QtWidgets.QLabel(self.widget)
-        self.label_3.setAlignment(QtCore.Qt.AlignmentFlag.AlignHCenter|QtCore.Qt.AlignmentFlag.AlignTop)
-        self.label_3.setObjectName("label_3")
-        self.horizontalLayout_2.addWidget(self.label_3)
-        self.label_2 = QtWidgets.QLabel(self.widget)
-        self.label_2.setAlignment(QtCore.Qt.AlignmentFlag.AlignHCenter|QtCore.Qt.AlignmentFlag.AlignTop)
-        self.label_2.setObjectName("label_2")
-        self.horizontalLayout_2.addWidget(self.label_2)
-        self.label = QtWidgets.QLabel(self.widget)
-        self.label.setAlignment(QtCore.Qt.AlignmentFlag.AlignHCenter|QtCore.Qt.AlignmentFlag.AlignTop)
-        self.label.setObjectName("label")
-        self.horizontalLayout_2.addWidget(self.label)
-        self.verticalLayout_2.addWidget(self.widget)
+        spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
+        self.verticalLayout_2.addItem(spacerItem)
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         self.verticalLayout.addWidget(self.scrollArea)
         self.progressBar = QtWidgets.QProgressBar(self.centralwidget)
@@ -78,6 +60,13 @@ class Ui_MainWindow(object):
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
         self.pushButton = QtWidgets.QPushButton(self.widget_2)
         self.pushButton.setObjectName("pushButton")
+        
+        def wybierz():
+            print(wybierz_pliki(self.widget_2))
+        
+        
+        self.pushButton.clicked.connect(wybierz)
+        
         self.horizontalLayout_3.addWidget(self.pushButton)
         self.pushButton_2 = QtWidgets.QPushButton(self.widget_2)
         self.pushButton_2.setObjectName("pushButton_2")
@@ -107,6 +96,9 @@ class Ui_MainWindow(object):
         self.menubar.addAction(self.menuFile.menuAction())
         self.menubar.addAction(self.menuSave.menuAction())
         self.menubar.addAction(self.menuLoad.menuAction())
+        
+        for i in range(100):
+            self.verticalLayout_2.addWidget(ElementListy(self.scrollAreaWidgetContents))
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -117,9 +109,6 @@ class Ui_MainWindow(object):
         self.Zdjecie.setText(_translate("MainWindow", "Zdjęcie"))
         self.pushButton_3.setText(_translate("MainWindow", "Nazwa"))
         self.pushButton_4.setText(_translate("MainWindow", "Rodzaj"))
-        self.label_3.setText(_translate("MainWindow", "Dodajemy zdjęcie"))
-        self.label_2.setText(_translate("MainWindow", "Zdjęcie1.jpg"))
-        self.label.setText(_translate("MainWindow", "Rodzaj Bakterii"))
         self.pushButton.setText(_translate("MainWindow", "Dodaj"))
         self.pushButton_2.setText(_translate("MainWindow", "Export"))
         self.menuFile.setTitle(_translate("MainWindow", "File"))
