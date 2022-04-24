@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['lokalna_5fkrzywizna_0',['lokalna_krzywizna',['../namespacelokalna__krzywizna.html',1,'']]]
+  ['imitacja_5fladowania_0',['imitacja_ladowania',['../namespaceimitacja__ladowania.html',1,'']]]
 ];

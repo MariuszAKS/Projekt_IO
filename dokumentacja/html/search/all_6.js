@@ -18,7 +18,5 @@ var searchData=
   ['histogram_5fgradientow_2epy_15',['histogram_gradientow.py',['../histogram__gradientow_8py.html',1,'']]],
   ['homogenicznosc_16',['homogenicznosc',['../classmacierz___g_l_c_m_1_1_cechy_g_l_c_m.html#ab243187581585186ed356870735e21a6',1,'macierz_GLCM::CechyGLCM']]],
   ['horizontallayout_17',['horizontalLayout',['../classgui_1_1_ui___main_window.html#aeb2f812b753057d1dc7ba6ccaa12af8c',1,'gui::Ui_MainWindow']]],
-  ['horizontallayout_5f2_18',['horizontalLayout_2',['../classgui_1_1_ui___main_window.html#a74ab56472c32e9583a91e8d161b3e12f',1,'gui::Ui_MainWindow']]],
-  ['horizontallayoutwidget_19',['horizontalLayoutWidget',['../classgui_1_1_ui___main_window.html#aad87d20558c4d8692d21f3fd58366f53',1,'gui::Ui_MainWindow']]],
-  ['horizontallayoutwidget_5f2_20',['horizontalLayoutWidget_2',['../classgui_1_1_ui___main_window.html#ab4bf6558864d6660da6f82312dd668eb',1,'gui::Ui_MainWindow']]]
+  ['horizontallayout_5f3_18',['horizontalLayout_3',['../classgui_1_1_ui___main_window.html#a0eda39949e0203763b71192ceccf3893',1,'gui::Ui_MainWindow']]]
 ];

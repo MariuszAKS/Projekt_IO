@@ -1,8 +1,7 @@
 var searchData=
 [
-  ['label_0',['label',['../classgui_1_1_ui___main_window.html#a588cedd22233fe3aa2a4e89264f7b64c',1,'gui::Ui_MainWindow']]],
-  ['label_5f2_1',['label_2',['../classgui_1_1_ui___main_window.html#a5af673c4135ed50a2f183c7b9090a08c',1,'gui::Ui_MainWindow']]],
-  ['label_5f3_2',['label_3',['../classgui_1_1_ui___main_window.html#a6dbc6ef258ff67b7747cd7ad4ee1c815',1,'gui::Ui_MainWindow']]],
-  ['lokalna_5fkrzywizna_3',['lokalna_krzywizna',['../namespacelokalna__krzywizna.html',1,'']]],
-  ['lokalna_5fkrzywizna_2epy_4',['lokalna_krzywizna.py',['../lokalna__krzywizna_8py.html',1,'']]]
+  ['lista_0',['lista',['../namespaceimitacja__ladowania.html#a40f501d1974585703058eb0a29d3e687',1,'imitacja_ladowania']]],
+  ['lokalna_5fkrzywizna_1',['lokalna_krzywizna',['../namespacelokalna__krzywizna.html',1,'']]],
+  ['lokalna_5fkrzywizna_2epy_2',['lokalna_krzywizna.py',['../lokalna__krzywizna_8py.html',1,'']]],
+  ['losuj_3',['losuj',['../namespaceimitacja__ladowania.html#a54acf0fa3524f8b8bf3a3742ae679eae',1,'imitacja_ladowania']]]
 ];

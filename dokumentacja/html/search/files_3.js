@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['lokalna_5fkrzywizna_2epy_0',['lokalna_krzywizna.py',['../lokalna__krzywizna_8py.html',1,'']]]
+  ['histogram_2epy_0',['histogram.py',['../histogram_8py.html',1,'']]],
+  ['histogram_5fgradientow_2epy_1',['histogram_gradientow.py',['../histogram__gradientow_8py.html',1,'']]]
 ];

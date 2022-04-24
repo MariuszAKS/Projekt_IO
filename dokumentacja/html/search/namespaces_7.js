@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['test_5fhistogram_5fgradientow_0',['test_histogram_gradientow',['../namespacetest__histogram__gradientow.html',1,'']]]
+  ['odczytywanie_5frodzajow_0',['odczytywanie_rodzajow',['../namespaceodczytywanie__rodzajow.html',1,'']]],
+  ['okno_1',['okno',['../namespaceokno.html',1,'']]]
 ];

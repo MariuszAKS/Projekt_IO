@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['okno_0',['okno',['../namespaceokno.html',1,'']]]
+  ['lokalna_5fkrzywizna_0',['lokalna_krzywizna',['../namespacelokalna__krzywizna.html',1,'']]]
 ];

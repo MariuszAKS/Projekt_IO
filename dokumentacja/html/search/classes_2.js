@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['progowanieotsu_0',['ProgowanieOTSU',['../classprogowanie_1_1_progowanie_o_t_s_u.html',1,'progowanie']]],
-  ['prostyperceptron_1',['ProstyPerceptron',['../class_prosty_perceptron_1_1_prosty_perceptron.html',1,'ProstyPerceptron']]]
+  ['klastryksrednich_0',['KlastryKSrednich',['../classklasteryzacja_1_1_klastry_k_srednich.html',1,'klasteryzacja']]],
+  ['krawedzie_1',['Krawedzie',['../classkrawedzie_1_1_krawedzie.html',1,'krawedzie']]]
 ];

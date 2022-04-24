@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['wektor_5fcech_0',['wektor_cech',['../classhistogram__gradientow_1_1_cechy_h_o_g.html#a8d9fa1939e50b5124cefbbe3ae3d23a9',1,'histogram_gradientow::CechyHOG']]],
-  ['widget_1',['widget',['../classgui_1_1_ui___main_window.html#a215a42fb2b23e46db3d1242a97431e83',1,'gui::Ui_MainWindow']]]
+  ['verticallayout_0',['verticalLayout',['../classgui_1_1_ui___main_window.html#a09ac33d6f0e909e96ff5019f1528a83b',1,'gui::Ui_MainWindow']]],
+  ['verticallayout_5f2_1',['verticalLayout_2',['../classgui_1_1_ui___main_window.html#aabf0b092e377b274e16b1083c9633ab4',1,'gui::Ui_MainWindow']]]
 ];

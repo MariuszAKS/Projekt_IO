@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ui_5fmainwindow_0',['Ui_MainWindow',['../classgui_1_1_ui___main_window.html',1,'gui']]]
+  ['testhistogramgradientow_0',['TestHistogramGradientow',['../classtest__histogram__gradientow_1_1_test_histogram_gradientow.html',1,'test_histogram_gradientow']]]
 ];

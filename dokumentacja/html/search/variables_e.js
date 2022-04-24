@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['zdjecie_0',['Zdjecie',['../classgui_1_1_ui___main_window.html#a3331844e4fae87531c4403e234116596',1,'gui::Ui_MainWindow']]]
+  ['widget_5f2_0',['widget_2',['../classgui_1_1_ui___main_window.html#a511b704a671eb17765445cb69ee290e7',1,'gui::Ui_MainWindow']]]
 ];

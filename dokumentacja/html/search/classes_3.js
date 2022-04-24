@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['testhistogramgradientow_0',['TestHistogramGradientow',['../classtest__histogram__gradientow_1_1_test_histogram_gradientow.html',1,'test_histogram_gradientow']]]
+  ['progowanieotsu_0',['ProgowanieOTSU',['../classprogowanie_1_1_progowanie_o_t_s_u.html',1,'progowanie']]],
+  ['prostyperceptron_1',['ProstyPerceptron',['../class_prosty_perceptron_1_1_prosty_perceptron.html',1,'ProstyPerceptron']]]
 ];
