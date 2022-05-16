@@ -24,7 +24,7 @@ class _Watek():
         self.proces = _Proces(sciezka)
         self.proces.moveToThread(self.watek)
         self.watek.started.connect(self.proces.run)
-        self.proces.zakonczony.connect(lambda: dodaj_pozycje(ui, self))
+        self.proces.zakonczony.connect(lambda: dodaj_pozycje(ui, self.proces.sciezka, "zdjecie", self.proces.rodzaj))
         self.proces.zakonczony.connect(self.watek.quit)
         self.proces.zakonczony.connect(self.proces.deleteLater)
         self.watek.finished.connect(self.watek.deleteLater)

@@ -65,8 +65,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>1009</width>
-         <height>631</height>
+         <width>1017</width>
+         <height>626</height>
         </rect>
        </property>
        <property name="layoutDirection">
@@ -83,8 +83,8 @@
           </property>
           <property name="sizeHint" stdset="0">
            <size>
-            <width>20</width>
-            <height>40</height>
+            <width>1</width>
+            <height>1</height>
            </size>
           </property>
          </spacer>
@@ -128,30 +128,9 @@
      <x>0</x>
      <y>0</y>
      <width>1033</width>
-     <height>26</height>
+     <height>32</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuFile">
-    <property name="title">
-     <string>File</string>
-    </property>
-    <addaction name="separator"/>
-    <addaction name="actionSave"/>
-    <addaction name="actionLoad"/>
-   </widget>
-   <widget class="QMenu" name="menuSave">
-    <property name="title">
-     <string>For blinds</string>
-    </property>
-   </widget>
-   <widget class="QMenu" name="menuLoad">
-    <property name="title">
-     <string>For me</string>
-    </property>
-   </widget>
-   <addaction name="menuFile"/>
-   <addaction name="menuSave"/>
-   <addaction name="menuLoad"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionSave">
