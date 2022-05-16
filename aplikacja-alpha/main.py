@@ -7,8 +7,7 @@ import klasyfikacja_obrazu
 # random forest, gdzie train - macierz wszystkich cech obrazow, train - wygenerowane cechy badanego)
 # Zwróć wynik, do której kategorii zaklasyfikowało obraz
 
-sciezka_do_pliku = 'Bakterie\\Pseudomonas\\p00018.png'
-# sciezka_do_pliku = 'E_sakazakii.jpg'
+sciezka_do_pliku = ''
 
 cechy = generowanie_cech.generowanie_cech(sciezka_do_pliku)
 wynik = klasyfikacja_obrazu.klasyfikacja([cechy])
