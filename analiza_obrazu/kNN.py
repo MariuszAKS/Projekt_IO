@@ -17,6 +17,10 @@ X_Train, X_Test, y_Train, y_Test = train_test_split(X, y, test_size=0.5)
 knn = KNeighborsRegressor(n_neighbors=3)
 knn.fit(X_Train, y_Train)
 #przewidywany rodzaj
-y_pred = knn.predict(X_Train)
-#accuracy (zgodność dopasowania)
-#print("Accuracy:", metrics.accuracy_score(y_Test, y_pred)) #zakomentowane bo wyrzuca jakiś błąd
+y_przewidywany = knn.predict(X_Train)
+print(y_przewidywany)
+for i in range(len(y_przewidywany)):
+    y_przewidywany[i] = round(y_przewidywany[i], 0)
+# accuracy (zgodność dopasowania)
+print("Accuracy:", metrics.accuracy_score(y_Test, y_przewidywany))
+
