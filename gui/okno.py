@@ -1,18 +1,19 @@
 from PyQt6.QtWidgets import *
 import sys
-from ui.gui import Ui_MainWindow
-from logika.imitacja_odczytywania_rodzaju import ustaw_dodawanie
+
+from .ui.designer.gui import Ui_MainWindow
+from .ui.glowne_okno import GlowneOkno
+from .logika.imitacja_odczytywania_rodzaju import ustaw_dodawanie
 
 
-aplikacja = QApplication(sys.argv)
-okno = QMainWindow()
+class Aplikacja():
+    def __init__(self):
+        print(__package__)
+        self.aplikacja = QApplication(sys.argv)
+        self.okno = GlowneOkno()
 
-okno.setGeometry(200, 200, 800, 600)
-okno.setWindowTitle("Tytuł okna")
+        self.ui = Ui_MainWindow()
+        self.ui.setupUi(self.okno)
+        ustaw_dodawanie(self.ui)
 
-ui = Ui_MainWindow()
-ui.setupUi(okno)
-ustaw_dodawanie(ui)
-
-okno.show()
-sys.exit(aplikacja.exec())
+        sys.exit(self.aplikacja.exec())

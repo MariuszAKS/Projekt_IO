@@ -2,7 +2,7 @@ from xml.dom.minidom import Element
 from PyQt6.QtWidgets import *
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QPixmap, QResizeEvent
-from ui.gui import Ui_MainWindow
+from .designer.gui import Ui_MainWindow
 
 class ElementListy(QWidget):
     def __init__(self, rodzic, sciezka: str, zdjecie: str, rodzaj: str) -> None:

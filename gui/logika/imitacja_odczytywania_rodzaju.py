@@ -1,9 +1,9 @@
 import random as rand
 from time import sleep
-from logika.wybor_plikow import wybierz_pliki
+from .wybor_plikow import wybierz_pliki
 from PyQt6.QtCore import QThread, QObject, pyqtSignal
-from ui.element_listy import dodaj_pozycje, usun_wszystkie_pozycje
-from ui.gui import Ui_MainWindow
+from ..ui.element_listy import dodaj_pozycje, usun_wszystkie_pozycje
+from ..ui.designer.gui import Ui_MainWindow
 
 lista = ["red", "blue", "green", "brown", "orange", "purple"]
 

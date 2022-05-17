@@ -1,0 +1,1 @@
+from .okno import Aplikacja
