@@ -1,3 +1,5 @@
+import ntpath
+
 from PyQt6.QtWidgets import QLabel, QSizePolicy, QGridLayout, QLayout, QWidget
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QPixmap, QResizeEvent
@@ -7,6 +9,7 @@ class ElementListy(QWidget):
     def __init__(self, sciezka: str, rodzaj: str) -> None:
         super().__init__()
 
+        self.nazwa = ntpath.basename(sciezka)
         self.sciezka = sciezka
         self.rodzaj = rodzaj
 
@@ -14,27 +17,27 @@ class ElementListy(QWidget):
         rozstawienie.setSizeConstraint(QLayout.SizeConstraint.SetDefaultConstraint)
 
         zdjecie = _Podglad_zdjecia(self.sciezka, self)
-        sciezka = QLabel(self.sciezka, self)
-        rodzaj = QLabel(self.rodzaj, self)
+        etykieta_nazwa = QLabel(self.nazwa, self)
+        etykieta_rodzaj = QLabel(self.rodzaj, self)
 
-        sciezka.setSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Preferred)
+        etykieta_nazwa.setSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Preferred)
         zdjecie.setSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Preferred)
-        rodzaj.setSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Preferred)
+        etykieta_rodzaj.setSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Preferred)
 
-        sciezka.setWordWrap(True)
-        rodzaj.setWordWrap(True)
+        etykieta_nazwa.setWordWrap(True)
+        etykieta_rodzaj.setWordWrap(True)
 
-        sciezka.setAlignment(Qt.AlignmentFlag.AlignHCenter | Qt.AlignmentFlag.AlignCenter)
+        etykieta_nazwa.setAlignment(Qt.AlignmentFlag.AlignHCenter | Qt.AlignmentFlag.AlignCenter)
         zdjecie.setAlignment(Qt.AlignmentFlag.AlignHCenter | Qt.AlignmentFlag.AlignCenter)
-        rodzaj.setAlignment(Qt.AlignmentFlag.AlignHCenter | Qt.AlignmentFlag.AlignCenter)
+        etykieta_rodzaj.setAlignment(Qt.AlignmentFlag.AlignHCenter | Qt.AlignmentFlag.AlignCenter)
 
         rozstawienie.setColumnStretch(0, 1)
         rozstawienie.setColumnStretch(1, 1)
         rozstawienie.setColumnStretch(2, 1)
 
         rozstawienie.addWidget(zdjecie)
-        rozstawienie.addWidget(sciezka)
-        rozstawienie.addWidget(rodzaj)
+        rozstawienie.addWidget(etykieta_nazwa)
+        rozstawienie.addWidget(etykieta_rodzaj)
 
 
 class _Podglad_zdjecia(QLabel):
