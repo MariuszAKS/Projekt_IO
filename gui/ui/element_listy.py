@@ -1,3 +1,4 @@
+from xml.dom.minidom import Element
 from PyQt6.QtWidgets import *
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QPixmap, QResizeEvent
@@ -53,3 +54,8 @@ class _Podglad_zdjecia(QLabel):
 
 def dodaj_pozycje(ui: Ui_MainWindow, nazwa: str, zdjecie: str, rodzaj: str):
     ui.verticalLayout_2.addWidget(ElementListy(ui.scrollAreaWidgetContents, nazwa, zdjecie, rodzaj))
+
+def usun_wszystkie_pozycje(ui):
+    rodzic = ui.verticalLayout_2
+    for i in reversed(range(rodzic.count())):
+        rodzic.itemAt(i).widget().setParent(None)

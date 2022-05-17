@@ -2,7 +2,7 @@ import random as rand
 from time import sleep
 from logika.wybor_plikow import wybierz_pliki
 from PyQt6.QtCore import QThread, QObject, pyqtSignal
-from ui.element_listy import dodaj_pozycje
+from ui.element_listy import dodaj_pozycje, usun_wszystkie_pozycje
 from ui.gui import Ui_MainWindow
 
 lista = ["red", "blue", "green", "brown", "orange", "purple"]
@@ -10,13 +10,16 @@ lista = ["red", "blue", "green", "brown", "orange", "purple"]
 
 def ustaw_dodawanie(ui: Ui_MainWindow):
     ui.watki = []
-    ui.pushButton.clicked.connect(lambda: _analizuj_pliki(ui))
+    ui.przycisk_dodaj.clicked.connect(lambda: _analizuj_pliki(ui))
 
 def _analizuj_pliki(ui: Ui_MainWindow):
-    sciezki = wybierz_pliki(ui.widget_2)
+    sciezki = wybierz_pliki(ui.obszar_przyciskow)
+    usun_wszystkie_pozycje(ui)
     for sciezka in sciezki:
         watek = _Watek(sciezka, ui)
         ui.watki.append(watek)
+
+
 
 class _Watek():
     def __init__(self, sciezka: str, ui: Ui_MainWindow) -> None:
