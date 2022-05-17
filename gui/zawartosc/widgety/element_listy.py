@@ -13,35 +13,42 @@ class ElementListy(QWidget):
         self.sciezka = sciezka
         self.rodzaj = rodzaj
 
-        rozstawienie = QGridLayout(self)
-        rozstawienie.setSizeConstraint(QLayout.SizeConstraint.SetDefaultConstraint)
+        self.__rozstawienie = QGridLayout(self)
+        self.__zdjecie = _Podglad_zdjecia(self.sciezka, self)
+        self.__etykieta_nazwa = QLabel(self.nazwa, self)
+        self.__etykieta_rodzaj = QLabel(self.rodzaj, self)
 
-        zdjecie = _Podglad_zdjecia(self.sciezka, self)
-        etykieta_nazwa = QLabel(self.nazwa, self)
-        etykieta_rodzaj = QLabel(self.rodzaj, self)
+        self.__ustaw_wyrownanie()
+        self.__ustaw_zawijanie_tekstu()
+        self.__ustaw_proporcje()
+        self.__dodaj_elementy()
 
-        etykieta_nazwa.setSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Preferred)
-        zdjecie.setSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Preferred)
-        etykieta_rodzaj.setSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Preferred)
+    def __ustaw_wyrownanie(self) -> None:
+        self.__etykieta_nazwa.setAlignment(Qt.AlignmentFlag.AlignHCenter | Qt.AlignmentFlag.AlignCenter)
+        self.__zdjecie.setAlignment(Qt.AlignmentFlag.AlignHCenter | Qt.AlignmentFlag.AlignCenter)
+        self.__etykieta_rodzaj.setAlignment(Qt.AlignmentFlag.AlignHCenter | Qt.AlignmentFlag.AlignCenter)
 
-        etykieta_nazwa.setWordWrap(True)
-        etykieta_rodzaj.setWordWrap(True)
+    def __ustaw_zawijanie_tekstu(self) -> None:
+        self.__etykieta_nazwa.setWordWrap(True)
+        self.__etykieta_rodzaj.setWordWrap(True)
 
-        etykieta_nazwa.setAlignment(Qt.AlignmentFlag.AlignHCenter | Qt.AlignmentFlag.AlignCenter)
-        zdjecie.setAlignment(Qt.AlignmentFlag.AlignHCenter | Qt.AlignmentFlag.AlignCenter)
-        etykieta_rodzaj.setAlignment(Qt.AlignmentFlag.AlignHCenter | Qt.AlignmentFlag.AlignCenter)
+    def __ustaw_proporcje(self) -> None:
+        self.__etykieta_nazwa.setSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Preferred)
+        self.__zdjecie.setSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Preferred)
+        self.__etykieta_rodzaj.setSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Preferred)
 
-        rozstawienie.setColumnStretch(0, 1)
-        rozstawienie.setColumnStretch(1, 1)
-        rozstawienie.setColumnStretch(2, 1)
+        self.__rozstawienie.setColumnStretch(0, 1)
+        self.__rozstawienie.setColumnStretch(1, 1)
+        self.__rozstawienie.setColumnStretch(2, 1)
 
-        rozstawienie.addWidget(zdjecie)
-        rozstawienie.addWidget(etykieta_nazwa)
-        rozstawienie.addWidget(etykieta_rodzaj)
+    def __dodaj_elementy(self) -> None:
+        self.__rozstawienie.addWidget(self.__zdjecie)
+        self.__rozstawienie.addWidget(self.__etykieta_nazwa)
+        self.__rozstawienie.addWidget(self.__etykieta_rodzaj)
 
 
 class _Podglad_zdjecia(QLabel):
-    def __init__(self, sciezka, rodzic):
+    def __init__(self, sciezka: str, rodzic: ElementListy) -> None:
         super().__init__(rodzic)
         self.__pixmapa = QPixmap(sciezka)
         self.setPixmap(self.__pixmapa.scaledToWidth(200))

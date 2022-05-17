@@ -14,13 +14,14 @@ lista = ["red", "blue", "green", "brown", "orange", "purple"]
 def _zwroc_rodzaj(sciezka_zdjecia: str) -> str:
     sleep(rand.uniform(0.5, 2))
     rodzaj = rand.choice(lista)
+    print(rodzaj)
     return rodzaj
 
 class AnalizatorZdjec():
     '''Klasa sluzaca do przeprowadzania analizy zdjec'''
 
     def __init__(self) -> None:
-        self.watki = []
+        self.__watki = []
 
     def analizuj_zdjecia(self, sciezki: List[str], dodaj_pozycje: Callable[[str, str], None]) -> None:
         """
@@ -32,29 +33,28 @@ class AnalizatorZdjec():
             dodaj_pozycje (Callable[[str, str], None]): funkcja dodajaca pozycje do listy w ui
         """
 
-        self.watki.clear()
+        self.__watki.clear()
 
         for sciezka in sciezki:
-
             analiza = _Analiza(sciezka)
             watek = _Watek(
                 proces_do_uruchomienia=analiza,
                 gdy_zakonczony=dodaj_pozycje)
 
-            self.watki.append(watek)
+            self.__watki.append(watek)
 
 
 class _Watek():
     def __init__(self, proces_do_uruchomienia: _Analiza, gdy_zakonczony: Callable[[str, str], None]) -> None:
-        self.watek = QThread()
-        self.proces = proces_do_uruchomienia
-        self.proces.moveToThread(self.watek)
-        self.watek.started.connect(self.proces.analizuj)
-        self.proces.zakonczony.connect(lambda: gdy_zakonczony(self.proces.sciezka, self.proces.rodzaj))
-        self.proces.zakonczony.connect(self.watek.quit)
-        self.proces.zakonczony.connect(self.proces.deleteLater)
-        self.watek.finished.connect(self.watek.deleteLater)
-        self.watek.start()
+        self.__watek = QThread()
+        self.__proces = proces_do_uruchomienia
+        self.__proces.moveToThread(self.__watek)
+        self.__watek.started.connect(self.__proces.analizuj)
+        self.__proces.zakonczony.connect(lambda: gdy_zakonczony(self.__proces.sciezka, self.__proces.rodzaj))
+        self.__proces.zakonczony.connect(self.__watek.quit)
+        self.__proces.zakonczony.connect(self.__proces.deleteLater)
+        self.__watek.finished.connect(self.__watek.deleteLater)
+        self.__watek.start()
 
 
 class _Analiza(QObject):
@@ -64,11 +64,9 @@ class _Analiza(QObject):
     def __init__(self, sciezka_zdjecia: str) -> None:
         super().__init__()
         self.sciezka = sciezka_zdjecia
-        self.lista = lista
         self.rodzaj = None
 
     def analizuj(self):
         self.rodzaj = _zwroc_rodzaj(self.sciezka)
-        print(self.rodzaj)
         self.zakonczony.emit()
 
