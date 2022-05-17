@@ -1,18 +1,21 @@
 from PyQt6.QtWidgets import QLabel, QSizePolicy, QGridLayout, QLayout, QWidget
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QPixmap, QResizeEvent
-from ..designer.gui_designer import Ui_MainWindow
+
 
 class ElementListy(QWidget):
-    def __init__(self, rodzic: QWidget, sciezka: str, rodzaj: str) -> None:
-        super().__init__(rodzic)
+    def __init__(self, sciezka: str, rodzaj: str) -> None:
+        super().__init__()
+
+        self.sciezka = sciezka
+        self.rodzaj = rodzaj
 
         rozstawienie = QGridLayout(self)
         rozstawienie.setSizeConstraint(QLayout.SizeConstraint.SetDefaultConstraint)
 
-        zdjecie = _Podglad_zdjecia(sciezka, self)
-        sciezka = QLabel(sciezka, self)
-        rodzaj = QLabel(rodzaj, self)
+        zdjecie = _Podglad_zdjecia(self.sciezka, self)
+        sciezka = QLabel(self.sciezka, self)
+        rodzaj = QLabel(self.rodzaj, self)
 
         sciezka.setSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Preferred)
         zdjecie.setSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Preferred)
@@ -40,7 +43,6 @@ class _Podglad_zdjecia(QLabel):
         self.__pixmapa = QPixmap(sciezka)
         self.setPixmap(self.__pixmapa.scaledToWidth(200))
         self.show()
-
 
     def resizeEvent(self, resizeEvent: QResizeEvent) -> None:
         margines = 1  # pixmapa nie moze zajmowac calej dostepnej przestrzeni bo layout nigdy nie bedzie chcial jej zmniejszac
