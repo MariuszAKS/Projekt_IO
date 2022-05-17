@@ -2,7 +2,7 @@ import sys
 
 from PyQt6.QtWidgets import *
 
-from .zawartosc.ui import Ui
+from .zawartosc.ui.ui import Ui
 from .zawartosc.okno import GlowneOkno
 
 
