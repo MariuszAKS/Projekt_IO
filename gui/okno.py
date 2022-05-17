@@ -1,5 +1,6 @@
-from PyQt6.QtWidgets import *
 import sys
+
+from PyQt6.QtWidgets import *
 
 from .ui.designer.gui import Ui_MainWindow
 from .ui.glowne_okno import GlowneOkno
@@ -7,8 +8,7 @@ from .logika.imitacja_odczytywania_rodzaju import ustaw_dodawanie
 
 
 class Aplikacja():
-    def __init__(self):
-        print(__package__)
+    def __init__(self) -> None:
         self.aplikacja = QApplication(sys.argv)
         self.okno = GlowneOkno()
 
