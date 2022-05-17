@@ -1,11 +1,10 @@
-from xml.dom.minidom import Element
-from PyQt6.QtWidgets import *
+from PyQt6.QtWidgets import QLabel, QSizePolicy, QGridLayout, QLayout, QWidget
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QPixmap, QResizeEvent
-from ..designer.gui import Ui_MainWindow
+from ..designer.gui_designer import Ui_MainWindow
 
 class ElementListy(QWidget):
-    def __init__(self, rodzic, sciezka: str, zdjecie: str, rodzaj: str) -> None:
+    def __init__(self, rodzic: QWidget, sciezka: str, rodzaj: str) -> None:
         super().__init__(rodzic)
 
         rozstawienie = QGridLayout(self)
@@ -49,13 +48,3 @@ class _Podglad_zdjecia(QLabel):
         self.setPixmap(zeskalowana_pixmapa)
         self.show()
         return super().resizeEvent(resizeEvent)
-
-
-
-def dodaj_pozycje(ui: Ui_MainWindow, nazwa: str, zdjecie: str, rodzaj: str):
-    ui.verticalLayout_2.addWidget(ElementListy(ui.scrollAreaWidgetContents, nazwa, zdjecie, rodzaj))
-
-def usun_wszystkie_pozycje(ui):
-    rodzic = ui.verticalLayout_2
-    for i in reversed(range(rodzic.count())):
-        rodzic.itemAt(i).widget().setParent(None)

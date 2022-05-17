@@ -1,1 +1,1 @@
-from .okno import Aplikacja
+from .aplikacja import Aplikacja

@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file '/home/adrian/repos/projekt_io_nowa_kopia/Projekt_IO/gui/ui/gui.ui'
+# Form implementation generated from reading ui file '/home/adrian/repos/projekt_io_nowa_kopia/Projekt_IO/gui/zawartosc/designer/gui_designer.ui'
 #
 # Created by: PyQt6 UI code generator 6.3.0
 #
@@ -124,7 +124,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Aplikacja do identyfikacji bakterii"))
         self.przycisk_zdjecie.setText(_translate("MainWindow", "Zdjęcie"))
         self.przycisk_nazwa.setText(_translate("MainWindow", "Nazwa"))
         self.przycisk_rodzaj.setText(_translate("MainWindow", "Rodzaj"))
