@@ -11,14 +11,16 @@ from ..zawartosc.designer.gui_designer import Ui_MainWindow
 
 lista = ["red", "blue", "green", "brown", "orange", "purple"]
 
+
 def _zwroc_rodzaj(sciezka_zdjecia: str) -> str:
     sleep(rand.uniform(0.5, 2))
     rodzaj = rand.choice(lista)
     print(rodzaj)
     return rodzaj
 
-class AnalizatorZdjec():
-    '''Klasa sluzaca do przeprowadzania analizy zdjec'''
+
+class AnalizatorZdjec:
+    """Klasa sluzaca do przeprowadzania analizy zdjec"""
 
     def __init__(self) -> None:
         self.__watki = []
@@ -44,7 +46,7 @@ class AnalizatorZdjec():
             self.__watki.append(watek)
 
 
-class _Watek():
+class _Watek:
     def __init__(self, proces_do_uruchomienia: _Analiza, gdy_zakonczony: Callable[[str, str], None]) -> None:
         self.__watek = QThread()
         self.__proces = proces_do_uruchomienia

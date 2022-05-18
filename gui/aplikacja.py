@@ -6,7 +6,7 @@ from .zawartosc.ui.ui import Ui
 from .zawartosc.okno import GlowneOkno
 
 
-class Aplikacja():
+class Aplikacja:
     def __init__(self) -> None:
         self.__aplikacja = QApplication(sys.argv)
         self.__okno = GlowneOkno()
