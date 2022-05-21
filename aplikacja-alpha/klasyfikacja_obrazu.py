@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier
 
+
 def klasyfikacja(cechy_obrazu):
     cechy = pd.read_csv(r"40cech.csv", decimal=",", sep=";")
 
@@ -19,4 +20,4 @@ def klasyfikacja(cechy_obrazu):
     X_test = cechy_obrazu
     y_przewidywany = clf.predict(X_test)
 
-    return y_przewidywany
+    return y_przewidywany[0]
