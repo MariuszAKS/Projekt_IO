@@ -20,4 +20,4 @@ def klasyfikuj(sciezka_do_pliku):
     return ko.klasyfikacja([cechy])
 
 
-print(Rodzaje(klasyfikuj('p00016.png')).name)
+print(Rodzaje(klasyfikuj('obraz.png')).name)
