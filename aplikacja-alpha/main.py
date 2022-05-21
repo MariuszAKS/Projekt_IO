@@ -1,26 +1,23 @@
-import generowanie_cech
-import klasyfikacja_obrazu
+import generowanie_cech as gc
+import klasyfikacja_obrazu as ko
+from enum import Enum
 
 
-# Zdobądź ścieżkę do pliku (na razie wpisana w funkcji na stałe)
-# Wygeneruj cechy (plik generowanie_cech)
-# random forest, gdzie train - macierz wszystkich cech obrazow, train - wygenerowane cechy badanego)
-# Zwróć wynik, do której kategorii zaklasyfikowało obraz
+class Rodzaje(Enum):
+    Bradyrhizobium = 1
+    Enterobacter = 2
+    Pantoea = 3
+    Pseudomonas = 4
+    Rhizobium = 5
 
-sciezka_do_pliku = ''
 
-cechy = generowanie_cech.generowanie_cech(sciezka_do_pliku)
-wynik = klasyfikacja_obrazu.klasyfikacja([cechy])
+def klasyfikuj(sciezka_do_pliku):
+    # Wygeneruj cechy wskazanego obrazu
+    cechy = gc.generowanie_cech(sciezka_do_pliku)
+    print('Cechy wygenerowane')
 
-if wynik == 1:
-    print('Bradyrhizobium')
-elif wynik == 2:
-    print('Enterobacter')
-elif wynik == 3:
-    print('Pantoea')
-elif wynik == 4:
-    print('Pseudomonas')
-elif wynik == 5:
-    print('Rhizobium')
-else:
-    print('Cos poszlo nie tak!')
+    # Zwróć wartość numeryczną (według pliku z cechami) wybranego rodzaju
+    return ko.klasyfikacja([cechy])
+
+
+print(Rodzaje(klasyfikuj('p00016.png')).name)
