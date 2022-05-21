@@ -1,7 +1,7 @@
 from ..designer.gui_designer import Ui_MainWindow
 from ..okno import GlowneOkno
 from ...logika.wybor_plikow import wybierz_pliki
-from ...logika.imitacja_odczytywania_rodzaju import AnalizatorZdjec
+from ...logika.odczytywanie_rodzaju import AnalizatorZdjec
 from .menedzer_listy import MenedzerListy
 from .stylizator import Stylizator
 

@@ -1,11 +1,11 @@
 import skimage.io
 import csv
 
-import progowanie
-import klasteryzacja
-import kolorymetryczne
-import histogram
-import krawedzie
+from aplikacja_alpha.progowanie import ProgowanieOTSU
+from aplikacja_alpha.klasteryzacja import KlastryKSrednich
+from aplikacja_alpha.kolorymetryczne import CechyKolorymetryczne
+from aplikacja_alpha.histogram import CechyHistogram
+from aplikacja_alpha.krawedzie import Krawedzie
 
 
 
@@ -14,14 +14,14 @@ def generowanie_cech(sciezka_do_pliku):
     # print('ROI: Segmentacja regionow zainteresowania (maska)')
 
     obraz = skimage.io.imread(sciezka_do_pliku)
-    obraz_maska = progowanie.ProgowanieOTSU()
+    obraz_maska = ProgowanieOTSU()
     maska = obraz_maska.maska(sciezka_do_pliku)
     # maska = obraz_maska.zapisz_maske(obraz, 'maska.png')
 
 
     # print('Cechy: Klasteryzacja')
 
-    obraz_klasteryzacja = klasteryzacja.KlastryKSrednich(obraz)
+    obraz_klasteryzacja = KlastryKSrednich(obraz)
     centroidy_a, centroidy_b = obraz_klasteryzacja.centroidy()
 
     cecha_trzecia_centroida_b = centroidy_b[2][0]
@@ -29,7 +29,7 @@ def generowanie_cech(sciezka_do_pliku):
 
     # print('Cechy: Kolorymetryczne')
 
-    obraz_kolorymetryczne = kolorymetryczne.CechyKolorymetryczne(obraz, maska)
+    obraz_kolorymetryczne = CechyKolorymetryczne(obraz, maska)
 
     kolor_srednia_rgb = obraz_kolorymetryczne.srednia_rgb()
     kolor_srednia_hsv = obraz_kolorymetryczne.srednia_hsv()
@@ -52,7 +52,7 @@ def generowanie_cech(sciezka_do_pliku):
 
     # print('Cechy: Histogram')
 
-    obraz_histogram = histogram.CechyHistogram(obraz, maska)
+    obraz_histogram = CechyHistogram(obraz, maska)
     hist_srednia_rgb = obraz_histogram.hist_srednia_rgb()
     hist_srednia_hsv = obraz_histogram.hist_srednia_hsv()
     hist_srednia_lab = obraz_histogram.hist_srednia_lab()
@@ -98,11 +98,11 @@ def generowanie_cech(sciezka_do_pliku):
     cecha_hist_entropia_hsv_wartosc = hist_entropia_hsv[2]
     cecha_hist_entropia_lab_luminacja = hist_entropia_lab[0]
     cecha_hist_entropia_lab_temperatura = hist_entropia_lab[2]
-    
+
 
     # print('Cechy: Krawedzie')
 
-    obraz_krawedzie = krawedzie.Krawedzie(obraz)
+    obraz_krawedzie = Krawedzie(obraz)
     krawedzie_srednia_rgb = obraz_krawedzie.sredni_kolor_krawedzi_rgb()
     krawedzie_std_rgb = obraz_krawedzie.std_kolor_krawedzi_rgb()
 
