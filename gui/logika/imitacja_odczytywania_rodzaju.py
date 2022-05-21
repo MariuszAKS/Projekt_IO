@@ -3,10 +3,7 @@ import random as rand
 from time import sleep
 from typing import Callable, List
 
-
 from PyQt6.QtCore import QThread, QObject, pyqtSignal
-
-from ..zawartosc.designer.gui_designer import Ui_MainWindow
 
 
 lista = ["red", "blue", "green", "brown", "orange", "purple"]

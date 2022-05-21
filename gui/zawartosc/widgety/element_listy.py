@@ -1,7 +1,7 @@
 import ntpath
 
-from PyQt6.QtWidgets import QLabel, QSizePolicy, QGridLayout, QLayout, QWidget
-from PyQt6.QtCore import Qt
+from PyQt6.QtWidgets import QLabel, QSizePolicy, QGridLayout, QWidget, QSpacerItem
+from PyQt6.QtCore import Qt, QThread, QObject
 from PyQt6.QtGui import QPixmap, QResizeEvent
 
 
@@ -15,8 +15,10 @@ class ElementListy(QWidget):
 
         self.__rozstawienie = QGridLayout(self)
         self.__zdjecie = _Podglad_zdjecia(self.sciezka, self)
-        self.__etykieta_nazwa = QLabel(self.nazwa, self)
-        self.__etykieta_rodzaj = QLabel(self.rodzaj, self)
+        self.__etykieta_nazwa = _Zawijana_etykieta(self.nazwa, self)
+        self.__etykieta_rodzaj = _Zawijana_etykieta(self.rodzaj, self)
+
+        # self.__rozstawienie.setStyleSheet("padding: 10px")
 
         self.__ustaw_wyrownanie()
         self.__ustaw_zawijanie_tekstu()
@@ -42,6 +44,13 @@ class ElementListy(QWidget):
         self.__rozstawienie.setColumnStretch(2, 1)
 
     def __dodaj_elementy(self) -> None:
+
+
+        # spacer1 = Q
+
+
+
+
         self.__rozstawienie.addWidget(self.__zdjecie)
         self.__rozstawienie.addWidget(self.__etykieta_nazwa)
         self.__rozstawienie.addWidget(self.__etykieta_rodzaj)
@@ -51,12 +60,31 @@ class _Podglad_zdjecia(QLabel):
     def __init__(self, sciezka: str, rodzic: ElementListy) -> None:
         super().__init__(rodzic)
         self.__pixmapa = QPixmap(sciezka)
-        self.setPixmap(self.__pixmapa.scaledToWidth(200))
         self.show()
 
-    def resizeEvent(self, resizeEvent: QResizeEvent) -> None:
+    def resizeEvent(self, resize_event: QResizeEvent) -> None:
         margines = 1  # pixmapa nie moze zajmowac calej dostepnej przestrzeni bo layout nigdy nie bedzie chcial jej zmniejszac
-        zeskalowana_pixmapa = self.__pixmapa.scaledToWidth(resizeEvent.size().width()-margines)
+        # nowy_rozmiar = resizeEvent.size().width() - margines
+        nowy_rozmiar = self.width()-20
+        zeskalowana_pixmapa = self.__pixmapa.scaledToWidth(nowy_rozmiar)
         self.setPixmap(zeskalowana_pixmapa)
-        self.show()
-        return super().resizeEvent(resizeEvent)
+
+
+        return super().resizeEvent(resize_event)
+
+
+class _Zawijana_etykieta(QLabel):
+    def __init__(self, tekst, rodzic):
+        super().__init__(rodzic)
+        self.tekst = tekst
+        self.setText(tekst)
+
+    def resizeEvent(self, resize_event: QResizeEvent) -> None:
+        tekst = self.text()
+        dlugosc_tekstu = self.fontMetrics().boundingRect(tekst).width()
+
+        print(dlugosc_tekstu)
+        if dlugosc_tekstu > resize_event.size().width():
+            self.setText(self.tekst[:3] + "...")
+
+        return super().resizeEvent(resize_event)
