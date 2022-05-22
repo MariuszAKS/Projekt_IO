@@ -1,4 +1,5 @@
 import gui
+from aplikacja_alpha.main import klasyfikuj
 
 
-gui.Aplikacja()
+gui.Aplikacja(funkcja_analizujaca=klasyfikuj)

@@ -18,14 +18,16 @@ lista = ["red", "blue", "green", "brown", "orange", "purple"]
 #     rodzaj = rand.choice(lista)
 #     print(rodzaj)
 #     return rodzaj
-_zwroc_rodzaj = klasyfikuj
 
 
 class AnalizatorZdjec:
     """Klasa sluzaca do przeprowadzania analizy zdjec"""
 
-    def __init__(self) -> None:
+    funkcja_analizujaca: Callable[[str], str]
+
+    def __init__(self, funkcja_analizujaca: Callable[[str], str]) -> None:
         self.__watki = []
+        AnalizatorZdjec.funkcja_analizujaca = funkcja_analizujaca
 
     def analizuj_zdjecia(self, sciezki: List[str], dodaj_pozycje: Callable[[str, str], None]) -> None:
         """
@@ -71,6 +73,6 @@ class _Analiza(QObject):
         self.rodzaj = None
 
     def analizuj(self):
-        self.rodzaj = _zwroc_rodzaj(self.sciezka)
+        self.rodzaj = AnalizatorZdjec.funkcja_analizujaca(self.sciezka)
         self.zakonczony.emit()
 
