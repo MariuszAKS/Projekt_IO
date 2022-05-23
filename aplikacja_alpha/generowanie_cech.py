@@ -12,9 +12,9 @@ def generowanie_cech(sciezka_do_pliku):
     print('0. Generacja cech i segregowanie')
     print('ROI: Segmentacja regionow zainteresowania (maska)')
 
-    obraz = skimage.io.imread(sciezka_do_pliku)
+    obraz = skimage.io.imread(sciezka_do_pliku)[:, :, :3]
     obraz_maska = ProgowanieOTSU()
-    maska = obraz_maska.maska(sciezka_do_pliku)
+    maska = obraz_maska.maska(obraz)
     # maska = obraz_maska.zapisz_maske(obraz, 'maska.png')
 
     print('Cechy: Klasteryzacja')
