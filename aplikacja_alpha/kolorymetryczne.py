@@ -9,10 +9,7 @@ import skimage.color
 # maska = maska (numpy bool array from Thresholding)
 class CechyKolorymetryczne:
     def __init__(self, obraz, maska) -> None:
-        if type(obraz) == str:
-            self.obraz = skimage.io.imread(obraz)
-        else:
-            self.obraz = obraz
+        self.obraz = obraz
         self.maska = maska
 
     def zmien_obraz(self, obraz, maska):
@@ -22,26 +19,23 @@ class CechyKolorymetryczne:
             self.obraz = obraz
         self.maska = maska
 
-    # zwraca srednia pikseli na kazdym kanale [R,G,B]
-    def srednia_rgb(self):
-
-        wynik = []
-        for channel in range(0, 3):
-            wartosc = 0.0
-            licznik = 0
-            for i in range(0, self.obraz.shape[0]):
-                for j in range(0, self.obraz.shape[1]):
-                    if self.maska[i, j]:
-                        wartosc += self.obraz[i, j, channel]
-                        licznik += 1
-            wynik.append(wartosc/licznik)
+    # zwraca srednia pikseli na kanale [G]
+    def srednia_rgb_g(self):
+        wartosc = 0.0
+        licznik = 0
+        for i in range(0, self.obraz.shape[0]):
+            for j in range(0, self.obraz.shape[1]):
+                if self.maska[i, j]:
+                    wartosc += self.obraz[i, j, 1]
+                    licznik += 1
+        wynik = wartosc/licznik
         return wynik
 
-    # zwraca srednia pikseli na kazdym kanale [H,S,V]
-    def srednia_hsv(self):
+    # zwraca srednia pikseli na kanalach [S,V]
+    def srednia_hsv_sv(self):
         hsv_obr = skimage.color.rgb2hsv(self.obraz)
         wynik = []
-        for kanal in range(0, 3):
+        for kanal in range(1, 3):
             wartosc = 0.0
             licznik = 0
             for i in range(0, hsv_obr.shape[0]):
@@ -52,19 +46,17 @@ class CechyKolorymetryczne:
             wynik.append(wartosc/licznik)
         return wynik
 
-    # zwraca srednia pikseli na kazdym kanale [L,a*,b*]
-    def srednia_lab(self):
+    # zwraca srednia pikseli na kanale [L]
+    def srednia_lab_l(self):
         lab_obr = skimage.color.rgb2lab(self.obraz, "D65", "2")
-        wynik = []
-        for channel in range(0, 3):
-            wartosc = 0.0
-            licznik = 0
-            for i in range(0, lab_obr.shape[0]):
-                for j in range(0, lab_obr.shape[1]):
-                    if self.maska[i, j]:
-                        wartosc += lab_obr[i, j, channel]
-                        licznik += 1
-            wynik.append(wartosc/licznik)
+        wartosc = 0.0
+        licznik = 0
+        for i in range(0, lab_obr.shape[0]):
+            for j in range(0, lab_obr.shape[1]):
+                if self.maska[i, j]:
+                    wartosc += lab_obr[i, j, 0]
+                    licznik += 1
+        wynik = wartosc/licznik
         return wynik
 
     # zwraca odchylenie standardowe na kazdym kanale [R,G,B]
@@ -79,28 +71,21 @@ class CechyKolorymetryczne:
         wynik.append(np.std(b[self.maska]))
         return wynik
 
-    # zwraca odchylenie standardowe na kazdym kanale [H,S,V]
-    def std_hsv(self):
+    # zwraca odchylenie standardowe na kanale [V]
+    def std_hsv_v(self):
         hsv_obr = skimage.color.rgb2hsv(self.obraz)
-        wynik = []
-        h = hsv_obr[:, :, 0]  # odcien
-        s = hsv_obr[:, :, 1]  # nasycenie
         v = hsv_obr[:, :, 2]  # wartosc
 
-        wynik.append(np.std(h[self.maska]))
-        wynik.append(np.std(s[self.maska]))
-        wynik.append(np.std(v[self.maska]))
+        wynik = np.std(v[self.maska])
         return wynik
 
-    # zwraca odchylenie standardowe na kazdym kanale [L,a*,b*]
-    def std_lab(self):
+    # zwraca odchylenie standardowe na kanalach [L,a*]
+    def std_lab_la(self):
         lab_obr = skimage.color.rgb2lab(self.obraz, "D65", "2")
         wynik = []
         l = lab_obr[:, :, 0]  # luminacja
         a = lab_obr[:, :, 1]  # tienta
-        b = lab_obr[:, :, 2]  # temperatura
 
         wynik.append(np.std(l[self.maska]))
         wynik.append(np.std(a[self.maska]))
-        wynik.append(np.std(b[self.maska]))
         return wynik
