@@ -14,10 +14,7 @@ class ProgowanieOTSU:
     # zwraca maske w postaci numpy array
     # obraz = sciezka do pliku/numpy array
     def maska(self, obraz):
-        if type(obraz) == str:
-            skala_szarosci = rgb2gray(skimage.io.imread(fname=obraz))
-        else:
-            skala_szarosci = rgb2gray(obraz)
+        skala_szarosci = rgb2gray(obraz)
 
         prog = threshold_otsu(skala_szarosci)
         wynik = skala_szarosci <= prog
