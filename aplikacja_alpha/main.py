@@ -18,10 +18,8 @@ class Rodzaj(Enum):
 def klasyfikuj(sciezka_do_pliku: str) -> str:
     # Wygeneruj cechy wskazanego obrazu
     cechy = generowanie_cech(sciezka_do_pliku)
-    print('Cechy wygenerowane')
 
-    # Zwróć wartość numeryczną (według pliku z cechami) wybranego rodzaju
     return str(Rodzaj(klasyfikacja([cechy])))
 
 
-# print(Rodzaje(klasyfikuj('obraz.png')).name)
+# print(klasyfikuj('obraz.png'))
