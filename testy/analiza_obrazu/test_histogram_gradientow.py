@@ -2,7 +2,7 @@ import unittest
 import sys
 import numpy as np
 
-# Konieczna zmiana folderu aby odnalezc modul w projekcie
+# Konieczna zmiana folderu aby odnaleźć moduł w projekcie
 sys.path.append('../../analiza_obrazu')
 import histogram_gradientow
 
@@ -82,7 +82,7 @@ class TestHistogramGradientow(unittest.TestCase):
                                0., 0.5, 0.375, 0.5, 0.5, 0.5, 0.5, 0.5, 0.375, 0.375, 0.375, 0.375,
                                0.125, 0.125, 0.5, 0.5, 0.5, 0.375, 0.375, 0.375, 0.25, 0.125, 0., 0.5, ])
 
-        # Troche brzydki warunek, komunikat o nieudanym tescie malo mowi
+        # Troche brzydki warunek, komunikat o nieudanym teście mało mówi
         self.assertEqual((oczekiwana - wynik).any() != 0, False)
         wynik2 = histogram_gradientow.CechyHOG('obrazy/czarny.png').wektor_cech()
         self.assertEqual(wynik2.any() != 0, False)
