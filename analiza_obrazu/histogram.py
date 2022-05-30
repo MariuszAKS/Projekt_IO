@@ -5,9 +5,9 @@ import skimage.color
 from skimage.measure.entropy import shannon_entropy
 
 
-# klasa do generacji cech histogramow
-# obraz i maska jako argumenty do konstruktora, zmien_obraz aby zmienic obraz/maske
-# obraz = sciezka do pliku/numpy array
+# klasa do generacji cech histogramów
+# obraz i maska jako argumenty do konstruktora, zmien_obraz aby zmienić obraz/maskę
+# obraz = ścieżka do pliku/numpy array
 # maska = maska (numpy bool array uzyskany z Thresholding)
 class CechyHistogram:
     def __init__(self, obraz, maska) -> None:
@@ -26,7 +26,7 @@ class CechyHistogram:
         self.maska = maska
         self.__obl_hist()
 
-    # wylicza histogramy, wywolywane w konstruktorze/zmien_obraz
+    # wylicza histogramy, wywoływane w konstruktorze/zmien_obraz
     def __obl_hist(self):
         r = self.obr[:, :, 0]  # czerwony
         g = self.obr[:, :, 1]  # zielony
@@ -39,9 +39,9 @@ class CechyHistogram:
         self.mids_b = bin_brzegi_b[:-1]
 
         hsv_obr = skimage.color.rgb2hsv(self.obr)
-        h = hsv_obr[:, :, 0]  # odcien
+        h = hsv_obr[:, :, 0]  # odcień
         s = hsv_obr[:, :, 1]  # nasycenie
-        v = hsv_obr[:, :, 2]  # wartosc
+        v = hsv_obr[:, :, 2]  # wartość
         self.hist_h, bin_brzegi_h = np.histogram(h[self.maska], bins=100, range=(0, 1))
         self.hist_s, bin_brzegi_s = np.histogram(s[self.maska], bins=100, range=(0, 1))
         self.hist_v, bin_brzegi_v = np.histogram(v[self.maska], bins=100, range=(0, 1))
@@ -60,7 +60,7 @@ class CechyHistogram:
         self.mids_a = 0.5*(bin_brzegi_a[1:] + bin_brzegi_a[:-1])
         self.mids_b = 0.5*(bin_brzegi_b[1:] + bin_brzegi_b[:-1])
 
-    # zwraca srednia histogramow na kazdym kanale [R,G,B]
+    # zwraca średnią histogramów na każdym kanale [R,G,B]
     def hist_srednia_rgb(self):
         wynik = []
         wynik.append(np.average(self.mids_r, weights=self.hist_r))
@@ -68,7 +68,7 @@ class CechyHistogram:
         wynik.append(np.average(self.mids_b, weights=self.hist_b))
         return wynik
 
-    # zwraca srednia histogramow na kazdym kanale [H,S,V]
+    # zwraca średnią histogramów na każdym kanale [H,S,V]
     def hist_srednia_hsv(self):
         wynik = []
         wynik.append(np.average(self.mids_h, weights=self.hist_h))
@@ -76,7 +76,7 @@ class CechyHistogram:
         wynik.append(np.average(self.mids_v, weights=self.hist_v))
         return wynik
 
-    # zwraca srednia histogramow na kazdym kanale [L,a*,b*]
+    # zwraca średnią histogramów na każdym kanale [L,a*,b*]
     def hist_srednia_lab(self):
         wynik = []
         wynik.append(np.average(self.mids_l, weights=self.hist_l))
@@ -84,7 +84,7 @@ class CechyHistogram:
         wynik.append(np.average(self.mids_b, weights=self.hist_b))
         return wynik
 
-    # zwraca wariancje histogramow na kazdym kanale [R,G,B]
+    # zwraca wariancję histogramów na każdym kanale [R,G,B]
     def hist_var_rgb(self):
         wynik = []
         srednia = self.hist_srednia_rgb()
@@ -93,7 +93,7 @@ class CechyHistogram:
         wynik.append(np.average((self.mids_b - srednia[2])**2, weights=self.hist_b))
         return wynik
 
-    # zwraca wariancje histogramow na kazdym kanale [H,S,V]
+    # zwraca wariancję histogramów na każdym kanale [H,S,V]
     def hist_var_hsv(self):
         wynik = []
         srednia = self.hist_srednia_hsv()
@@ -102,7 +102,7 @@ class CechyHistogram:
         wynik.append(np.average((self.mids_v - srednia[2])**2, weights=self.hist_v))
         return wynik
 
-    # zwraca wariancje histogramow na kazdym kanale [L,a*,b*]
+    # zwraca wariancję histogramów na każdym kanale [L,a*,b*]
     def hist_var_lab(self):
         wynik = []
         srednia = self.hist_srednia_lab()
@@ -111,7 +111,7 @@ class CechyHistogram:
         wynik.append(np.average((self.mids_b - srednia[2])**2, weights=self.hist_b))
         return wynik
 
-    # zwraca skosnosc histogramu na kazdym kanale [R,G,B]
+    # zwraca skośność histogramu na każdym kanale [R,G,B]
     def hist_skos_rgb(self):
         wynik = []
         srednia = self.hist_srednia_rgb()
@@ -120,7 +120,7 @@ class CechyHistogram:
         wynik.append((np.sum((self.hist_b-srednia[2])**3)/self.hist_b.size)/math.sqrt((np.sum((self.hist_b-srednia[2])**2)/self.hist_b.size)**3))
         return wynik
 
-    # zwraca skosnosc histogramu na kazdym kanale [H,S,V]
+    # zwraca skośność histogramu na każdym kanale [H,S,V]
     def hist_skos_hsv(self):
         wynik = []
         srednia = self.hist_srednia_hsv()
@@ -129,7 +129,7 @@ class CechyHistogram:
         wynik.append((np.sum((self.hist_v-srednia[2])**3)/self.hist_v.size)/math.sqrt((np.sum((self.hist_v-srednia[2])**2)/self.hist_v.size)**3))
         return wynik
 
-    # zwraca skosnosc histogramu na kazdym kanale [L,a*,b*]
+    # zwraca skośność histogramu na każdym kanale [L,a*,b*]
     def hist_skos_lab(self):
         wynik = []
         srednia = self.hist_srednia_lab()
@@ -138,7 +138,7 @@ class CechyHistogram:
         wynik.append((np.sum((self.hist_b-srednia[2])**3)/self.hist_b.size)/math.sqrt((np.sum((self.hist_b-srednia[2])**2)/self.hist_b.size)**3))
         return wynik
 
-    # zwraca kurtoze histogramu na kazdym kanale [R,G,B]
+    # zwraca kurtozę histogramu na każdym kanale [R,G,B]
     def hist_kurt_rgb(self):
         wynik = []
         srednia = self.hist_srednia_rgb()
@@ -147,7 +147,7 @@ class CechyHistogram:
         wynik.append((np.sum((self.hist_b-srednia[2])**4)/self.hist_b.size)/math.sqrt((np.sum((self.hist_b-srednia[2])**2)/self.hist_b.size)**4)-3)
         return wynik
 
-    # zwraca kurtoze histogramu na kazdym kanale [H,S,V]
+    # zwraca kurtozę histogramu na każdym kanale [H,S,V]
     def hist_kurt_hsv(self):
         wynik = []
         srednia = self.hist_srednia_hsv()
@@ -156,7 +156,7 @@ class CechyHistogram:
         wynik.append((np.sum((self.hist_v-srednia[2])**4)/self.hist_v.size)/math.sqrt((np.sum((self.hist_v-srednia[2])**2)/self.hist_v.size)**4)-3)
         return wynik
 
-    # zwraca kurtoze histogramu na kazdym kanale [L,a*,b*]
+    # zwraca kurtozę histogramu na każdym kanale [L,a*,b*]
     def hist_kurt_lab(self):
         wynik = []
         srednia = self.hist_srednia_lab()
