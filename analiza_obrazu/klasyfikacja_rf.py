@@ -14,15 +14,15 @@ def klasyfikacja():
     X = np.array((cechy.drop(cechy.columns[[0, 1]], axis=1)))
     y = np.array(cechy["-- Rodzaj --"])
     X_train, X_test, y_train, y_test = sklearn.model_selection.train_test_split(X, y, test_size=0.25)
-    #klasyfikator rf
+    # klasyfikator rf
     clf = RandomForestClassifier(n_estimators=100)
     clf.fit(X_train, y_train)
-    #sortowanie cech od najbardziej istotnych do najmniej istotnych
+    # sortowanie cech od najbardziej istotnych do najmniej istotnych
     waznosc_cechy = pd.Series(clf.feature_importances_, index=cechy.drop(cechy.columns[[0, 1]], axis=1).columns).sort_values(ascending=False)
     print(waznosc_cechy)
-    #przewidywany rodzaj na podstawie danych testowych
+    # przewidywany rodzaj na podstawie danych testowych
     y_przwidywany=clf.predict(X_test)
-    #accuracy (zgodność dopasowania)
+    # accuracy (zgodność dopasowania)
     print("Accuracy:", metrics.accuracy_score(y_test, y_przwidywany))
 
 klasyfikacja()
