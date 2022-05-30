@@ -6,7 +6,7 @@ import skimage.io
 
 # klasa do analizy tekstury obrazu, cechy macierzy glcm
 # obraz(numpy array) jako argument do konstruktora
-# zmien_obraz, aby zmienic aktualnie analizowany obraz
+# zmien_obraz, aby zmienić aktualnie analizowany obraz
 class CechyGLCM:
     def __init__(self, obraz) -> None:
         if type(obraz) == str:
@@ -26,19 +26,19 @@ class CechyGLCM:
     def kontrast(self):
         return graycoprops(self.glcm, 'contrast')[0][0]
 
-    # zwraca odmiennosc glcm (float)
+    # zwraca odmienność glcm (float)
     def odmiennosc(self):
         return graycoprops(self.glcm, 'dissimilarity')[0][0]
 
-    # zwraca homogenicznosc glcm (float)
+    # zwraca homogeniczność glcm (float)
     def homogenicznosc(self):
         return graycoprops(self.glcm, 'homogeneity')[0][0]
 
-    # zwraca energie glcm (float)
+    # zwraca energię glcm (float)
     def energia(self):
         return graycoprops(self.glcm, 'energy')[0][0]
 
-    # zwraca korelacje glcm (float)
+    # zwraca korelację glcm (float)
     def korelacja(self):
         return graycoprops(self.glcm, 'correlation')[0][0]
     
