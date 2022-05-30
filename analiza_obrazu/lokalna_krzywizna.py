@@ -4,12 +4,12 @@ import skimage.io
 
 
 # Klasa do obliczania cech krzywizny
-# Jesli potraktujemy intensywnosc piksela jako wysokosc, to obraz bedzie struktura 3d, ktorej krzywizna
-# ma pewne gorki, zaglebienia itp., ktore mozna znalezc liczac hesjan dla obrazu. Jako cech mozna uzyc
-# ilosci/gestosci roznego rodzaju struktur
-# do konstruktora obraz=(numpy array lub sciezka do pliku) oraz maska=(niewymagana, zamaskowane piksele beda
+# Jeśli potraktujemy intensywność piksela jako wysokość, to obraz bedzie strukturą 3D, której krzywizna
+# ma pewne górki, zagłębienia itp., które można znaleźć licząc hesjan dla obrazu. Jako cech można użyć
+# ilości/gęstości różnego rodzaju struktur
+# do konstruktora obraz=(numpy array lub ścieżka do pliku) oraz maska=(niewymagana, zamaskowane piksele będą
 # traktowane jako kolor czarny)
-# zmien_obraz aby zmienic analizowany obraz
+# zmien_obraz, aby zmienić analizowany obraz
 class CechyKrzywizny:
     def __init__(self, obraz, maska=None) -> None:
         if type(obraz) == str:
@@ -64,7 +64,7 @@ class CechyKrzywizny:
             if 0.875 <= x < 1:
                 self.index["spherical_cap"] += 1
 
-    # funkcje krzywizna_nazwa() zwracaja (ilosc,gestosc) wystapien danej struktury
+    # funkcje krzywizna_nazwa() zwracają (ilość, gęstość) wystąpień danej struktury
     def krzywizna_spherical_cup(self):
         return self.index["spherical_cup"], self.index["spherical_cup"] / self.il_pikseli
 
