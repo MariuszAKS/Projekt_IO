@@ -26,7 +26,7 @@ class CechyGLCM:
     def kontrast(self):
         return graycoprops(self.glcm, 'contrast')[0][0]
 
-    # zwraca odemiennosc glcm (float)
+    # zwraca odmiennosc glcm (float)
     def odmiennosc(self):
         return graycoprops(self.glcm, 'dissimilarity')[0][0]
 
