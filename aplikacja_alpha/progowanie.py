@@ -4,15 +4,15 @@ from skimage.color import rgb2gray
 from skimage.util import img_as_ubyte
 
 
-# klasa do generacji maski uzywajac OTSU
-# konwertuje obraz do skali szarosci (grayscale), znajduje prog (threshold(float)) i generuje maske
+# klasa do generacji maski używając OTSU
+# konwertuje obraz do skali szarości (grayscale), znajduje próg (threshold(float)) i generuje maske
 
 class ProgowanieOTSU:
     def __init__(self) -> None:
         pass
 
     # zwraca maske w postaci numpy array
-    # obraz = sciezka do pliku/numpy array
+    # obraz = scieżka do pliku/numpy array
     def maska(self, obraz):
         skala_szarosci = rgb2gray(obraz)
 
@@ -21,8 +21,8 @@ class ProgowanieOTSU:
         return wynik
 
     # generuje maske i zapisuje do png (true=255, false=0)
-    # obraz = sciezka do pliku/numpy array
-    # sciezka_wynik = sciezka do zapisu
+    # obraz = scieżka do pliku/numpy array
+    # sciezka_wynik = scieżka do zapisu
     def zapisz_maske(self, obraz, sciezka_wynik):
         wynik = self.maska(obraz)
         skimage.io.imsave(sciezka_wynik, img_as_ubyte(wynik))
