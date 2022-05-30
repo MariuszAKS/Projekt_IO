@@ -5,7 +5,7 @@ import numpy as np
 
 
 # klasa do wykrycia krawedzi, obliczenia maski krawedzi i cech kolorymetrycznych krawedzi
-# arg do konstruktora to obraz w formie numpy array/scierzka do pliku
+# arg do konstruktora to obraz w formie numpy array/scieżka do pliku
 # zmien_obraz() zeby zmienic aktualnie analizowany obraz
 class Krawedzie:
     def __init__(self, obraz) -> None:
