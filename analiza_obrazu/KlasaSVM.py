@@ -5,10 +5,10 @@ from sklearn.model_selection import train_test_split
 from sklearn.svm import SVC
 from sklearn.metrics import accuracy_score
 
-# Klasa służąca to wytrenowania modeluSVM
+# Klasa służąca do wytrenowania modeluSVM
 # na podstawie podanego pliku .csv (kompatybilne z plikiem cech na github)
 # oraz wykorzystania go do klasyfikowania nowych zdjęc
-# plik = sciezka do pliku
+# plik = ścieżka do pliku
 
 class KlasaSVM:
     def __init__(self,plik,rozdzielacz=';') -> None:
@@ -21,7 +21,7 @@ class KlasaSVM:
         dane_data = self.dane.drop(['-- Rodzaj --','-- Numer --'], axis=1)
         #utworzenie zestawów danych treningowych i uczących
         x_uczacy, x_testujacy, y_uczacy, y_testujacy = train_test_split(dane_data,dane_labels,test_size=0.2)
-        #Standaryzacja danych wejsciowych
+        #Standaryzacja danych wejściowych
         self.sc = StandardScaler()
         self.sc.fit(x_uczacy)
         x_uczacy_standaryzacja = self.sc.transform(x_uczacy)
@@ -38,8 +38,8 @@ class KlasaSVM:
         
     # Klasyfikuje zestawy cech w podanym pliku .csv jako typy bakterii
     # plik .csv powinien zawierac same cechy, bez numerów wierszy
-    # plik = sciezka do pliku
-    # rozdzielacz = czym rozdzielone sa cechy w pliku, domyslnie ';'
+    # plik = ścieżka do pliku
+    # rozdzielacz = czym rozdzielone sa cechy w pliku, domyślnie ';'
     # UWAGA Przed użyciem należy wytrenować model
     # za pomocą funkcji: trenuj()
     def klasyfikuj_csv(self, plik, rozdzielacz=';'):
