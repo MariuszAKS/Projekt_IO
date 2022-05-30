@@ -16,9 +16,9 @@ for i in range(0, len(X)):
     trenujacy_X = X.drop([i], axis=0)
     trenujacy_Y = Y.drop([i], axis=0)
 
-    # model testujacy
+    # model testujący
     X_test = X_test.values
-    # model trenujacy
+    # model trenujący
     X_Train = trenujacy_X.values
     Y_Train = trenujacy_Y.values
 
