@@ -4,10 +4,10 @@ import skimage.io
 
 
 # Klasa do obliczania cech krzywizny
-# Jesli potraktujemy intnsywnosc piksela jako wysokosc, to obraz bedzie struktura 3d, ktorej krzywizna
+# Jesli potraktujemy intensywnosc piksela jako wysokosc, to obraz bedzie struktura 3d, ktorej krzywizna
 # ma pewne gorki, zaglebienia itp., ktore mozna znalezc liczac hesjan dla obrazu. Jako cech mozna uzyc
 # ilosci/gestosci roznego rodzaju struktur
-# do kastruktora obraz=(numpy array lub sciezka do pliku) oraz maska=(niewymagana, zamaskowane piksele beda
+# do konstruktora obraz=(numpy array lub sciezka do pliku) oraz maska=(niewymagana, zamaskowane piksele beda
 # traktowane jako kolor czarny)
 # zmien_obraz aby zmienic analizowany obraz
 class CechyKrzywizny:
