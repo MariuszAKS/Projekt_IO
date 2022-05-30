@@ -63,7 +63,7 @@ class _Podglad_zdjecia(QLabel):
         self.show()
 
     def resizeEvent(self, resize_event: QResizeEvent) -> None:
-        margines = 1  # pixmapa nie moze zajmowac calej dostepnej przestrzeni bo layout nigdy nie bedzie chcial jej zmniejszac
+        margines = 1  # pixmapa nie może zajmować całej dostępnej przestrzeni bo layout nigdy nie będzie chciał jej zmniejszać
         # nowy_rozmiar = resizeEvent.size().width() - margines
         nowy_rozmiar = self.width()-20
         zeskalowana_pixmapa = self.__pixmapa.scaledToWidth(nowy_rozmiar)
