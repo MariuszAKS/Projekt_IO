@@ -1,6 +1,6 @@
 # Projekt_IO
 ### Schemat kodu:
-- nazwy zmiennychi i funkcji piszemy z małej litery i z podłogami (snake case),
+- nazwy zmiennych i i funkcji piszemy z małej litery i z podłogami (snake case),
 ```python
 jakas_zmienna = 'Hello world!'
 
