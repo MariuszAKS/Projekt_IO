@@ -1,4 +1,5 @@
 import skimage.io
+import numpy as np
 import csv
 
 from aplikacja_alpha.progowanie import ProgowanieOTSU
@@ -12,7 +13,19 @@ def generowanie_cech(sciezka_do_pliku):
     print('0. Generacja cech i segregowanie')
     print('ROI: Segmentacja regionow zainteresowania (maska)')
 
-    obraz = skimage.io.imread(sciezka_do_pliku)[:, :, :3]
+    obraz_0 = skimage.io.imread(sciezka_do_pliku)
+    
+    if len(obraz_0.shape) > 2:
+        obraz = obraz_0[:, :, :3]
+    else:
+        obraz = np.ndarray(shape=(obraz_0.shape[0], obraz_0.shape[1], 3))
+        for i in range(0, obraz_0.shape[0]):
+            for j in range(0, obraz_0.shape[1]):
+                wartosc = obraz_0[i][j]
+                obraz[i][j][0] = wartosc
+                obraz[i][j][1] = wartosc
+                obraz[i][j][2] = wartosc
+    
     obraz_maska = ProgowanieOTSU()
     maska = obraz_maska.maska(obraz)
     # maska = obraz_maska.zapisz_maske(obraz, 'maska.png')
