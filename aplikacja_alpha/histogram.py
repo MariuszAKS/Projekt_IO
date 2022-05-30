@@ -5,9 +5,9 @@ import skimage.color
 from skimage.measure.entropy import shannon_entropy
 
 
-# klasa do generacji cech histogramow
-# obraz i maska jako argumenty do konstruktora, zmien_obraz aby zmienic obraz/maske
-# obraz = sciezka do pliku/numpy array
+# klasa do generacji cech histogramów
+# obraz i maska jako argumenty do konstruktora, zmien_obraz aby zmienić obraz/maske
+# obraz = scieżka do pliku/numpy array
 # maska = maska (numpy bool array uzyskany z Thresholding)
 class CechyHistogram:
     def __init__(self, obraz, maska) -> None:
@@ -23,7 +23,7 @@ class CechyHistogram:
         self.maska = maska
         self.__obl_hist()
 
-    # wylicza histogramy, wywolywane w konstruktorze/zmien_obraz
+    # wylicza histogramy, wywoływane w konstruktorze/zmien_obraz
     def __obl_hist(self):
         r = self.obr[:, :, 0]  # czerwony
         g = self.obr[:, :, 1]  # zielony
@@ -66,74 +66,74 @@ class CechyHistogram:
         self.mean_l = np.average(self.mids_l, weights=self.hist_l)
         self.mean_a = np.average(self.mids_a, weights=self.hist_a)
 
-    # zwraca srednia histogramow na kanale [G]
+    # zwraca średnią histogramów na kanale [G]
     def hist_srednia_rgb_g(self):
         wynik = self.mean_g
         return wynik
 
-    # zwraca srednia histogramow na kanalach [S,V]
+    # zwraca średnią histogramów na kanałach [S,V]
     def hist_srednia_hsv_sv(self):
         return [self.mean_s, self.mean_v]
 
-    # zwraca srednia histogramow na kanale [L]
+    # zwraca średnią histogramów na kanale [L]
     def hist_srednia_lab_l(self):
         return self.mean_l
 
-    # zwraca wariancje histogramow na kazdym kanale [R,G,B]
+    # zwraca wariancje histogramów na każdym kanale [R,G,B]
     def hist_var_rgb_rg(self):
         wynik = []
         wynik.append(np.average((self.mids_r - self.mean_r)**2, weights=self.hist_r))
         wynik.append(np.average((self.mids_g - self.mean_g)**2, weights=self.hist_g))
         return wynik
 
-    # zwraca wariancje histogramow na kanale [V]
+    # zwraca wariancje histogramów na kanale [V]
     def hist_var_hsv_v(self):
         wynik = np.average((self.mids_v - self.mean_v)**2, weights=self.hist_v)
         return wynik
 
-    # zwraca wariancje histogramow na kanalach [L,a*]
+    # zwraca wariancje histogramów na kanalach [L,a*]
     def hist_var_lab_la(self):
         wynik = []
         wynik.append(np.average((self.mids_l - self.mean_l)**2, weights=self.hist_l))
         wynik.append(np.average((self.mids_a - self.mean_a)**2, weights=self.hist_a))
         return wynik
 
-    # zwraca skosnosc histogramu na kanalach [R,G]
+    # zwraca skośność histogramu na kanałach [R,G]
     def hist_skos_rgb_rg(self):
         wynik = []
         wynik.append((np.sum((self.hist_r-self.mean_r)**3)/self.hist_r.size)/math.sqrt((np.sum((self.hist_r-self.mean_r)**2)/self.hist_r.size)**3))
         wynik.append((np.sum((self.hist_g-self.mean_g)**3)/self.hist_g.size)/math.sqrt((np.sum((self.hist_g-self.mean_g)**2)/self.hist_g.size)**3))
         return wynik
 
-    # zwraca skosnosc histogramu na kanalach [S,V]
+    # zwraca skośność histogramu na kanałach [S,V]
     def hist_skos_hsv_sv(self):
         wynik = []
         wynik.append((np.sum((self.hist_s-self.mean_s)**3)/self.hist_s.size)/math.sqrt((np.sum((self.hist_s-self.mean_s)**2)/self.hist_s.size)**3))
         wynik.append((np.sum((self.hist_v-self.mean_v)**3)/self.hist_v.size)/math.sqrt((np.sum((self.hist_v-self.mean_v)**2)/self.hist_v.size)**3))
         return wynik
 
-    # zwraca skosnosc histogramu na kanalach [L,a*]
+    # zwraca skośność histogramu na kanałach [L,a*]
     def hist_skos_lab_la(self):
         wynik = []
         wynik.append((np.sum((self.hist_l-self.mean_l)**3)/self.hist_l.size)/math.sqrt((np.sum((self.hist_l-self.mean_l)**2)/self.hist_l.size)**3))
         wynik.append((np.sum((self.hist_a-self.mean_a)**3)/self.hist_a.size)/math.sqrt((np.sum((self.hist_a-self.mean_a)**2)/self.hist_a.size)**3))
         return wynik
 
-    # zwraca kurtoze histogramu na kanalach [R,G]
+    # zwraca kurtoze histogramu na kanałach [R,G]
     def hist_kurt_rgb_rg(self):
         wynik = []
         wynik.append((np.sum((self.hist_r-self.mean_r)**4)/self.hist_r.size)/math.sqrt((np.sum((self.hist_r-self.mean_r)**2)/self.hist_r.size)**4)-3)
         wynik.append((np.sum((self.hist_g-self.mean_g)**4)/self.hist_g.size)/math.sqrt((np.sum((self.hist_g-self.mean_g)**2)/self.hist_g.size)**4)-3)
         return wynik
 
-    # zwraca kurtoze histogramu na kanalach [S,V]
+    # zwraca kurtoze histogramu na kanałach [S,V]
     def hist_kurt_hsv_sv(self):
         wynik = []
         wynik.append((np.sum((self.hist_s-self.mean_s)**4)/self.hist_s.size)/math.sqrt((np.sum((self.hist_s-self.mean_s)**2)/self.hist_s.size)**4)-3)
         wynik.append((np.sum((self.hist_v-self.mean_v)**4)/self.hist_v.size)/math.sqrt((np.sum((self.hist_v-self.mean_v)**2)/self.hist_v.size)**4)-3)
         return wynik
 
-    # zwraca kurtoze histogramu na kanalach [L,a*]
+    # zwraca kurtoze histogramu na kanałach [L,a*]
     def hist_kurt_lab_la(self):
         wynik = []
         wynik.append((np.sum((self.hist_l-self.mean_l)**4)/self.hist_l.size)/math.sqrt((np.sum((self.hist_l-self.mean_l)**2)/self.hist_l.size)**4)-3)
