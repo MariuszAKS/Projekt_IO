@@ -26,19 +26,19 @@ class KlastryKSrednich:
         self.__obl_klastry()
 
     # trenuje modele k-means
-    # wywolywane w konstruktorze/zmien_obraz
+    # wywoływane w konstruktorze/zmien_obraz
     def __obl_klastry(self):
         a = np.array([[x] for x in self.obr[:, :, 1].flatten()])
         b = np.array([[x] for x in self.obr[:, :, 2].flatten()])
         self.k_srednich_a = KMeans(n_clusters=3).fit(a)
         self.k_srednich_b = KMeans(n_clusters=3).fit(b)
 
-    # zwraca centroid kazdego klastara ([[a*1],[a*2],[a*3]],[[b*1],[b*2],[b*3]])
+    # zwraca centroid każdego klastara ([[a*1],[a*2],[a*3]],[[b*1],[b*2],[b*3]])
     def centroidy(self):
         return (self.k_srednich_b.cluster_centers_)
 
     # zapisuje wizualizacje klastrów
-    # sciezka_wynik = sciezka do pliku
+    # sciezka_wynik = ścieżka do pliku
     def zapisz_klaster_obraz_b(self, sciezka_wynik):
         kl = self.k_srednich_b.labels_
         kl = np.reshape(kl, (self.obr.shape[0], self.obr.shape[1])) * 127
@@ -63,18 +63,18 @@ class Krawedzie:
             obr = rgb2gray(self.obr_kolor)
         self.maska_krawedzi = canny(obr, sigma=1)
 
-    # zwraca maske krawedzi (2d numpy bool array)
+    # zwraca maskę krawędzi (2d numpy bool array)
     def maska(self):
         return self.maska_krawedzi
 
-    # zwraca sredni kolor krawedzi dla kazdego kanalu [czerwony,zielony,niebieski]
+    # zwraca średni kolor krawędzi dla każdego kanału [czerwony,zielony,niebieski]
     def sredni_kolor_krawedzi_rgb(self):
         r = self.obr_kolor[:, :, 0]  # czerwony
         g = self.obr_kolor[:, :, 1]  # zielony
         b = self.obr_kolor[:, :, 2]  # niebieski
         return [r[self.maska_krawedzi].mean(), g[self.maska_krawedzi].mean(), b[self.maska_krawedzi].mean()]
 
-    # zwraca odchylenie standardowe koloru krawedzi dla kazdego kanalu [czerwony,zielony,niebieski]
+    # zwraca odchylenie standardowe koloru krawędzi dla każdego kanału [czerwony,zielony,niebieski]
     def std_kolor_krawedzi_rgb(self):
         r = self.obr_kolor[:, :, 0]  # czerwony
         g = self.obr_kolor[:, :, 1]  # zielony
@@ -97,7 +97,7 @@ class CechyKolorymetryczne:
             self.obraz = obraz
         self.maska = maska
 
-    # zwraca srednia pikseli na kazdym kanale [R,G,B]
+    # zwraca średnią pikseli na każdym kanale [R,G,B]
     def srednia_rgb(self):
 
         wynik = []
@@ -112,7 +112,7 @@ class CechyKolorymetryczne:
             wynik.append(wartosc/licznik)
         return wynik
 
-    # zwraca srednia pikseli na kazdym kanale [H,S,V]
+    # zwraca średnią pikseli na każdym kanale [H,S,V]
     def srednia_hsv(self):
         hsv_obr = skimage.color.rgb2hsv(self.obraz)
         wynik = []
@@ -127,7 +127,7 @@ class CechyKolorymetryczne:
             wynik.append(wartosc/licznik)
         return wynik
 
-    # zwraca srednia pikseli na kazdym kanale [L,a*,b*]
+    # zwraca średnią pikseli na każdym kanale [L,a*,b*]
     def srednia_lab(self):
         lab_obr = skimage.color.rgb2lab(self.obraz, "D65", "2")
         wynik = []
@@ -142,7 +142,7 @@ class CechyKolorymetryczne:
             wynik.append(wartosc/licznik)
         return wynik
 
-    # zwraca odchylenie standardowe na kazdym kanale [R,G,B]
+    # zwraca odchylenie standardowe na każdym kanale [R,G,B]
     def std_rgb(self):
         wynik = []
         r = self.obraz[:, :, 0]  # czerwony
@@ -154,20 +154,20 @@ class CechyKolorymetryczne:
         wynik.append(np.std(b[self.maska]))
         return wynik
 
-    # zwraca odchylenie standardowe na kazdym kanale [H,S,V]
+    # zwraca odchylenie standardowe na każdym kanale [H,S,V]
     def std_hsv(self):
         hsv_obr = skimage.color.rgb2hsv(self.obraz)
         wynik = []
-        h = hsv_obr[:, :, 0]  # odcien
+        h = hsv_obr[:, :, 0]  # odcień
         s = hsv_obr[:, :, 1]  # nasycenie
-        v = hsv_obr[:, :, 2]  # wartosc
+        v = hsv_obr[:, :, 2]  # wartość
 
         wynik.append(np.std(h[self.maska]))
         wynik.append(np.std(s[self.maska]))
         wynik.append(np.std(v[self.maska]))
         return wynik
 
-    # zwraca odchylenie standardowe na kazdym kanale [L,a*,b*]
+    # zwraca odchylenie standardowe na każdym kanale [L,a*,b*]
     def std_lab(self):
         lab_obr = skimage.color.rgb2lab(self.obraz, "D65", "2")
         wynik = []
@@ -197,7 +197,7 @@ class CechyHistogram:
         self.maska = maska
         self.__obl_hist()
 
-    # wylicza histogramy, wywolywane w konstruktorze/zmien_obraz
+    # wylicza histogramy, wywoływane w konstruktorze/zmien_obraz
     def __obl_hist(self):
         r = self.obr[:, :, 0]  # czerwony
         g = self.obr[:, :, 1]  # zielony
@@ -210,9 +210,9 @@ class CechyHistogram:
         self.mids_b = bin_brzegi_b[:-1]
 
         hsv_obr = skimage.color.rgb2hsv(self.obr)
-        h = hsv_obr[:, :, 0]  # odcien
+        h = hsv_obr[:, :, 0]  # odcień
         s = hsv_obr[:, :, 1]  # nasycenie
-        v = hsv_obr[:, :, 2]  # wartosc
+        v = hsv_obr[:, :, 2]  # wartość
         self.hist_h, bin_brzegi_h = np.histogram(h[self.maska], bins=100, range=(0, 1))
         self.hist_s, bin_brzegi_s = np.histogram(s[self.maska], bins=100, range=(0, 1))
         self.hist_v, bin_brzegi_v = np.histogram(v[self.maska], bins=100, range=(0, 1))
@@ -231,7 +231,7 @@ class CechyHistogram:
         self.mids_a = 0.5*(bin_brzegi_a[1:] + bin_brzegi_a[:-1])
         self.mids_b = 0.5*(bin_brzegi_b[1:] + bin_brzegi_b[:-1])
 
-    # zwraca srednia histogramow na kazdym kanale [R,G,B]
+    # zwraca średnią histogramów na każdym kanale [R,G,B]
     def hist_srednia_rgb(self):
         wynik = []
         wynik.append(np.average(self.mids_r, weights=self.hist_r))
@@ -239,7 +239,7 @@ class CechyHistogram:
         wynik.append(np.average(self.mids_b, weights=self.hist_b))
         return wynik
 
-    # zwraca srednia histogramow na kazdym kanale [H,S,V]
+    # zwraca średnią histogramów na każdym kanale [H,S,V]
     def hist_srednia_hsv(self):
         wynik = []
         wynik.append(np.average(self.mids_h, weights=self.hist_h))
@@ -247,7 +247,7 @@ class CechyHistogram:
         wynik.append(np.average(self.mids_v, weights=self.hist_v))
         return wynik
 
-    # zwraca srednia histogramow na kazdym kanale [L,a*,b*]
+    # zwraca średnią histogramów na każdym kanale [L,a*,b*]
     def hist_srednia_lab(self):
         wynik = []
         wynik.append(np.average(self.mids_l, weights=self.hist_l))
@@ -255,7 +255,7 @@ class CechyHistogram:
         wynik.append(np.average(self.mids_b, weights=self.hist_b))
         return wynik
 
-    # zwraca wariancje histogramow na kazdym kanale [R,G,B]
+    # zwraca wariancje histogramów na każdym kanale [R,G,B]
     def hist_var_rgb(self):
         wynik = []
         srednia = self.hist_srednia_rgb()
@@ -264,7 +264,7 @@ class CechyHistogram:
         wynik.append(np.average((self.mids_b - srednia[2])**2, weights=self.hist_b))
         return wynik
 
-    # zwraca wariancje histogramow na kazdym kanale [H,S,V]
+    # zwraca wariancje histogramów na każdym kanale [H,S,V]
     def hist_var_hsv(self):
         wynik = []
         srednia = self.hist_srednia_hsv()
@@ -273,7 +273,7 @@ class CechyHistogram:
         wynik.append(np.average((self.mids_v - srednia[2])**2, weights=self.hist_v))
         return wynik
 
-    # zwraca wariancje histogramow na kazdym kanale [L,a*,b*]
+    # zwraca wariancje histogramów na każdym kanale [L,a*,b*]
     def hist_var_lab(self):
         wynik = []
         srednia = self.hist_srednia_lab()
@@ -282,7 +282,7 @@ class CechyHistogram:
         wynik.append(np.average((self.mids_b - srednia[2])**2, weights=self.hist_b))
         return wynik
 
-    # zwraca skosnosc histogramu na kazdym kanale [R,G,B]
+    # zwraca skośność histogramu na każdym kanale [R,G,B]
     def hist_skos_rgb(self):
         wynik = []
         srednia = self.hist_srednia_rgb()
@@ -291,7 +291,7 @@ class CechyHistogram:
         wynik.append((np.sum((self.hist_b-srednia[2])**3)/self.hist_b.size)/math.sqrt((np.sum((self.hist_b-srednia[2])**2)/self.hist_b.size)**3))
         return wynik
 
-    # zwraca skosnosc histogramu na kazdym kanale [H,S,V]
+    # zwraca skośność histogramu na każdym kanale [H,S,V]
     def hist_skos_hsv(self):
         wynik = []
         srednia = self.hist_srednia_hsv()
@@ -300,7 +300,7 @@ class CechyHistogram:
         wynik.append((np.sum((self.hist_v-srednia[2])**3)/self.hist_v.size)/math.sqrt((np.sum((self.hist_v-srednia[2])**2)/self.hist_v.size)**3))
         return wynik
 
-    # zwraca skosnosc histogramu na kazdym kanale [L,a*,b*]
+    # zwraca skośność histogramu na każdym kanale [L,a*,b*]
     def hist_skos_lab(self):
         wynik = []
         srednia = self.hist_srednia_lab()
@@ -309,7 +309,7 @@ class CechyHistogram:
         wynik.append((np.sum((self.hist_b-srednia[2])**3)/self.hist_b.size)/math.sqrt((np.sum((self.hist_b-srednia[2])**2)/self.hist_b.size)**3))
         return wynik
 
-    # zwraca kurtoze histogramu na kazdym kanale [R,G,B]
+    # zwraca kurtozę histogramu na każdym kanale [R,G,B]
     def hist_kurt_rgb(self):
         wynik = []
         srednia = self.hist_srednia_rgb()
@@ -318,7 +318,7 @@ class CechyHistogram:
         wynik.append((np.sum((self.hist_b-srednia[2])**4)/self.hist_b.size)/math.sqrt((np.sum((self.hist_b-srednia[2])**2)/self.hist_b.size)**4)-3)
         return wynik
 
-    # zwraca kurtoze histogramu na kazdym kanale [H,S,V]
+    # zwraca kurtozę histogramu na każdym kanale [H,S,V]
     def hist_kurt_hsv(self):
         wynik = []
         srednia = self.hist_srednia_hsv()
@@ -327,7 +327,7 @@ class CechyHistogram:
         wynik.append((np.sum((self.hist_v-srednia[2])**4)/self.hist_v.size)/math.sqrt((np.sum((self.hist_v-srednia[2])**2)/self.hist_v.size)**4)-3)
         return wynik
 
-    # zwraca kurtoze histogramu na kazdym kanale [L,a*,b*]
+    # zwraca kurtozę histogramu na każdym kanale [L,a*,b*]
     def hist_kurt_lab(self):
         wynik = []
         srednia = self.hist_srednia_lab()
