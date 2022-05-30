@@ -5,9 +5,9 @@ from sklearn.cluster import KMeans
 from skimage.util import img_as_ubyte
 
 
-# klasa do wyliczenie centroidow klastrow pikseli (a*,b*)
-# obraz jako argument do konstruktora, zmien_obraz aby zmienic obraz
-# obraz = sciezka do pliku/numpy array
+# klasa do wyliczenie centroidów klastrów pikseli (a*,b*)
+# obraz jako argument do konstruktora, zmien_obraz aby zmienić obraz
+# obraz = ścieżka do pliku/numpy array
 class KlastryKSrednich:
     def __init__(self, obraz) -> None:
         self.obr = rgb2lab(obraz, "D65", "2")
@@ -21,7 +21,7 @@ class KlastryKSrednich:
         self.__obl_klastry()
 
     # trenuje modele k-means
-    # wywolywane w konstruktorze/zmien_obraz
+    # wywoływane w konstruktorze/zmien_obraz
     def __obl_klastry(self):
         b = np.array([[x] for x in self.obr[:, :, 2].flatten()])
         self.k_srednich_b = KMeans(n_clusters=3).fit(b)
@@ -34,14 +34,14 @@ class KlastryKSrednich:
         return self.k_srednich_b.cluster_centers_
 
     # zapisuje wizualizacje klastrów
-    # sciezka_wynik = sciezka do pliku
+    # sciezka_wynik = ścieżka do pliku
     # def zapisz_klaster_obraz_a(self, sciezka_wynik):
     #     kl = self.k_srednich_a.labels_
     #     kl = np.reshape(kl, (self.obr.shape[0], self.obr.shape[1])) * 127
     #     skimage.io.imsave(sciezka_wynik, img_as_ubyte(kl), check_contrast=False)
 
     # zapisuje wizualizacje klastrów
-    # sciezka_wynik = sciezka do pliku
+    # sciezka_wynik = ścieżka do pliku
     # def zapisz_klaster_obraz_b(self, sciezka_wynik):
     #     kl = self.k_srednich_b.labels_
     #     kl = np.reshape(kl, (self.obr.shape[0], self.obr.shape[1])) * 127
