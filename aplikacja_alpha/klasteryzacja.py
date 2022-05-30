@@ -5,7 +5,7 @@ from sklearn.cluster import KMeans
 from skimage.util import img_as_ubyte
 
 
-# klasa do wyliczenie centroidów klastrów pikseli (a*,b*)
+# klasa do wyliczenia centroidów klastrów pikseli (a*,b*)
 # obraz jako argument do konstruktora, zmien_obraz aby zmienić obraz
 # obraz = ścieżka do pliku/numpy array
 class KlastryKSrednich:
@@ -29,7 +29,7 @@ class KlastryKSrednich:
         # a = np.array([[x] for x in self.obr[:, :, 1].flatten()])
         # self.k_srednich_a = KMeans(n_clusters=3).fit(a)
 
-    # zwraca centroid kazdego klastara ([[a*1],[a*2],[a*3]],[[b*1],[b*2],[b*3]])
+    # zwraca centroid każdego klastara ([[a*1],[a*2],[a*3]],[[b*1],[b*2],[b*3]])
     def centroidy_b(self):
         return self.k_srednich_b.cluster_centers_
 
