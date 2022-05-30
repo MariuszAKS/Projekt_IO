@@ -91,7 +91,7 @@ class CechyHistogram:
         wynik = np.average((self.mids_v - self.mean_v)**2, weights=self.hist_v)
         return wynik
 
-    # zwraca wariancje histogramów na kanalach [L,a*]
+    # zwraca wariancje histogramów na kanałach [L,a*]
     def hist_var_lab_la(self):
         wynik = []
         wynik.append(np.average((self.mids_l - self.mean_l)**2, weights=self.hist_l))
