@@ -4,8 +4,8 @@ import skimage.color
 
 
 # klasa do generacji cech kolorymetrycznych
-# obraz i maska jako argumenty do konstruktora, zmien_obraz aby zmienic obraz/maske
-# obraz = sciezka do pliku/numpy array
+# obraz i maska jako argumenty do konstruktora, zmien_obraz aby zmienić obraz/maske
+# obraz = ścieżka do pliku/numpy array
 # maska = maska (numpy bool array from Thresholding)
 class CechyKolorymetryczne:
     def __init__(self, obraz, maska) -> None:
@@ -19,7 +19,7 @@ class CechyKolorymetryczne:
             self.obraz = obraz
         self.maska = maska
 
-    # zwraca srednia pikseli na kanale [G]
+    # zwraca średnią pikseli na kanale [G]
     def srednia_rgb_g(self):
         wartosc = 0.0
         licznik = 0
@@ -31,7 +31,7 @@ class CechyKolorymetryczne:
         wynik = wartosc/licznik
         return wynik
 
-    # zwraca srednia pikseli na kanalach [S,V]
+    # zwraca średnią pikseli na kanałach [S,V]
     def srednia_hsv_sv(self):
         hsv_obr = skimage.color.rgb2hsv(self.obraz)
         wynik = []
@@ -46,7 +46,7 @@ class CechyKolorymetryczne:
             wynik.append(wartosc/licznik)
         return wynik
 
-    # zwraca srednia pikseli na kanale [L]
+    # zwraca średnią pikseli na kanale [L]
     def srednia_lab_l(self):
         lab_obr = skimage.color.rgb2lab(self.obraz, "D65", "2")
         wartosc = 0.0
