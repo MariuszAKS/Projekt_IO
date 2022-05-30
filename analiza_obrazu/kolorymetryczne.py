@@ -4,8 +4,8 @@ import skimage.color
 
 
 # klasa do generacji cech kolorymetrycznych
-# obraz i maska jako argumenty do konstruktora, zmien_obraz aby zmienic obraz/maske
-# obraz = sciezka do pliku/numpy array
+# obraz i maska jako argumenty do konstruktora, zmien_obraz aby zmienić obraz/maskę
+# obraz = ścieżka do pliku/numpy array
 # maska = maska (numpy bool array from Thresholding)
 class CechyKolorymetryczne:
     def __init__(self, obraz, maska) -> None:
@@ -22,7 +22,7 @@ class CechyKolorymetryczne:
             self.obraz = obraz
         self.maska = maska
 
-    # zwraca srednia pikseli na kazdym kanale [R,G,B]
+    # zwraca średnią pikseli na każdym kanale [R,G,B]
     def srednia_rgb(self):
 
         wynik = []
@@ -37,7 +37,7 @@ class CechyKolorymetryczne:
             wynik.append(wartosc/licznik)
         return wynik
 
-    # zwraca srednia pikseli na kazdym kanale [H,S,V]
+    # zwraca średnią pikseli na każdym kanale [H,S,V]
     def srednia_hsv(self):
         hsv_obr = skimage.color.rgb2hsv(self.obraz)
         wynik = []
@@ -52,7 +52,7 @@ class CechyKolorymetryczne:
             wynik.append(wartosc/licznik)
         return wynik
 
-    # zwraca srednia pikseli na kazdym kanale [L,a*,b*]
+    # zwraca średnią pikseli na każdym kanale [L,a*,b*]
     def srednia_lab(self):
         lab_obr = skimage.color.rgb2lab(self.obraz, "D65", "2")
         wynik = []
@@ -67,7 +67,7 @@ class CechyKolorymetryczne:
             wynik.append(wartosc/licznik)
         return wynik
 
-    # zwraca odchylenie standardowe na kazdym kanale [R,G,B]
+    # zwraca odchylenie standardowe na każdym kanale [R,G,B]
     def std_rgb(self):
         wynik = []
         r = self.obraz[:, :, 0]  # czerwony
@@ -79,20 +79,20 @@ class CechyKolorymetryczne:
         wynik.append(np.std(b[self.maska]))
         return wynik
 
-    # zwraca odchylenie standardowe na kazdym kanale [H,S,V]
+    # zwraca odchylenie standardowe na każdym kanale [H,S,V]
     def std_hsv(self):
         hsv_obr = skimage.color.rgb2hsv(self.obraz)
         wynik = []
-        h = hsv_obr[:, :, 0]  # odcien
+        h = hsv_obr[:, :, 0]  # odcień
         s = hsv_obr[:, :, 1]  # nasycenie
-        v = hsv_obr[:, :, 2]  # wartosc
+        v = hsv_obr[:, :, 2]  # wartość
 
         wynik.append(np.std(h[self.maska]))
         wynik.append(np.std(s[self.maska]))
         wynik.append(np.std(v[self.maska]))
         return wynik
 
-    # zwraca odchylenie standardowe na kazdym kanale [L,a*,b*]
+    # zwraca odchylenie standardowe na każdym kanale [L,a*,b*]
     def std_lab(self):
         lab_obr = skimage.color.rgb2lab(self.obraz, "D65", "2")
         wynik = []
