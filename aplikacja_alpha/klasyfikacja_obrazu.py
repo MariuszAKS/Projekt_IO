@@ -6,7 +6,7 @@ from sklearn.ensemble import RandomForestClassifier
 
 
 def klasyfikacja(cechy_obrazu):
-    cechy = pd.read_csv(r"40cech.csv", decimal=",", sep=";")
+    cechy = pd.read_csv(r"aplikacja_alpha/40cech.csv", decimal=",", sep=";")
 
     # model treningowy: X to dataframe tylko z cechami (bez rodzaju bakterii i numeru zdjęcia), y to numery rodzajów
     x_train = np.array((cechy.drop(cechy.columns[[0, 1]], axis=1)))
