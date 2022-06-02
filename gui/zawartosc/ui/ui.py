@@ -20,5 +20,4 @@ class Ui(Ui_MainWindow):
 
     def __analizuj_zdjecia(self) -> None:
         sciezki = wybierz_pliki(self.obszar_przyciskow)
-        self.__menedzer_listy.usun_stare_pozycje()
         self.__analizator.analizuj_zdjecia(sciezki, self.__menedzer_listy.dodaj_pozycje)
