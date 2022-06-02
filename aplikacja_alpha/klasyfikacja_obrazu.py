@@ -2,6 +2,7 @@
 
 import pandas as pd
 import numpy as np
+import random
 from sklearn.ensemble import RandomForestClassifier
 
 
@@ -13,7 +14,8 @@ def klasyfikacja(cechy_obrazu):
     y_train = np.array(cechy["-- Rodzaj --"])
 
     #klasyfikator rf
-    clf = RandomForestClassifier(n_estimators=100)
+    random.seed(100)
+    clf = RandomForestClassifier(n_estimators=100, random_state=100)
     clf.fit(x_train, y_train)
 
     #przewidywany rodzaj na podstawie danych testowych
