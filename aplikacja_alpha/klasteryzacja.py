@@ -2,7 +2,8 @@ import numpy as np
 import skimage.io
 from skimage.color import rgb2lab
 from sklearn.cluster import KMeans
-from skimage.util import img_as_ubyte
+from sklearn.exceptions import ConvergenceWarning
+from sklearn.utils._testing import ignore_warnings
 
 
 # klasa do wyliczenia centroidów klastrów pikseli (a*,b*)
@@ -22,12 +23,10 @@ class KlastryKSrednich:
 
     # trenuje modele k-means
     # wywoływane w konstruktorze/zmien_obraz
+    @ignore_warnings(category=ConvergenceWarning)
     def __obl_klastry(self):
         b = np.array([[x] for x in self.obr[:, :, 2].flatten()])
         self.k_srednich_b = KMeans(n_clusters=3).fit(b)
-
-        # a = np.array([[x] for x in self.obr[:, :, 1].flatten()])
-        # self.k_srednich_a = KMeans(n_clusters=3).fit(a)
 
     # zwraca centroid każdego klastara ([[a*1],[a*2],[a*3]],[[b*1],[b*2],[b*3]])
     def centroidy_b(self):
