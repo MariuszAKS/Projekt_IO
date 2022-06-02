@@ -1,23 +1,7 @@
 from __future__ import annotations
-import random as rand
-from time import sleep
 from typing import Callable, List
 
 from PyQt6.QtCore import QThread, QObject, pyqtSignal
-
-from aplikacja_alpha.main import klasyfikuj
-
-
-
-
-lista = ["red", "blue", "green", "brown", "orange", "purple"]
-
-
-# def _zwroc_rodzaj(sciezka_zdjecia: str) -> str:
-#     sleep(rand.uniform(0.5, 2))
-#     rodzaj = rand.choice(lista)
-#     print(rodzaj)
-#     return rodzaj
 
 
 class AnalizatorZdjec:
