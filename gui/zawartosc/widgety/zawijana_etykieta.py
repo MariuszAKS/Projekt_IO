@@ -11,15 +11,17 @@ class ZawijanaEtykieta(QLabel):
         self.setSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Minimum)
         self.setMinimumWidth(0)
 
-    def paintEvent(self, event: QPaintEvent):
-        painter = QPainter(self)
-        metrics = self.fontMetrics()
-        tekst = metrics.elidedText(self.tekst, Qt.TextElideMode.ElideRight, self.width())
-        painter.drawText(self.frameRect(), self.alignment(), tekst)
+    # def paintEvent(self, event: QPaintEvent):
+    #     painter = QPainter(self)
+    #     metrics = self.fontMetrics()
+    #     tekst = metrics.elidedText(self.tekst, Qt.TextElideMode.ElideRight, self.width())
+    #     painter.drawText(self.frameRect(), self.alignment(), tekst)
 
-    # def resizeEvent(self, resize_event: QResizeEvent) -> None:
-    #     super().resizeEvent(resize_event)
-    #     self.__ustaw_tekst(szerokosc=max(resize_event.size().width()-10, 1))
+    def resizeEvent(self, resize_event: QResizeEvent) -> None:
+        super().resizeEvent(resize_event)
+        nowy_rozmiar = resize_event.size().width()
+        if nowy_rozmiar > 1: nowy_rozmiar -= 1
+        self.__ustaw_tekst(nowy_rozmiar)
 
     def __ustaw_tekst(self, szerokosc: int) -> None:
         tekst = self.fontMetrics().elidedText(self.tekst, Qt.TextElideMode.ElideRight, szerokosc)
