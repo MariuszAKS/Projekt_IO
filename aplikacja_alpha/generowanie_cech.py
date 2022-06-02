@@ -1,5 +1,6 @@
 import skimage.io
 import numpy as np
+from math import isnan
 import csv
 
 from aplikacja_alpha.progowanie import ProgowanieOTSU
@@ -170,6 +171,10 @@ def generowanie_cech(sciezka_do_pliku):
     cechy.append(cecha_hist_entropia_lab_luminacja)
     cechy.append(cecha_hist_entropia_lab_temperatura)
     cechy.append(cecha_krawedzie_std_czerwony)
+    
+    for i in range(0, len(cechy)):
+        if isnan(cechy[i]):
+            cechy[i] = 0.0
 
     print('Cechy posegregowane')
     # print(cechy)
