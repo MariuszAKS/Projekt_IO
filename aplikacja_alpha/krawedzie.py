@@ -33,7 +33,10 @@ class Krawedzie:
     # zwraca średni kolor krawędzi dla kanału [czerwony]
     def sredni_kolor_krawedzi_rgb_r(self):
         r = self.obr_kolor[:, :, 0]  # czerwony
-        return r[self.maska_krawedzi].mean()
+        r = r[self.maska_krawedzi]
+        if len(r) == 0:
+            return 0
+        return r.mean()
 
     # zwraca odchylenie standardowe koloru krawędzi dla każdego kanału [czerwony,zielony,niebieski]
     def std_kolor_krawedzi_rgb(self):
