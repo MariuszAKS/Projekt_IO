@@ -1,9 +1,10 @@
 from PyQt6.QtWidgets import QLabel, QWidget, QSizePolicy
-from PyQt6.QtGui import QResizeEvent, QPaintEvent, QPainter
+from PyQt6.QtGui import QResizeEvent
 from PyQt6.QtCore import Qt
 
 
 class ZawijanaEtykieta(QLabel):
+    MIN_SZEROKOSC = 1
     def __init__(self, tekst: str, rodzic: QWidget) -> None:
         super().__init__(rodzic)
         self.tekst = tekst
@@ -11,16 +12,10 @@ class ZawijanaEtykieta(QLabel):
         self.setSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Minimum)
         self.setMinimumWidth(0)
 
-    # def paintEvent(self, event: QPaintEvent):
-    #     painter = QPainter(self)
-    #     metrics = self.fontMetrics()
-    #     tekst = metrics.elidedText(self.tekst, Qt.TextElideMode.ElideRight, self.width())
-    #     painter.drawText(self.frameRect(), self.alignment(), tekst)
-
     def resizeEvent(self, resize_event: QResizeEvent) -> None:
         super().resizeEvent(resize_event)
         nowy_rozmiar = resize_event.size().width()
-        if nowy_rozmiar > 1: nowy_rozmiar -= 1
+        if nowy_rozmiar > ZawijanaEtykieta.MIN_SZEROKOSC: nowy_rozmiar -= 1
         self.__ustaw_tekst(nowy_rozmiar)
 
     def __ustaw_tekst(self, szerokosc: int) -> None:

@@ -17,7 +17,7 @@ class PodgladZdjecia(QLabel):
         super().resizeEvent(resize_event)
         nowa_szerokosc = self.width()
 
-        if nowa_szerokosc > self.MIN_SZEROKOSC:
+        if nowa_szerokosc > PodgladZdjecia.MIN_SZEROKOSC:
             nowa_szerokosc -= 1
 
         zeskalowana_pixmapa = self.__pixmapa.scaledToWidth(nowa_szerokosc)
