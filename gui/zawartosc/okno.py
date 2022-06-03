@@ -1,4 +1,3 @@
-from typing import Callable
 from PyQt6.QtWidgets import QMainWindow
 
 

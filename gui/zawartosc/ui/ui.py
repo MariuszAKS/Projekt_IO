@@ -1,7 +1,5 @@
 from typing import Callable
 
-from ..widgety.element_listy import ElementListy
-
 from ..motywy.menedzer_motywow import MenedzerMotywow
 from ..designer.gui_designer import Ui_MainWindow
 from ..okno import GlowneOkno

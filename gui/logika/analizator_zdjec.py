@@ -7,8 +7,6 @@ from PyQt6.QtCore import QThread, QObject, pyqtSignal
 class AnalizatorZdjec:
     """Klasa sluzaca do przeprowadzania analizy zdjec"""
 
-    funkcja_analizujaca: Callable[[str], str]
-
     def __init__(self, funkcja_analizujaca: Callable[[str], str]) -> None:
         self.__watki = []
         AnalizatorZdjec.funkcja_analizujaca = funkcja_analizujaca

@@ -4,8 +4,6 @@ from PyQt6.QtCore import Qt
 
 
 class ZawijanaEtykieta(QLabel):
-    MIN_SZEROKOSC = 1
-
     def __init__(self, tekst: str, rodzic: QWidget) -> None:
         super().__init__(rodzic)
         self.tekst = tekst
