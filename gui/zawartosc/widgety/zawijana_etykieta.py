@@ -10,13 +10,12 @@ class ZawijanaEtykieta(QLabel):
         super().__init__(rodzic)
         self.tekst = tekst
         self.__ustaw_tekst(szerokosc=self.width())
-        self.setSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Minimum)
+        self.setSizePolicy(QSizePolicy.Policy.Ignored, QSizePolicy.Policy.Minimum)
         self.setMinimumWidth(0)
 
     def resizeEvent(self, resize_event: QResizeEvent) -> None:
         super().resizeEvent(resize_event)
         nowy_rozmiar = resize_event.size().width()
-        if nowy_rozmiar > ZawijanaEtykieta.MIN_SZEROKOSC: nowy_rozmiar -= 1
         self.__ustaw_tekst(nowy_rozmiar)
 
     def __ustaw_tekst(self, szerokosc: int) -> None:

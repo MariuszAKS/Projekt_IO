@@ -2,7 +2,8 @@ import ntpath
 from typing import List, Tuple
 
 from PyQt6.QtWidgets import QSizePolicy, QWidget, QHBoxLayout, QLayout
-from PyQt6.QtCore import Qt
+from PyQt6.QtCore import Qt, QSize
+from PyQt6.QtGui import QResizeEvent
 
 from .zawijana_etykieta import ZawijanaEtykieta
 from .podglad_zdjecia import PodgladZdjecia
@@ -21,7 +22,6 @@ class ElementListy(QWidget):
         self.__etykieta_rodzaj = ZawijanaEtykieta(self.rodzaj, self)
 
         self.__ustaw_wyrownanie()
-        self.__ustaw_rozciaganie()
 
         self.__rozstawienie = Rozstawienie(
             self.__zdjecie,
@@ -33,11 +33,6 @@ class ElementListy(QWidget):
         self.__etykieta_nazwa.setAlignment(Qt.AlignmentFlag.AlignHCenter | Qt.AlignmentFlag.AlignCenter)
         self.__zdjecie.setAlignment(Qt.AlignmentFlag.AlignHCenter | Qt.AlignmentFlag.AlignCenter)
         self.__etykieta_rodzaj.setAlignment(Qt.AlignmentFlag.AlignHCenter | Qt.AlignmentFlag.AlignCenter)
-
-    def __ustaw_rozciaganie(self) -> None:
-        self.__etykieta_nazwa.setSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Preferred)
-        self.__zdjecie.setSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Preferred)
-        self.__etykieta_rodzaj.setSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Preferred)
 
 
 class Rozstawienie(QHBoxLayout):
