@@ -17,21 +17,21 @@ class ElementListy(QWidget):
         self.sciezka = sciezka
         self.rodzaj = rodzaj
 
-        self.__zdjecie = PodgladZdjecia(self.sciezka, self)
+        self.zdjecie = PodgladZdjecia(self.sciezka, self)
         self.__etykieta_nazwa = ZawijanaEtykieta(self.nazwa, self)
         self.__etykieta_rodzaj = ZawijanaEtykieta(self.rodzaj, self)
 
         self.__ustaw_wyrownanie()
 
         self.__rozstawienie = Rozstawienie(
-            self.__zdjecie,
+            self.zdjecie,
             self.__etykieta_nazwa,
             self.__etykieta_rodzaj,
             rodzic=self)
 
     def __ustaw_wyrownanie(self) -> None:
         self.__etykieta_nazwa.setAlignment(Qt.AlignmentFlag.AlignHCenter | Qt.AlignmentFlag.AlignCenter)
-        self.__zdjecie.setAlignment(Qt.AlignmentFlag.AlignHCenter | Qt.AlignmentFlag.AlignCenter)
+        self.zdjecie.setAlignment(Qt.AlignmentFlag.AlignHCenter | Qt.AlignmentFlag.AlignCenter)
         self.__etykieta_rodzaj.setAlignment(Qt.AlignmentFlag.AlignHCenter | Qt.AlignmentFlag.AlignCenter)
 
 
