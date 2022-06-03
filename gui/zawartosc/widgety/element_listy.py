@@ -1,9 +1,8 @@
 import ntpath
-from typing import List, Tuple
 
-from PyQt6.QtWidgets import QSizePolicy, QWidget, QHBoxLayout, QLayout
-from PyQt6.QtCore import Qt, QSize
+from PyQt6.QtWidgets import QWidget, QHBoxLayout, QLayout
 from PyQt6.QtGui import QResizeEvent
+from PyQt6.QtCore import Qt
 
 from .zawijana_etykieta import ZawijanaEtykieta
 from .podglad_zdjecia import PodgladZdjecia
