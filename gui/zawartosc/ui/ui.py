@@ -1,9 +1,12 @@
 from typing import Callable
 
+from ..widgety.element_listy import ElementListy
+
 from ..motywy.menedzer_motywow import MenedzerMotywow
 from ..designer.gui_designer import Ui_MainWindow
 from ..okno import GlowneOkno
 from ...logika.analizator_zdjec import AnalizatorZdjec
+from ...logika.eksport.menedzer_eksportu import MenedzerEksportu
 from .menedzer_listy import MenedzerListy
 from .stylizator import Stylizator
 from ...logika.wybor_plikow import wybierz_pliki
@@ -19,10 +22,12 @@ class Ui(Ui_MainWindow):
         self.__stylizator = Stylizator(self.__glowne_okno)  # TODO: zmienić nazwę na bardziej znaczącą
         self.__menedzer_listy = MenedzerListy(lista_elementow=self.verticalLayout_2)
         self.__menedzer_motywow = MenedzerMotywow(self.__glowne_okno)
+        self.__menedzer_eksportu = MenedzerEksportu(lista_elementow=self.verticalLayout_2)
 
         self.przycisk_dodaj.clicked.connect(self.pobierz_i_analizuj_zdjecia)
         self.przycisk_rodzaj.clicked.connect(self.__menedzer_listy.sortuj_po_rodzaju)
         self.przycisk_nazwa.clicked.connect(self.__menedzer_listy.sortuj_po_nazwie)
+        self.przycisk_eksport.clicked.connect(self.__menedzer_eksportu.eksportuj)
 
         self.akcja_systemowy.triggered.connect(self.__menedzer_motywow.ustaw_systemowy)
         self.akcja_jasny.triggered.connect(self.__menedzer_motywow.ustaw_jasny)
