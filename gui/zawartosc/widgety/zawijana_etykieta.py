@@ -7,15 +7,15 @@ class ZawijanaEtykieta(QLabel):
     def __init__(self, tekst: str, rodzic: QWidget) -> None:
         super().__init__(rodzic)
         self.tekst = tekst
-        self.__ustaw_tekst(szerokosc=self.width())
+        self.__zawin_tekst(szerokosc=self.width())
         self.setSizePolicy(QSizePolicy.Policy.Ignored, QSizePolicy.Policy.Minimum)
         self.setMinimumWidth(0)
 
     def resizeEvent(self, resize_event: QResizeEvent) -> None:
         super().resizeEvent(resize_event)
         nowy_rozmiar = resize_event.size().width()
-        self.__ustaw_tekst(nowy_rozmiar)
+        self.__zawin_tekst(nowy_rozmiar)
 
-    def __ustaw_tekst(self, szerokosc: int) -> None:
+    def __zawin_tekst(self, szerokosc: int) -> None:
         tekst = self.fontMetrics().elidedText(self.tekst, Qt.TextElideMode.ElideRight, szerokosc)
         self.setText(tekst)

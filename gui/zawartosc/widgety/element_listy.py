@@ -9,12 +9,12 @@ from .podglad_zdjecia import PodgladZdjecia
 
 
 class ElementListy(QWidget):
-    def __init__(self, sciezka: str, rodzaj: str) -> None:
+    def __init__(self, sciezka: str) -> None:
         super().__init__()
 
         self.nazwa = ntpath.basename(sciezka)
         self.sciezka = sciezka
-        self.rodzaj = rodzaj
+        self.rodzaj = "Analizowanie..."
 
         self.zdjecie = PodgladZdjecia(self.sciezka, self)
         self.__etykieta_nazwa = ZawijanaEtykieta(self.nazwa, self)
@@ -27,6 +27,10 @@ class ElementListy(QWidget):
             self.__etykieta_nazwa,
             self.__etykieta_rodzaj,
             rodzic=self)
+
+    def ustaw_rodzaj(self, rodzaj: str) -> None:
+        self.rodzaj = rodzaj
+        self.__etykieta_rodzaj.setText(rodzaj)
 
     def __ustaw_wyrownanie(self) -> None:
         self.__etykieta_nazwa.setAlignment(Qt.AlignmentFlag.AlignHCenter | Qt.AlignmentFlag.AlignCenter)

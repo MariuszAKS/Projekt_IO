@@ -27,10 +27,11 @@ class MenedzerListy:
         for i in reversed(range(self.__lista_elementow.count())):
             self.__lista_elementow.itemAt(i).widget().setParent(None)
 
-    def dodaj_pozycje(self, sciezka_zdjecia: str, rodzaj: str) -> None:
-        nowy_element = ElementListy(sciezka_zdjecia, rodzaj)
+    def dodaj_pozycje(self, sciezka_zdjecia: str) -> ElementListy:
+        nowy_element = ElementListy(sciezka_zdjecia)
         self.__lista_elementow.addWidget(nowy_element)
         self.__pozycje.append(nowy_element)
+        return nowy_element
 
     def __ustaw_nowe_pozycje(self) -> None:
         for element in self.__pozycje:
