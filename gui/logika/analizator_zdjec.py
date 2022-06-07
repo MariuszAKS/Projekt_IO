@@ -7,6 +7,7 @@ from PyQt6.QtCore import QThread, QObject, pyqtSignal, pyqtSlot
 
 from aplikacja_alpha.main import Rodzaj
 from ..zawartosc.widgety.element_listy import ElementListy
+from aplikacja_alpha.main import klasyfikuj as funkcja_analizujaca
 
 
 class AnalizatorZdjec:
@@ -78,11 +79,19 @@ class _Analiza(QObject):
 
     @pyqtSlot()
     def rozpocznij(self) -> None:
-        proces = Process(target=self.__analizuj, args=(self.sciezka, self.rodzaj))
+        proces = Process(target=_analizuj, args=(self.sciezka, self.rodzaj))
         proces.start()
         proces.join()
-        self.zakonczony.emit(str(Rodzaj(self.rodzaj.value)))
+        
+        rodzaj = ""
+        try:
+            rodzaj = str(Rodzaj(self.rodzaj.value))
+        except ValueError:
+            rodzaj = "Nastąpił błąd w wykonywaniu wątku"
+            
+        self.zakonczony.emit(rodzaj)
 
-    def __analizuj(self, sciezka: str, stary_rodzaj: Value) -> None:
-        rodzaj = AnalizatorZdjec.funkcja_analizujaca(sciezka)
-        stary_rodzaj.value = rodzaj.value
+# Ze względu na zachowanie windowsa, bardzo ważne żeby ta funkcja była globalna (przynajmniej w zakresie tego pliku)
+def _analizuj(sciezka: str, wartosc_zwrotna: Value) -> None:
+    rodzaj = funkcja_analizujaca(sciezka)
+    wartosc_zwrotna.value = rodzaj.value

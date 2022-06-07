@@ -1,5 +1,5 @@
 import gui
 from aplikacja_alpha.main import klasyfikuj
 
-
-gui.Aplikacja(funkcja_analizujaca=klasyfikuj)
+if __name__ == "__main__":
+    gui.Aplikacja(funkcja_analizujaca=klasyfikuj)
