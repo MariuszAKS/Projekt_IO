@@ -11,12 +11,12 @@ from ...logika.wybor_plikow import wybierz_pliki
 
 
 class Ui(Ui_MainWindow):
-    def __init__(self, glowne_okno: GlowneOkno, funkcja_analizujaca: Callable[[str], str]) -> None:
+    def __init__(self, glowne_okno: GlowneOkno) -> None:
         super().__init__()
         self.__glowne_okno = glowne_okno
         self.setupUi(self.__glowne_okno)
 
-        self.__analizator = AnalizatorZdjec(funkcja_analizujaca)
+        self.__analizator = AnalizatorZdjec()
         self.__stylizator = Stylizator(self.__glowne_okno)  # TODO: zmienić nazwę na bardziej znaczącą
         self.__menedzer_listy = MenedzerListy(lista_elementow=self.verticalLayout_2)
         self.__menedzer_motywow = MenedzerMotywow(self.__glowne_okno)

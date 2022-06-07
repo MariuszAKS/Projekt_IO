@@ -16,9 +16,7 @@ class AnalizatorZdjec:
     funkcja_analizujaca: Callable[[str], str]
     '''Funkcja otrzymujaca sciezke zdjecia i zwracajaca rodzaj bakterii'''
 
-    def __init__(self, funkcja_analizujaca: Callable[[str], str]) -> None:
-        AnalizatorZdjec.funkcja_analizujaca = funkcja_analizujaca
-
+    def __init__(self,) -> None:
         self.watki: Dict[QThread, _Analiza] = dict()
         '''Slownik sluzacy do przechowywania referencji do watkow i ich procesow'''
 
@@ -82,13 +80,13 @@ class _Analiza(QObject):
         proces = Process(target=_analizuj, args=(self.sciezka, self.rodzaj))
         proces.start()
         proces.join()
-        
+
         rodzaj = ""
         try:
             rodzaj = str(Rodzaj(self.rodzaj.value))
         except ValueError:
             rodzaj = "Nastąpił błąd w wykonywaniu wątku"
-            
+
         self.zakonczony.emit(rodzaj)
 
 # Ze względu na zachowanie windowsa, bardzo ważne żeby ta funkcja była globalna (przynajmniej w zakresie tego pliku)
