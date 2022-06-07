@@ -1,6 +1,7 @@
+from enum import Enum
+
 from aplikacja_alpha.generowanie_cech import generowanie_cech
 from aplikacja_alpha.klasyfikacja_obrazu import klasyfikacja
-from enum import Enum
 
 
 class Rodzaj(Enum):
@@ -15,11 +16,11 @@ class Rodzaj(Enum):
 
 
 
-def klasyfikuj(sciezka_do_pliku: str) -> str:
+def klasyfikuj(sciezka_do_pliku: str) -> Rodzaj:
     # Wygeneruj cechy wskazanego obrazu
     cechy = generowanie_cech(sciezka_do_pliku)
 
-    return str(Rodzaj(klasyfikacja([cechy])))
+    return Rodzaj(klasyfikacja([cechy]))
 
 
 # print(klasyfikuj('obraz.png'))

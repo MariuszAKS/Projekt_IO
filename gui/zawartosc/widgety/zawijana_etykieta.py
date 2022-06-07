@@ -19,3 +19,8 @@ class ZawijanaEtykieta(QLabel):
     def __zawin_tekst(self, szerokosc: int) -> None:
         tekst = self.fontMetrics().elidedText(self.tekst, Qt.TextElideMode.ElideRight, szerokosc)
         self.setText(tekst)
+
+    def setText(self, nowy_tekst: str) -> None:
+        super().setText(nowy_tekst)
+        self.tekst = nowy_tekst
+

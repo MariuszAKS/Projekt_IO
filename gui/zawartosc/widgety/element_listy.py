@@ -1,7 +1,6 @@
 import ntpath
 
 from PyQt6.QtWidgets import QWidget, QHBoxLayout, QLayout
-from PyQt6.QtGui import QResizeEvent
 from PyQt6.QtCore import Qt
 
 from .zawijana_etykieta import ZawijanaEtykieta
@@ -39,7 +38,7 @@ class ElementListy(QWidget):
 
 
 class Rozstawienie(QHBoxLayout):
-    def __init__(self, *widgety: QWidget, rodzic: QWidget):
+    def __init__(self, *widgety: QWidget, rodzic: QWidget) -> None:
         super().__init__(rodzic)
         self.setSizeConstraint(QLayout.SizeConstraint.SetMinimumSize)
 

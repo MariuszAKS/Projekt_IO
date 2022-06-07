@@ -35,4 +35,6 @@ class Ui(Ui_MainWindow):
 
     def pobierz_i_analizuj_zdjecia(self):
         sciezki = wybierz_pliki(self.__glowne_okno)
-        self.__analizator.analizuj_zdjecia(sciezki, self.__menedzer_listy.dodaj_pozycje)
+        self.__analizator.analizuj_zdjecia(sciezki, self.__menedzer_listy.utworz_pozycje)
+        # self.__analizator.analizuj_zdjecia(sciezki, lambda x: print(x))
+

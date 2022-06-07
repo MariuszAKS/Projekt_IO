@@ -1,19 +1,27 @@
 from __future__ import annotations
-from typing import Callable, List
+from ctypes import c_int16
+from multiprocessing import Process, Value
+from typing import Callable, List, Dict
 
-from PyQt6.QtCore import QThread, QObject, pyqtSignal
+from PyQt6.QtCore import QThread, QObject, pyqtSignal, pyqtSlot
 
+from aplikacja_alpha.main import Rodzaj
 from ..zawartosc.widgety.element_listy import ElementListy
 
 
 class AnalizatorZdjec:
-    """Klasa sluzaca do przeprowadzania analizy zdjec"""
+    '''Klasa sluzaca do przeprowadzania analizy zdjec'''
+
+    funkcja_analizujaca: Callable[[str], str]
+    '''Funkcja otrzymujaca sciezke zdjecia i zwracajaca rodzaj bakterii'''
 
     def __init__(self, funkcja_analizujaca: Callable[[str], str]) -> None:
-        self.__watki: List[_Watek] = []
         AnalizatorZdjec.funkcja_analizujaca = funkcja_analizujaca
 
-    def analizuj_zdjecia(self, sciezki: List[str], dodaj_pozycje: Callable[[str], ElementListy]) -> None:
+        self.watki: Dict[QThread, _Analiza] = dict()
+        '''Slownik sluzacy do przechowywania referencji do watkow i ich procesow'''
+
+    def analizuj_zdjecia(self, sciezki: List[str], utworz_pozycje: Callable[[str], ElementListy]) -> None:
         """
         Przeprowadza analize kazdego zdjecia z listy sciezki,
         nastepnie wywoluje funkcje dodaj_pozycje przy uzyciu uzyskanego wyniku
@@ -23,47 +31,58 @@ class AnalizatorZdjec:
             dodaj_pozycje (Callable[[str, str], None]): funkcja dodajaca pozycje do listy w ui
         """
 
-        self.__watki.clear()
+        self.__usun_poprzednie_watki()
 
         for sciezka in sciezki:
-            proces_analizy = _Analiza(sciezka)
-            element_listy = dodaj_pozycje(sciezka)
+            pozycja = utworz_pozycje(sciezka)
 
-            watek = _Watek(
-                proces_do_uruchomienia=proces_analizy,
-                gdy_zakonczony=element_listy.ustaw_rodzaj)
+            watek = self.__utworz_watek()
+            proces = self.__utworz_proces(sciezka, watek, gdy_zakonczony=pozycja.ustaw_rodzaj)
 
-            self.__watki.append(watek)
+            watek.started.connect(proces.rozpocznij)
 
-        for watek in self.__watki:
-            watek.rozpocznij()
+            self.__zapisz(watek, proces)
+            watek.start()
 
+    def __utworz_watek(self) -> QThread:
+        watek = QThread()
+        watek.finished.connect(watek.quit)
+        watek.finished.connect(watek.deleteLater)
+        watek.finished.connect(lambda: self.watki.pop(watek))
+        return watek
 
-class _Watek:
-    def __init__(self, proces_do_uruchomienia: _Analiza, gdy_zakonczony: Callable[[str], None]) -> None:
-        self.__watek = QThread()
-        self.__proces = proces_do_uruchomienia
-        self.__proces.moveToThread(self.__watek)
-        self.__watek.started.connect(self.__proces.analizuj)
-        self.__proces.zakonczony.connect(lambda: gdy_zakonczony(self.__proces.rodzaj))
-        self.__proces.zakonczony.connect(self.__watek.quit)
-        self.__proces.zakonczony.connect(self.__proces.deleteLater)
-        self.__watek.finished.connect(self.__watek.deleteLater)
+    def __utworz_proces(self, sciezka: str, watek_docelowy: QThread, gdy_zakonczony: Callable[[str], str]) -> _Analiza:
+        proces = _Analiza(sciezka)
+        proces.moveToThread(watek_docelowy)
+        proces.zakonczony.connect(gdy_zakonczony)
+        proces.zakonczony.connect(proces.deleteLater)
+        return proces
 
-    def rozpocznij(self):
-        self.__watek.start()
+    def __zapisz(self, watek: QThread, proces: _Analiza) -> None:
+        self.watki[watek] = proces
+
+    def __usun_poprzednie_watki(self) -> None:
+        for proces in self.watki:
+            proces.exit()
+
+        self.watki.clear()
 
 
 class _Analiza(QObject):
-    """Proces analizy pojedynczego zdjecia"""
-    zakonczony = pyqtSignal()
+    zakonczony = pyqtSignal(str)
 
-    def __init__(self, sciezka_zdjecia: str) -> None:
+    def __init__(self, sciezka) -> None:
         super().__init__()
-        self.sciezka = sciezka_zdjecia
-        self.rodzaj = None
+        self.sciezka = sciezka
+        self.rodzaj = Value(c_int16, -1)
 
-    def analizuj(self):
-        self.rodzaj = AnalizatorZdjec.funkcja_analizujaca(self.sciezka)
-        self.zakonczony.emit()
+    @pyqtSlot()
+    def rozpocznij(self) -> None:
+        proces = Process(target=self.__analizuj, args=(self.sciezka, self.rodzaj))
+        proces.start()
+        proces.join()
+        self.zakonczony.emit(str(Rodzaj(self.rodzaj.value)))
 
+    def __analizuj(self, sciezka: str, stary_rodzaj: Value) -> None:
+        rodzaj = AnalizatorZdjec.funkcja_analizujaca(sciezka)
+        stary_rodzaj.value = rodzaj.value
