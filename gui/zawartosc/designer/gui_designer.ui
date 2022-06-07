@@ -20,27 +20,80 @@
    <string>Aplikacja do identyfikacji bakterii</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout">
+   <layout class="QHBoxLayout" name="horizontalLayout_2">
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout">
-      <property name="spacing">
-       <number>0</number>
+     <layout class="QVBoxLayout" name="pasek_boczny">
+      <property name="topMargin">
+       <number>50</number>
       </property>
-      <item>
-       <widget class="QPushButton" name="przycisk_zdjecie">
-        <property name="enabled">
-         <bool>true</bool>
+      <item alignment="Qt::AlignTop">
+       <widget class="QPushButton" name="przycisk_dodaj">
+        <property name="minimumSize">
+         <size>
+          <width>65</width>
+          <height>65</height>
+         </size>
         </property>
-        <property name="cursor">
-         <cursorShape>ArrowCursor</cursorShape>
-        </property>
-        <property name="locale">
-         <locale language="Polish" country="Poland"/>
+        <property name="font">
+         <font>
+          <pointsize>26</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
         </property>
         <property name="text">
-         <string>Zdjęcie</string>
+         <string/>
         </property>
-        <property name="checkable">
+        <property name="icon">
+         <iconset>
+          <normaloff>../../zasoby/ikony/plus.svg</normaloff>../../zasoby/ikony/plus.svg</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="przycisk_eksport">
+        <property name="minimumSize">
+         <size>
+          <width>50</width>
+          <height>65</height>
+         </size>
+        </property>
+        <property name="baseSize">
+         <size>
+          <width>0</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>14</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>../../zasoby/ikony/save.svg</normaloff>../../zasoby/ikony/save.svg</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+        <property name="autoDefault">
+         <bool>false</bool>
+        </property>
+        <property name="default">
          <bool>false</bool>
         </property>
         <property name="flat">
@@ -49,22 +102,73 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="przycisk_nazwa">
-        <property name="text">
-         <string>Nazwa</string>
+       <widget class="QPushButton" name="przycisk_wyczysc">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>65</height>
+         </size>
         </property>
-        <property name="flat">
-         <bool>false</bool>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>../../zasoby/ikony/trash.svg</normaloff>../../zasoby/ikony/trash.svg</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="przycisk_rodzaj">
-        <property name="locale">
-         <locale language="Polish" country="Poland"/>
+       <spacer name="verticalSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="przycisk_zmien_uklad">
+        <property name="minimumSize">
+         <size>
+          <width>20</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>84</width>
+          <height>84</height>
+         </size>
         </property>
         <property name="text">
-         <string>Rodzaj</string>
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>../../zasoby/ikony/list.svg</normaloff>../../zasoby/ikony/list.svg</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+        <property name="autoDefault">
+         <bool>false</bool>
+        </property>
+        <property name="default">
+         <bool>false</bool>
         </property>
         <property name="flat">
          <bool>false</bool>
@@ -74,137 +178,107 @@
      </layout>
     </item>
     <item>
-     <widget class="QScrollArea" name="scrollArea">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="verticalScrollBarPolicy">
-       <enum>Qt::ScrollBarAsNeeded</enum>
-      </property>
-      <property name="horizontalScrollBarPolicy">
-       <enum>Qt::ScrollBarAlwaysOff</enum>
-      </property>
-      <property name="sizeAdjustPolicy">
-       <enum>QAbstractScrollArea::AdjustToContentsOnFirstShow</enum>
-      </property>
-      <property name="widgetResizable">
-       <bool>true</bool>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-      </property>
-      <widget class="QWidget" name="scrollAreaWidgetContents">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>0</y>
-         <width>1017</width>
-         <height>637</height>
-        </rect>
-       </property>
-       <property name="layoutDirection">
-        <enum>Qt::LeftToRight</enum>
-       </property>
-       <layout class="QVBoxLayout" name="verticalLayout_2">
-        <property name="bottomMargin">
-         <number>11</number>
+     <layout class="QVBoxLayout" name="verticalLayout_4">
+      <item>
+       <layout class="QHBoxLayout" name="pasek_gorny">
+        <property name="spacing">
+         <number>0</number>
         </property>
+        <item>
+         <widget class="QPushButton" name="przycisk_zdjecie">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="cursor">
+           <cursorShape>ArrowCursor</cursorShape>
+          </property>
+          <property name="locale">
+           <locale language="Polish" country="Poland"/>
+          </property>
+          <property name="text">
+           <string>Zdjęcie</string>
+          </property>
+          <property name="checkable">
+           <bool>false</bool>
+          </property>
+          <property name="flat">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="przycisk_nazwa">
+          <property name="text">
+           <string>Nazwa</string>
+          </property>
+          <property name="flat">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="przycisk_rodzaj">
+          <property name="locale">
+           <locale language="Polish" country="Poland"/>
+          </property>
+          <property name="text">
+           <string>Rodzaj</string>
+          </property>
+          <property name="flat">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
        </layout>
-      </widget>
-     </widget>
-    </item>
-    <item>
-     <widget class="QProgressBar" name="pasek_ladowania">
-      <property name="value">
-       <number>99</number>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QWidget" name="obszar_przyciskow" native="true">
-      <layout class="QHBoxLayout" name="horizontalLayout_3">
-       <item>
-        <spacer name="spacer1">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
+      </item>
+      <item>
+       <widget class="QScrollArea" name="lista">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="verticalScrollBarPolicy">
+         <enum>Qt::ScrollBarAsNeeded</enum>
+        </property>
+        <property name="horizontalScrollBarPolicy">
+         <enum>Qt::ScrollBarAlwaysOff</enum>
+        </property>
+        <property name="sizeAdjustPolicy">
+         <enum>QAbstractScrollArea::AdjustToContentsOnFirstShow</enum>
+        </property>
+        <property name="widgetResizable">
+         <bool>true</bool>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+        </property>
+        <widget class="QWidget" name="scrollAreaWidgetContents">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>942</width>
+           <height>703</height>
+          </rect>
          </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>40</width>
-           <height>20</height>
-          </size>
+         <property name="layoutDirection">
+          <enum>Qt::LeftToRight</enum>
          </property>
-        </spacer>
-       </item>
-       <item>
-        <widget class="QPushButton" name="przycisk_dodaj">
-         <property name="minimumSize">
-          <size>
-           <width>150</width>
-           <height>50</height>
-          </size>
-         </property>
-         <property name="baseSize">
-          <size>
-           <width>0</width>
-           <height>0</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>Dodaj</string>
-         </property>
-         <property name="autoDefault">
-          <bool>false</bool>
-         </property>
-         <property name="default">
-          <bool>false</bool>
-         </property>
-         <property name="flat">
-          <bool>false</bool>
-         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_2">
+          <property name="bottomMargin">
+           <number>11</number>
+          </property>
+         </layout>
         </widget>
-       </item>
-       <item>
-        <spacer name="spacer2">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>40</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item>
-        <widget class="QPushButton" name="przycisk_eksport">
-         <property name="minimumSize">
-          <size>
-           <width>150</width>
-           <height>50</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>Eksportuj</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <spacer name="spacer3">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>40</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-      </layout>
-     </widget>
+       </widget>
+      </item>
+      <item>
+       <widget class="QProgressBar" name="pasek_ladowania">
+        <property name="value">
+         <number>99</number>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </item>
    </layout>
   </widget>
