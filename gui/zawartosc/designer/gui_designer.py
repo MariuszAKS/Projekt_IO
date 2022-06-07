@@ -119,7 +119,7 @@ class Ui_MainWindow(object):
         self.lista.setWidget(self.scrollAreaWidgetContents)
         self.verticalLayout_4.addWidget(self.lista)
         self.pasek_ladowania = QtWidgets.QProgressBar(self.centralwidget)
-        self.pasek_ladowania.setProperty("value", 99)
+        self.pasek_ladowania.setProperty("value", 0)
         self.pasek_ladowania.setObjectName("pasek_ladowania")
         self.verticalLayout_4.addWidget(self.pasek_ladowania)
         self.horizontalLayout_2.addLayout(self.verticalLayout_4)

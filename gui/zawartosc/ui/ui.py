@@ -1,4 +1,5 @@
-from typing import Callable
+from PyQt6.QtCore import pyqtSignal
+from PyQt6.QtWidgets import QProgressBar
 
 from ..motywy.menedzer_motywow import MenedzerMotywow
 from ..designer.gui_designer import Ui_MainWindow
@@ -17,6 +18,7 @@ class Ui(Ui_MainWindow):
         self.setupUi(self.__glowne_okno)
 
         self.__analizator = AnalizatorZdjec()
+        self.__mendzer_paska_ladowania = self.menedzer_paska_ladowania(self.pasek_ladowania,self.__analizator.postep_analizy)
         self.__stylizator = Stylizator(self.__glowne_okno)  # TODO: zmienić nazwę na bardziej znaczącą
         self.__menedzer_listy = MenedzerListy(lista_elementow=self.verticalLayout_2)
         self.__menedzer_motywow = MenedzerMotywow(self.__glowne_okno)
@@ -35,6 +37,27 @@ class Ui(Ui_MainWindow):
 
     def pobierz_i_analizuj_zdjecia(self):
         sciezki = wybierz_pliki(self.__glowne_okno)
+
+        self.__mendzer_paska_ladowania.uruchom_ladowanie(len(sciezki))
         self.__analizator.analizuj_zdjecia(sciezki, self.__menedzer_listy.utworz_pozycje)
-        # self.__analizator.analizuj_zdjecia(sciezki, lambda x: print(x))
+
+    class menedzer_paska_ladowania():
+        def __init__(self, pasek_ladowania: QProgressBar, sygnal_postepu: pyqtSignal) -> None:
+            self.sygnal_postepu = sygnal_postepu
+            self.pasek_ladowania = pasek_ladowania
+            self.aktualny_stan = 0
+            self.wielkosc_kroku = 100
+
+            self.sygnal_postepu.connect(self.zwieksz_postep)
+
+        def uruchom_ladowanie(self, liczba_elementow: int) -> None:
+            self.aktualny_stan = 0
+            self.pasek_ladowania.setValue(0)
+            self.wielkosc_kroku = 100 / liczba_elementow
+
+        def zwieksz_postep(self):
+            self.aktualny_stan += self.wielkosc_kroku
+            self.pasek_ladowania.setValue(int(self.aktualny_stan))
+
+
 

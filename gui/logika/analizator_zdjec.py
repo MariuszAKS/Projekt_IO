@@ -4,19 +4,20 @@ from multiprocessing import Process, Value
 from typing import Callable, List, Dict
 
 from PyQt6.QtCore import QThread, QObject, pyqtSignal, pyqtSlot
+from PyQt6.QtWidgets import QProgressBar
 
 from aplikacja_alpha.main import Rodzaj
 from ..zawartosc.widgety.element_listy import ElementListy
 from aplikacja_alpha.main import klasyfikuj as funkcja_analizujaca
 
 
-class AnalizatorZdjec:
+class AnalizatorZdjec(QObject):
     '''Klasa sluzaca do przeprowadzania analizy zdjec'''
 
-    funkcja_analizujaca: Callable[[str], str]
-    '''Funkcja otrzymujaca sciezke zdjecia i zwracajaca rodzaj bakterii'''
+    postep_analizy = pyqtSignal()
 
-    def __init__(self,) -> None:
+    def __init__(self) -> None:
+        super().__init__()
         self.watki: Dict[QThread, _Analiza] = dict()
         '''Slownik sluzacy do przechowywania referencji do watkow i ich procesow'''
 
@@ -29,8 +30,6 @@ class AnalizatorZdjec:
             sciezki (List[str]): lista sciezek zdjec
             dodaj_pozycje (Callable[[str, str], None]): funkcja dodajaca pozycje do listy w ui
         """
-
-        self.__usun_poprzednie_watki()
 
         for sciezka in sciezki:
             pozycja = utworz_pozycje(sciezka)
@@ -45,8 +44,8 @@ class AnalizatorZdjec:
 
     def __utworz_watek(self) -> QThread:
         watek = QThread()
-        watek.finished.connect(watek.quit)
         watek.finished.connect(watek.deleteLater)
+        watek.finished.connect(watek.exit)
         watek.finished.connect(lambda: self.watki.pop(watek))
         return watek
 
@@ -54,17 +53,14 @@ class AnalizatorZdjec:
         proces = _Analiza(sciezka)
         proces.moveToThread(watek_docelowy)
         proces.zakonczony.connect(gdy_zakonczony)
+        proces.zakonczony.connect(self.postep_analizy.emit)
         proces.zakonczony.connect(proces.deleteLater)
+        proces.zakonczony.connect(watek_docelowy.exit)
         return proces
 
     def __zapisz(self, watek: QThread, proces: _Analiza) -> None:
         self.watki[watek] = proces
 
-    def __usun_poprzednie_watki(self) -> None:
-        for proces in self.watki:
-            proces.exit()
-
-        self.watki.clear()
 
 
 class _Analiza(QObject):

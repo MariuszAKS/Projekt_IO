@@ -274,7 +274,7 @@
       <item>
        <widget class="QProgressBar" name="pasek_ladowania">
         <property name="value">
-         <number>99</number>
+         <number>0</number>
         </property>
        </widget>
       </item>
