@@ -29,7 +29,7 @@ class ElementListy(QWidget):
 
     def ustaw_rodzaj(self, rodzaj: str) -> None:
         self.rodzaj = rodzaj
-        self.__etykieta_rodzaj.setText(rodzaj)
+        self.__etykieta_rodzaj.ustaw_pelna_nazwe(rodzaj)
 
     def __ustaw_wyrownanie(self) -> None:
         self.__etykieta_nazwa.setAlignment(Qt.AlignmentFlag.AlignHCenter | Qt.AlignmentFlag.AlignCenter)
