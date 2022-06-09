@@ -9,13 +9,17 @@ from aplikacja_alpha.kolorymetryczne import CechyKolorymetryczne
 from aplikacja_alpha.histogram import CechyHistogram
 from aplikacja_alpha.krawedzie import Krawedzie
 
+# Metoda generująca cechy z obrazu
+# zwracająca posegregowane cechy
 
 def generowanie_cech(sciezka_do_pliku):
     print('0. Generacja cech i segregowanie')
     print('ROI: Segmentacja regionow zainteresowania (maska)')
-
+    
+    # import obrazu z cechami
     obraz_0 = skimage.io.imread(sciezka_do_pliku)
     
+    # kopiuje wartości z obrazu
     if len(obraz_0.shape) > 2:
         obraz = obraz_0[:, :, :3]
     else:
@@ -27,12 +31,17 @@ def generowanie_cech(sciezka_do_pliku):
                 obraz[i][j][1] = wartosc
                 obraz[i][j][2] = wartosc
     
+    # generuję maskę używając OTSU
     obraz_maska = ProgowanieOTSU()
     maska = obraz_maska.maska(obraz)
     # maska = obraz_maska.zapisz_maske(obraz, 'maska.png')
-
+    
+    
+    # wyliczam odpowiednie cechy z obrazu
+    # i zapisuje je
+    
     print('Cechy: Klasteryzacja')
-
+    
     obraz_klasteryzacja = KlastryKSrednich(obraz)
     centroidy_b = obraz_klasteryzacja.centroidy_b()
 
@@ -122,7 +131,8 @@ def generowanie_cech(sciezka_do_pliku):
     cecha_krawedzie_std_niebieski = krawedzie_std_rgb[2]
 
     print('Cechy wygenerowane')
-
+    
+    #dodaję cechy według danej kolejności w obrazie
     cechy = []
     cechy.append(cecha_hist_wariancja_lab_tienta)
     cechy.append(cecha_std_lab_tienta)
@@ -172,10 +182,11 @@ def generowanie_cech(sciezka_do_pliku):
     cechy.append(cecha_hist_entropia_lab_temperatura)
     cechy.append(cecha_krawedzie_std_czerwony)
     
+    #sprawdzam czy i-ta cecha nie ma wartości NaN
     for i in range(0, len(cechy)):
         if isnan(cechy[i]):
             cechy[i] = 0.0
-
+    
     print('Cechy posegregowane')
     # print(cechy)
 
