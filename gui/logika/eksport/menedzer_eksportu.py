@@ -16,5 +16,5 @@ class MenedzerEksportu:
 
         for i in range(self.__lista_elementow.count()):
             elementy.append(self.__lista_elementow.itemAt(i))
-
+        
         print(f"Elementy: {elementy}")

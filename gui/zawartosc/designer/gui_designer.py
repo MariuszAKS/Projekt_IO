@@ -121,6 +121,10 @@ class Ui_MainWindow(object):
         self.pasek_ladowania = QtWidgets.QProgressBar(self.centralwidget)
         self.pasek_ladowania.setProperty("value", 0)
         self.pasek_ladowania.setObjectName("pasek_ladowania")
+        self.pasek_ladowania.setStyleSheet("QProgressBar::chunk "
+                          "{"
+                          "background-color: #00ff00;"
+                          "}")
         self.verticalLayout_4.addWidget(self.pasek_ladowania)
         self.horizontalLayout_2.addLayout(self.verticalLayout_4)
         MainWindow.setCentralWidget(self.centralwidget)
