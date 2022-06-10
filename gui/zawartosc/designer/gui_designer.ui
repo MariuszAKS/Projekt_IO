@@ -192,6 +192,12 @@
           <property name="cursor">
            <cursorShape>ArrowCursor</cursorShape>
           </property>
+          <property name="focusPolicy">
+           <enum>Qt::StrongFocus</enum>
+          </property>
+          <property name="layoutDirection">
+           <enum>Qt::LeftToRight</enum>
+          </property>
           <property name="locale">
            <locale language="Polish" country="Poland"/>
           </property>
@@ -199,6 +205,12 @@
            <string>Zdjęcie</string>
           </property>
           <property name="checkable">
+           <bool>false</bool>
+          </property>
+          <property name="autoDefault">
+           <bool>false</bool>
+          </property>
+          <property name="default">
            <bool>false</bool>
           </property>
           <property name="flat">
@@ -256,14 +268,17 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>942</width>
-           <height>703</height>
+           <width>933</width>
+           <height>711</height>
           </rect>
          </property>
          <property name="layoutDirection">
           <enum>Qt::LeftToRight</enum>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_2">
+          <property name="sizeConstraint">
+           <enum>QLayout::SetDefaultConstraint</enum>
+          </property>
           <property name="bottomMargin">
            <number>11</number>
           </property>
@@ -288,7 +303,7 @@
      <x>0</x>
      <y>0</y>
      <width>1033</width>
-     <height>32</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuUstawienia">
@@ -312,7 +327,6 @@
      <addaction name="akcja_angielski"/>
     </widget>
     <addaction name="menu_motyw"/>
-    <addaction name="akcja_czcionka"/>
     <addaction name="menu_jezyk"/>
    </widget>
    <addaction name="menuUstawienia"/>
