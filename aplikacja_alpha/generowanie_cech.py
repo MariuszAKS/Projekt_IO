@@ -1,7 +1,8 @@
-import skimage.io
-import numpy as np
 from math import isnan
-import csv
+import numpy as np
+import skimage.io
+
+from typing import List
 
 from aplikacja_alpha.progowanie import ProgowanieOTSU
 from aplikacja_alpha.klasteryzacja import KlastryKSrednich
@@ -12,14 +13,12 @@ from aplikacja_alpha.krawedzie import Krawedzie
 # Metoda generująca cechy z obrazu
 # zwracająca posegregowane cechy
 
-def generowanie_cech(sciezka_do_pliku):
+def generowanie_cech(sciezka_do_pliku: str) -> List:
     print('0. Generacja cech i segregowanie')
     print('ROI: Segmentacja regionow zainteresowania (maska)')
     
-    # import obrazu z cechami
     obraz_0 = skimage.io.imread(sciezka_do_pliku)
     
-    # kopiuje wartości z obrazu
     if len(obraz_0.shape) > 2:
         obraz = obraz_0[:, :, :3]
     else:
@@ -35,10 +34,6 @@ def generowanie_cech(sciezka_do_pliku):
     obraz_maska = ProgowanieOTSU()
     maska = obraz_maska.maska(obraz)
     # maska = obraz_maska.zapisz_maske(obraz, 'maska.png')
-    
-    
-    # wyliczam odpowiednie cechy z obrazu
-    # i zapisuje je
     
     print('Cechy: Klasteryzacja')
     
