@@ -18,14 +18,14 @@ class Ui(Ui_MainWindow):
 
         self.__analizator = AnalizatorZdjec()
         self.__ladowacz_ikon = LadowaczIkon(self)
-        self.__mendzer_paska_ladowania = MenedzerPaskaLadowania(self.pasek_ladowania,self.__analizator.postep_analizy)
+        self.__mendzer_paska_ladowania = MenedzerPaskaLadowania(self.pasek_ladowania, self.__analizator.postep_analizy)
         self.__menedzer_fontu = MenedzerCzcionki(self.__glowne_okno)
         self.__menedzer_listy = MenedzerListy(lista_elementow=self.verticalLayout_2)
         self.__menedzer_motywow = MenedzerMotywow(self.__glowne_okno)
         self.__menedzer_eksportu = MenedzerEksportu(lista_elementow=self.__menedzer_listy.pozycje)
 
         self.__menedzer_motywow.ustaw_ciemny()
-        self.__ladowacz_ikon.zaladuj_ikony()
+        self.__ladowacz_ikon.zaladuj_jasne_ikony()
         self.__dodaj_akcje_przyciskow()
         self.__dodaj_akcje_menu_motywow()
 
@@ -43,6 +43,12 @@ class Ui(Ui_MainWindow):
 
     def __dodaj_akcje_menu_motywow(self):
         self.akcja_systemowy.triggered.connect(self.__menedzer_motywow.ustaw_systemowy)
+
         self.akcja_jasny.triggered.connect(self.__menedzer_motywow.ustaw_jasny)
+        self.akcja_jasny.triggered.connect(self.__ladowacz_ikon.zaladuj_ciemne_ikony)
+
         self.akcja_ciemny.triggered.connect(self.__menedzer_motywow.ustaw_ciemny)
+        self.akcja_ciemny.triggered.connect(self.__ladowacz_ikon.zaladuj_jasne_ikony)
+
         self.akcja_wysoki_kontrast.triggered.connect(self.__menedzer_motywow.ustaw_wysoki_kontrast)
+        self.akcja_wysoki_kontrast.triggered.connect(self.__ladowacz_ikon.zaladuj_kontrastowe_ikony)

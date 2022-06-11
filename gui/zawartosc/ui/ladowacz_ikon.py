@@ -9,15 +9,39 @@ _FOLDER_Z_IKONAMI = "gui/zasoby/ikony"
 class LadowaczIkon:
 
     PLUS = QIcon(f"{_FOLDER_Z_IKONAMI}/plus.svg")
+    PLUS_KONTRAST = QIcon(f"{_FOLDER_Z_IKONAMI}/plus-kontrast.svg")
+
     DYSKIETKA = QIcon(f"{_FOLDER_Z_IKONAMI}/dyskietka.svg")
-    KOSZ = QIcon(f"{_FOLDER_Z_IKONAMI}/kosz.svg")
-    LISTA = QIcon(f"{_FOLDER_Z_IKONAMI}/lista.svg")
+    DYSKIETKA_KONTRAST = QIcon(f"{_FOLDER_Z_IKONAMI}/dyskietka-kontrast.svg")
+
+    KOSZ_JASNY = QIcon(f"{_FOLDER_Z_IKONAMI}/kosz-jasny.svg")
+    KOSZ_CIEMNY = QIcon(f"{_FOLDER_Z_IKONAMI}/kosz-ciemny.svg")
+    KOSZ_KONTRAST = QIcon(f"{_FOLDER_Z_IKONAMI}/kosz-kontrast.svg")
+
+    LISTA_JASNY = QIcon(f"{_FOLDER_Z_IKONAMI}/lista-jasny.svg")
+    LISTA_CIEMNY = QIcon(f"{_FOLDER_Z_IKONAMI}/lista-ciemny.svg")
+    LISTA_KONTRAST = QIcon(f"{_FOLDER_Z_IKONAMI}/lista-kontrast.svg")
+
 
     def __init__(self, ui: Ui_MainWindow) -> None:
        self.ui = ui
 
-    def zaladuj_ikony(self):
+    def zaladuj_jasne_ikony(self):
+        self.__zaladuj_niezmienne_ikony()
+        self.ui.przycisk_wyczysc.setIcon(self.KOSZ_JASNY)
+        self.ui.przycisk_zmien_uklad.setIcon(self.LISTA_JASNY)
+
+    def zaladuj_ciemne_ikony(self):
+        self.__zaladuj_niezmienne_ikony()
+        self.ui.przycisk_wyczysc.setIcon(self.KOSZ_CIEMNY)
+        self.ui.przycisk_zmien_uklad.setIcon(self.LISTA_CIEMNY)
+
+    def zaladuj_kontrastowe_ikony(self):
+        self.ui.przycisk_dodaj.setIcon(self.PLUS_KONTRAST)
+        self.ui.przycisk_eksport.setIcon(self.DYSKIETKA_KONTRAST)
+        self.ui.przycisk_wyczysc.setIcon(self.KOSZ_KONTRAST)
+        self.ui.przycisk_zmien_uklad.setIcon(self.LISTA_KONTRAST)
+
+    def __zaladuj_niezmienne_ikony(self):
         self.ui.przycisk_dodaj.setIcon(self.PLUS)
         self.ui.przycisk_eksport.setIcon(self.DYSKIETKA)
-        self.ui.przycisk_wyczysc.setIcon(self.KOSZ)
-        self.ui.przycisk_zmien_uklad.setIcon(self.LISTA)
