@@ -45,7 +45,7 @@ class CechyKolorymetryczne:
         wynik = wartosc/licznik
         return wynik
 
-    def srednia_hsv_sv(self) -> List:
+    def srednia_hsv_sv(self) -> List[float]:
         """
         Metoda służąca do obliczenia średniej w przestrzeni kolorów hsv
         :return: Wartości średnich nasycenia i wartości
@@ -79,7 +79,7 @@ class CechyKolorymetryczne:
         wynik = wartosc/licznik
         return wynik
 
-    def std_rgb(self) -> List:
+    def std_rgb(self) -> List[float]:
         """
         Metoda służąca do obliczenia odchylenia standardowego w przestrzeni kolorów rgb
         :return: Wartości odchyleń standardowych kolorów czerwonego, zielonego i niebieskiego
@@ -105,7 +105,7 @@ class CechyKolorymetryczne:
         wynik = np.std(v[self.maska])
         return wynik
 
-    def std_lab_la(self) -> List:
+    def std_lab_la(self) -> List[float]:
         """
         Metoda służąca do obliczenia odchylenia standardowego w przestrzeni kolorów lab
         :return: Wartości odchyleń standardowych luminacji i tinty

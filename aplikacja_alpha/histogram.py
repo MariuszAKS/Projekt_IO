@@ -36,7 +36,6 @@ class CechyHistogram:
         self.maska = maska
         self.__obl_hist()
 
-    # wylicza histogramy, wywoływane w konstruktorze/zmien_obraz
     def __obl_hist(self) -> None:
         """
         Metoda służąca do obliczenia cech kolorymetrycznych histogramu dla różnych przestrzeni kolorów
@@ -85,8 +84,7 @@ class CechyHistogram:
         """
         return self.mean_g
 
-    def hist_srednia_hsv_sv(self) -> List:
-
+    def hist_srednia_hsv_sv(self) -> List[float]:
         """
         Metoda zwracająca średnie w przestrzeni kolorów hsv
         :return: Wartości średnich nasycenia i wartości
@@ -100,7 +98,7 @@ class CechyHistogram:
         """
         return self.mean_l
 
-    def hist_var_rgb_rg(self) -> List:
+    def hist_var_rgb_rg(self) -> List[float]:
         """
         Metoda służąca do obliczenia wariancji w przestrzeni kolorów rgb
         :return: Wartości średnich kolorów czerwonego i zielonego
@@ -119,7 +117,7 @@ class CechyHistogram:
         wynik = 0.0 if sum(self.hist_v) == 0 else np.average((self.mids_v - self.mean_v)**2, weights=self.hist_v)
         return wynik
 
-    def hist_var_lab_la(self) -> List:
+    def hist_var_lab_la(self) -> List[float]:
         """
         Metoda służąca do obliczenia wariancji w przestrzeni kolorów lab
         :return: Wartości średnich luminacji i tinty
@@ -129,64 +127,106 @@ class CechyHistogram:
         wynik.append(0.0 if sum(self.hist_a) == 0 else np.average((self.mids_a - self.mean_a)**2, weights=self.hist_a))
         return wynik
 
-    def hist_skos_rgb_rg(self) -> List:
+    def hist_skos_rgb_rg(self) -> List[float]:
         """
         Metoda służąca do obliczenia skośności w przestrzeni kolorów rgb
         :return: Wartości skośności kolorów czerwonego i zielonego
         """
         wynik = []
-        wynik.append((np.sum((self.hist_r-self.mean_r)**3)/self.hist_r.size)/math.sqrt((np.sum((self.hist_r-self.mean_r)**2)/self.hist_r.size)**3))
-        wynik.append((np.sum((self.hist_g-self.mean_g)**3)/self.hist_g.size)/math.sqrt((np.sum((self.hist_g-self.mean_g)**2)/self.hist_g.size)**3))
+
+        suma1 = np.sum((self.hist_r-self.mean_r)**3)
+        suma2 = np.sum((self.hist_r-self.mean_r)**2)
+        wynik.append(0.0 if suma2 == 0 else (suma1/self.hist_r.size)/math.sqrt((suma2/self.hist_r.size)**3))
+
+        suma1 = np.sum((self.hist_g-self.mean_g)**3)
+        suma2 = np.sum((self.hist_g-self.mean_g)**2)
+        wynik.append(0.0 if suma2 == 0 else (suma1/self.hist_g.size)/math.sqrt((suma2/self.hist_g.size)**3))
+
         return wynik
 
-    def hist_skos_hsv_sv(self) -> List:
+    def hist_skos_hsv_sv(self) -> List[float]:
         """
         Metoda służąca do obliczenia skośności w przestrzeni kolorów hsv
         :return: Wartości skośności nasycenia i wartości
         """
         wynik = []
-        wynik.append((np.sum((self.hist_s-self.mean_s)**3)/self.hist_s.size)/math.sqrt((np.sum((self.hist_s-self.mean_s)**2)/self.hist_s.size)**3))
-        wynik.append((np.sum((self.hist_v-self.mean_v)**3)/self.hist_v.size)/math.sqrt((np.sum((self.hist_v-self.mean_v)**2)/self.hist_v.size)**3))
+
+        suma1 = np.sum((self.hist_s-self.mean_s)**3)
+        suma2 = np.sum((self.hist_s-self.mean_s)**2)
+        wynik.append(0.0 if suma2 == 0 else (suma1/self.hist_s.size)/math.sqrt((suma2/self.hist_s.size)**3))
+
+        suma1 = np.sum((self.hist_v-self.mean_v)**3)
+        suma2 = np.sum((self.hist_v-self.mean_v)**2)
+        wynik.append(0.0 if suma2 == 0 else (suma1/self.hist_v.size)/math.sqrt((suma2/self.hist_v.size)**3))
+
         return wynik
 
-    def hist_skos_lab_la(self) -> List:
+    def hist_skos_lab_la(self) -> List[float]:
         """
         Metoda służąca do obliczenia skośności w przestrzeni kolorów lab
         :return: Wartości skośności luminacji i tinty
         """
         wynik = []
-        wynik.append((np.sum((self.hist_l-self.mean_l)**3)/self.hist_l.size)/math.sqrt((np.sum((self.hist_l-self.mean_l)**2)/self.hist_l.size)**3))
-        wynik.append((np.sum((self.hist_a-self.mean_a)**3)/self.hist_a.size)/math.sqrt((np.sum((self.hist_a-self.mean_a)**2)/self.hist_a.size)**3))
+
+        suma1 = np.sum((self.hist_l-self.mean_l)**3)
+        suma2 = np.sum((self.hist_l-self.mean_l)**2)
+        wynik.append(0.0 if suma2 == 0 else (suma1/self.hist_l.size)/math.sqrt((suma2/self.hist_l.size)**3))
+
+        suma1 = np.sum((self.hist_a-self.mean_a)**3)
+        suma2 = np.sum((self.hist_a-self.mean_a)**2)
+        wynik.append(0.0 if suma2 == 0 else (suma1/self.hist_a.size)/math.sqrt((suma2/self.hist_a.size)**3))
+
         return wynik
 
-    def hist_kurt_rgb_rg(self) -> List:
+    def hist_kurt_rgb_rg(self) -> List[float]:
         """
         Metoda służąca do obliczenia kurtozy w przestrzeni kolorów rgb
         :return: Wartości kurtozy kolorów czerwonego i zielonego
         """
         wynik = []
-        wynik.append((np.sum((self.hist_r-self.mean_r)**4)/self.hist_r.size)/math.sqrt((np.sum((self.hist_r-self.mean_r)**2)/self.hist_r.size)**4)-3)
-        wynik.append((np.sum((self.hist_g-self.mean_g)**4)/self.hist_g.size)/math.sqrt((np.sum((self.hist_g-self.mean_g)**2)/self.hist_g.size)**4)-3)
+
+        suma1 = np.sum((self.hist_r-self.mean_r)**4)
+        suma2 = np.sum((self.hist_r-self.mean_r)**2)
+        wynik.append(0.0 if suma2 == 0 else (suma1/self.hist_r.size)/math.sqrt((suma2/self.hist_r.size)**4)-3)
+
+        suma1 = np.sum((self.hist_g-self.mean_g)**4)
+        suma2 = np.sum((self.hist_g-self.mean_g)**2)
+        wynik.append(0.0 if suma2 == 0 else (suma1/self.hist_g.size)/math.sqrt((suma2/self.hist_g.size)**4)-3)
+
         return wynik
 
-    def hist_kurt_hsv_sv(self) -> List:
+    def hist_kurt_hsv_sv(self) -> List[float]:
         """
         Metoda służąca do obliczenia kurtozy w przestrzeni kolorów hsv
         :return: Wartości kurtozy nasycenia i wartości
         """
         wynik = []
-        wynik.append((np.sum((self.hist_s-self.mean_s)**4)/self.hist_s.size)/math.sqrt((np.sum((self.hist_s-self.mean_s)**2)/self.hist_s.size)**4)-3)
-        wynik.append((np.sum((self.hist_v-self.mean_v)**4)/self.hist_v.size)/math.sqrt((np.sum((self.hist_v-self.mean_v)**2)/self.hist_v.size)**4)-3)
+
+        suma1 = np.sum((self.hist_s-self.mean_s)**4)
+        suma2 = np.sum((self.hist_s-self.mean_s)**2)
+        wynik.append(0.0 if suma2 == 0 else (suma1/self.hist_s.size)/math.sqrt((suma2/self.hist_s.size)**4)-3)
+
+        suma1 = np.sum((self.hist_v-self.mean_v)**4)
+        suma2 = np.sum((self.hist_v-self.mean_v)**2)
+        wynik.append(0.0 if suma2 == 0 else (suma1/self.hist_v.size)/math.sqrt((suma2/self.hist_v.size)**4)-3)
+
         return wynik
 
-    def hist_kurt_lab_la(self) -> List:
+    def hist_kurt_lab_la(self) -> List[float]:
         """
         Metoda służąca do obliczenia kurtozy w przestrzeni kolorów lab
         :return: Wartości kurtozy luminacji i tinty
         """
         wynik = []
-        wynik.append((np.sum((self.hist_l-self.mean_l)**4)/self.hist_l.size)/math.sqrt((np.sum((self.hist_l-self.mean_l)**2)/self.hist_l.size)**4)-3)
-        wynik.append((np.sum((self.hist_a-self.mean_a)**4)/self.hist_a.size)/math.sqrt((np.sum((self.hist_a-self.mean_a)**2)/self.hist_a.size)**4)-3)
+
+        suma1 = np.sum((self.hist_l-self.mean_l)**4)
+        suma2 = np.sum((self.hist_l-self.mean_l)**2)
+        wynik.append(0.0 if suma2 == 0 else (suma1/self.hist_l.size)/math.sqrt((suma2/self.hist_l.size)**4)-3)
+
+        suma1 = np.sum((self.hist_a-self.mean_a)**4)
+        suma2 = np.sum((self.hist_a-self.mean_a)**2)
+        wynik.append(0.0 if suma2 == 0 else (suma1/self.hist_a.size)/math.sqrt((suma2/self.hist_a.size)**4)-3)
+
         return wynik
 
     def entropia_rgb_g(self) -> float:
@@ -206,7 +246,7 @@ class CechyHistogram:
         wynik = shannon_entropy(hsv_obr[:, :, 2])
         return wynik
 
-    def entropia_lab_lb(self) -> List:
+    def entropia_lab_lb(self) -> List[float]:
         """
         Metoda służąca do obliczenia kurtozy w przestrzeni kolorów lab
         :return: Wartości entropii luminacji i temperatury
