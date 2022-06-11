@@ -53,7 +53,7 @@ class Krawedzie:
             return 0
         return r.mean()
 
-    def std_kolor_krawedzi_rgb(self) -> List:
+    def std_kolor_krawedzi_rgb(self) -> List[float]:
         """
         Metoda służąca do obliczenia odchylenia standardowego w przestrzeni kolorów rgb
         :return: Wartości odchyleń standardowych kolorów czerwonego, zielonego i niebieskiego
