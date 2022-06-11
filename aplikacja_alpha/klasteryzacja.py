@@ -1,35 +1,47 @@
+"""
+@package docstring
+"""
 import numpy as np
-import skimage.io
 from skimage.color import rgb2lab
 from sklearn.cluster import KMeans
 from sklearn.exceptions import ConvergenceWarning
 from sklearn.utils._testing import ignore_warnings
 
+from typing import List
 
-# klasa do wyliczenia centroidów klastrów pikseli (a*,b*)
-# obraz jako argument do konstruktora, zmien_obraz aby zmienić obraz
-# obraz = ścieżka do pliku/numpy array
+
 class KlastryKSrednich:
-    def __init__(self, obraz) -> None:
+    """
+    Jest to klasa do obliczania centroidów klastra pikseli obrazu w przestrzeni lab
+    """
+    def __init__(self, obraz: np.ndarray) -> None:
+        """
+        Konstruktor kopiujący inicjalizujący wszystkie pola składowe klasy
+        :param obraz: Przechowuje obraz w postaci tablicy wielowymiarowej
+        """
         self.obr = rgb2lab(obraz, "D65", "2")
         self.__obl_klastry()
 
-    def zmien_obraz(self, obraz):
-        if type(obraz) == str:
-            self.obr = rgb2lab(skimage.io.imread(obraz), "D65", "2")
-        else:
-            self.obr = rgb2lab(obraz, "D65", "2")
+    def zmien_obraz(self, obraz: np.ndarray) -> None:
+        """
+        Metoda służąca do zmiany obrazu
+        :param obraz: Przechowuje obraz w postaci tablicy wielowymiarowej
+        """
+        self.obr = rgb2lab(obraz, "D65", "2")
         self.__obl_klastry()
 
-    # trenuje modele k-means
-    # wywoływane w konstruktorze/zmien_obraz
     @ignore_warnings(category=ConvergenceWarning)
-    def __obl_klastry(self):
+    def __obl_klastry(self) -> None:
+        """
+        Metoda służąca do obliczenia centroid klastra b*
+        """
         b = np.array([[x] for x in self.obr[:, :, 2].flatten()])
         self.k_srednich_b = KMeans(n_clusters=3).fit(b)
 
-    # zwraca centroid każdego klastara ([[a*1],[a*2],[a*3]],[[b*1],[b*2],[b*3]])
-    def centroidy_b(self):
+    def centroidy_b(self) -> List:
+        """
+        Metoda zwracająca centroidy klastra b*
+        """
         return self.k_srednich_b.cluster_centers_
 
     # zapisuje wizualizacje klastrów

@@ -1,3 +1,6 @@
+"""
+@package docstring
+"""
 from enum import Enum
 
 from aplikacja_alpha.generowanie_cech import generowanie_cech
@@ -15,12 +18,12 @@ class Rodzaj(Enum):
         return str(self.name)
 
 
-
 def klasyfikuj(sciezka_do_pliku: str) -> Rodzaj:
-    # Wygeneruj cechy wskazanego obrazu
+    """
+    Metoda wywołująca metody do obliczenia cech i klasyfikacji obrazu
+    :return: Rodzaj bakterii w postaci str
+    """
     cechy = generowanie_cech(sciezka_do_pliku)
+    rodzaj = klasyfikacja([cechy])
 
-    return Rodzaj(klasyfikacja([cechy]))
-
-
-# print(klasyfikuj('obraz.png'))
+    return Rodzaj(rodzaj)
