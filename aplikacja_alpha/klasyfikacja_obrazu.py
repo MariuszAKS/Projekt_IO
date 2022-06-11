@@ -10,7 +10,7 @@ from sklearn.ensemble import RandomForestClassifier
 from typing import List
 
 
-def klasyfikacja(cechy_obrazu: List) -> int:
+def klasyfikacja(cechy_obrazu: List[float]) -> int:
     """
     Metoda służąca do przewidywania rodzaju bakterii dla danego obrazu z użyciem wytrenowanego modelu
     :param cechy_obrazu: Przechowuje cechy obrazu, który chcemy sklasyfikować (przyporzadkować do jednego rodzaju bakterii)
