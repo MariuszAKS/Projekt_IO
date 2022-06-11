@@ -9,9 +9,9 @@ _FOLDER_Z_IKONAMI = "gui/zasoby/ikony"
 class LadowaczIkon:
 
     PLUS = QIcon(f"{_FOLDER_Z_IKONAMI}/plus.svg")
-    DYSKIETKA = QIcon(f"{_FOLDER_Z_IKONAMI}/save.svg")
-    KOSZ = QIcon(f"{_FOLDER_Z_IKONAMI}/trash.svg")
-    LISTA = QIcon(f"{_FOLDER_Z_IKONAMI}/list.svg")
+    DYSKIETKA = QIcon(f"{_FOLDER_Z_IKONAMI}/dyskietka.svg")
+    KOSZ = QIcon(f"{_FOLDER_Z_IKONAMI}/kosz.svg")
+    LISTA = QIcon(f"{_FOLDER_Z_IKONAMI}/lista.svg")
 
     def __init__(self, ui: Ui_MainWindow) -> None:
        self.ui = ui
