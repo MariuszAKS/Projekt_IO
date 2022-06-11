@@ -4,6 +4,7 @@
 import numpy as np
 import skimage.io
 from skimage.color import rgb2gray
+from skimage.filters import thresholding
 from skimage.filters import threshold_otsu
 from skimage.util import img_as_ubyte
 
