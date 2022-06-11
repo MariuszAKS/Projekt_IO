@@ -4,7 +4,6 @@ from multiprocessing import Process, Value
 from typing import Callable, List, Dict
 
 from PyQt6.QtCore import QThread, QObject, pyqtSignal, pyqtSlot
-from PyQt6.QtWidgets import QProgressBar
 
 from aplikacja_alpha.main import Rodzaj
 from ..zawartosc.widgety.element_listy import ElementListy
