@@ -5,6 +5,8 @@ import numpy as np
 from skimage.color import rgb2lab
 from sklearn.cluster import KMeans
 from sklearn.exceptions import ConvergenceWarning
+from sklearn.neighbors import _partition_nodes
+from sklearn.utils import _typedefs
 from sklearn.utils._testing import ignore_warnings
 
 from typing import List
