@@ -13,7 +13,7 @@ from aplikacja_alpha.krawedzie import Krawedzie
 # Metoda generująca cechy z obrazu
 # zwracająca posegregowane cechy
 
-def generowanie_cech(sciezka_do_pliku: str) -> List:
+def generowanie_cech(sciezka_do_pliku: str) -> List[float]:
     print('0. Generacja cech i segregowanie')
     print('ROI: Segmentacja regionow zainteresowania (maska)')
     
