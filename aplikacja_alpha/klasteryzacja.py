@@ -38,7 +38,7 @@ class KlastryKSrednich:
         b = np.array([[x] for x in self.obr[:, :, 2].flatten()])
         self.k_srednich_b = KMeans(n_clusters=3).fit(b)
 
-    def centroidy_b(self) -> List:
+    def centroidy_b(self) -> List[float]:
         """
         Metoda zwracająca centroidy klastra b*
         """
