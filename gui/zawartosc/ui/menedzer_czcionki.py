@@ -58,6 +58,3 @@ class MenedzerCzcionki:
         czcionka = self.__glowne_okno.font()
         czcionka.setPointSize(rozmiar)
         self.__glowne_okno.setFont(czcionka)
-
-    def odswiez(self):
-        self.__ustaw_rozmiar_czcionki(self.__rozmiar_czcionki)
