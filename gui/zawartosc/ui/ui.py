@@ -7,7 +7,7 @@ from ..okno import GlowneOkno
 from ...logika.analizator_zdjec import AnalizatorZdjec
 from ...logika.eksport.menedzer_eksportu import MenedzerEksportu
 from .menedzer_listy import MenedzerListy
-from .stylizator import Stylizator
+from .menedzer_czcionki import MenedzerCzcionki
 from ...logika.wybor_plikow import wybierz_pliki
 
 
@@ -19,10 +19,12 @@ class Ui(Ui_MainWindow):
 
         self.__analizator = AnalizatorZdjec()
         self.__mendzer_paska_ladowania = self.menedzer_paska_ladowania(self.pasek_ladowania,self.__analizator.postep_analizy)
-        self.__stylizator = Stylizator(self.__glowne_okno)  # TODO: zmienić nazwę na bardziej znaczącą
+        self.__menedzer_fontu = MenedzerCzcionki(self.__glowne_okno)  # TODO: zmienić nazwę na bardziej znaczącą
         self.__menedzer_listy = MenedzerListy(lista_elementow=self.verticalLayout_2)
         self.__menedzer_motywow = MenedzerMotywow(self.__glowne_okno)
         self.__menedzer_eksportu = MenedzerEksportu(lista_elementow=self.verticalLayout_2)
+
+        self.__menedzer_motywow.ustaw_ciemny()
 
         self.przycisk_dodaj.clicked.connect(self.pobierz_i_analizuj_zdjecia)
         self.przycisk_rodzaj.clicked.connect(self.__menedzer_listy.sortuj_po_rodzaju)
@@ -33,7 +35,6 @@ class Ui(Ui_MainWindow):
         self.akcja_jasny.triggered.connect(self.__menedzer_motywow.ustaw_jasny)
         self.akcja_ciemny.triggered.connect(self.__menedzer_motywow.ustaw_ciemny)
         self.akcja_wysoki_kontrast.triggered.connect(self.__menedzer_motywow.ustaw_wysoki_kontrast)
-
 
     def pobierz_i_analizuj_zdjecia(self):
         sciezki = wybierz_pliki(self.__glowne_okno)

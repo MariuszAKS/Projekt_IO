@@ -2,3 +2,7 @@ QWidget{
     background-color: black;
     color: white
 }
+
+QProgressBar::chunk{
+    background-color: #00FF00;
+}
