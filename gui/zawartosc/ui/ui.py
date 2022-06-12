@@ -31,6 +31,8 @@ class Ui(Ui_MainWindow):
         self.__dodaj_akcje_przyciskow()
         self.__dodaj_akcje_menu_motywow()
 
+        self.__glowne_okno.ustaw_gdy_zamkniete(self.__analizator.watki.clear)
+
     def __pobierz_i_analizuj_zdjecia(self):
         sciezki = wybierz_pliki(self.__glowne_okno)
 

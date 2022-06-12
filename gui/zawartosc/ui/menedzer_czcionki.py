@@ -1,4 +1,4 @@
-from PyQt6.QtGui import QShortcut, QKeySequence
+from PyQt6.QtGui import QShortcut, QKeySequence, QFont
 from PyQt6.QtWidgets import QApplication
 from PyQt6.QtCore import Qt
 
@@ -44,7 +44,6 @@ class MenedzerCzcionki:
         self.__glowne_okno.wheelEvent = zmien_czcionke
 
     def __powieksz_czcionke(self):
-        print("Powiekszam")
         if self.__rozmiar_czcionki >= self.__MAX_CZCIONKA: return
         self.__rozmiar_czcionki += 1
         self.__ustaw_rozmiar_czcionki(self.__rozmiar_czcionki)
@@ -55,6 +54,6 @@ class MenedzerCzcionki:
         self.__ustaw_rozmiar_czcionki(self.__rozmiar_czcionki)
 
     def __ustaw_rozmiar_czcionki(self, rozmiar: int):
-        czcionka = self.__glowne_okno.font()
+        czcionka = QFont(self.__glowne_okno.font())
         czcionka.setPointSize(rozmiar)
         self.__glowne_okno.setFont(czcionka)

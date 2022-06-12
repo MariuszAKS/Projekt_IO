@@ -1,7 +1,7 @@
 from ctypes import c_int16
-from multiprocessing import Process, Value, cpu_count, Semaphore
+from multiprocessing import Process, Value
 
-from PyQt6.QtCore import QThread, QObject, pyqtSignal, pyqtSlot
+from PyQt6.QtCore import QObject, pyqtSignal, pyqtSlot
 
 from aplikacja_alpha.main import Rodzaj
 from aplikacja_alpha.main import klasyfikuj as funkcja_analizujaca
@@ -37,7 +37,7 @@ class Analiza(QObject):
         self.postep_analizy.emit()
         self.semafor.release()
         self.watek.exit()
-        
+
 
 # Ze względu na zachowanie windowsa, bardzo ważne żeby ta funkcja była globalna (przynajmniej w zakresie tego pliku)
 def _analizuj(sciezka: str, wartosc_zwrotna: Value) -> None:
