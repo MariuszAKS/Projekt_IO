@@ -31,7 +31,7 @@ class MenedzerEksportu:
             for i in range(len(self.__lista_elementow)):
                 with open(sciezka, "a") as plik:
                     plik.write(f"{self.__lista_elementow[i].nazwa};{self.__lista_elementow[i].rodzaj}" + "\n")
-        else:
+        elif rozszerzenie == 'pdf':
             pdf = FPDF()
             y = 10
             for i in range(len(self.__lista_elementow)):
