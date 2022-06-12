@@ -1,3 +1,6 @@
+"""
+@package docstring
+"""
 from typing import List
 
 from ...zawartosc.widgety.element_listy import ElementListy
@@ -6,11 +9,23 @@ from PyQt6.QtWidgets import QFileDialog, QWidget
 from fpdf import FPDF
 
 class MenedzerEksportu:
+    """
+    Klasa obługująca eksport
+    """
     def __init__(self, lista_elementow: List[ElementListy], rodzic : QWidget) -> None:
+        """
+        Konstruktor kopiujący klasy eksport
+        param: lista_elementow: Przechowuje elementy wyświetlone na ekranie
+        param: rodzic: Widżet nadrzędny
+        """
         self.__lista_elementow = lista_elementow
         self.rodzic = rodzic
 
     def eksportuj(self):
+        """
+        Metoda służąca do eksportu
+        Eksportuje plik .csv lub .pdf w zależności od wyboru użytkownika
+        """
         if len(self.__lista_elementow) == 0:
             return
         

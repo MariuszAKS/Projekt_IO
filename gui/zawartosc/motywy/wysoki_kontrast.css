@@ -22,7 +22,25 @@ QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal {
     color: none;
 }
 
+QMenuBar::item:selected {
+    background-color: #FFFF00;
+    color: black;
+}
+
+QMenu::item:selected {
+    background-color: #FFFF00;
+    color: black;
+}
+
 QScrollBar::add-line, QScrollBar::sub-line {
     border:none;
     background-color:none;
+}
+
+QScrollBar::sub-page:vertical {
+    background: black;
+}
+
+QScrollBar::add-page:vertical {
+    background: black;
 }
