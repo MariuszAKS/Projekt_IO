@@ -11,14 +11,18 @@ class MenedzerEksportu:
         self.rodzic = rodzic
 
     def eksportuj(self):
-        sciezka1 = QFileDialog().getSaveFileName(self.rodzic, 'Otwórz plik', 'C:\\','plik csv(*.csv);;plik csv(*.pdf)')
+        sciezka1 = QFileDialog().getSaveFileName(self.rodzic, 'Open a file', 'C:\\','csv plik (*.csv);;pdf plik (*.pdf)')
+        print(sciezka1)
+        rozszerzenie = sciezka1[1][:3]
+        print(rozszerzenie)
         j = 0
         for i in range(len(sciezka1[0]) - 1, 0, -1):
             if sciezka1[0][i] == '.':
                 j = i
                 break
-        sciezka = sciezka1[0][:j] + "." + sciezka1[1][:3]
-        if sciezka1[1][:3] == 'csv':
+        sciezka = sciezka1[0][:j] + "." + rozszerzenie
+        print(sciezka)
+        if rozszerzenie == 'csv':
             with open(sciezka, "w") as plik:
                 pass
             for i in range(len(self.__lista_elementow)):
