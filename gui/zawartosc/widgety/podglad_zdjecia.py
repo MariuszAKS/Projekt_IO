@@ -15,7 +15,11 @@ class PodgladZdjecia(QLabel):
 
         pixmapa = self.pixmap()
 
-        proporcje = pixmapa.height() / pixmapa.width()
+        try:
+            proporcje = pixmapa.height() / pixmapa.width()
+        except ZeroDivisionError:
+            proporcje = 1
+            
         szerokosc = self.width()
         wysokosc = int(szerokosc*proporcje)
 

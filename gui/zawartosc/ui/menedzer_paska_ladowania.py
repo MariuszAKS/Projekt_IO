@@ -20,4 +20,5 @@ class MenedzerPaskaLadowania:
 
         def zwieksz_postep(self):
             self.aktualny_stan += self.wielkosc_kroku
+            print(f"Postęp: {self.aktualny_stan}%")
             self.pasek_ladowania.setValue(int(self.aktualny_stan))
