@@ -1,4 +1,3 @@
-from fcntl import F_UNLCK
 from typing import Callable
 
 from PyQt6.QtWidgets import QMainWindow
@@ -18,5 +17,3 @@ class GlowneOkno(QMainWindow):
     def closeEvent(self, event: QCloseEvent) -> None:
         self.__gdy_zamkniete
         super().closeEvent(event)
-
-
