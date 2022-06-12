@@ -15,16 +15,13 @@ class MenedzerEksportu:
             return
         
         sciezka1 = QFileDialog().getSaveFileName(self.rodzic, 'Open a file', 'C:\\','csv plik (*.csv);;pdf plik (*.pdf)')
-        print(sciezka1)
         rozszerzenie = sciezka1[1][:3]
-        print(rozszerzenie)
         j = 0
         for i in range(len(sciezka1[0]) - 1, 0, -1):
             if sciezka1[0][i] == '.':
                 j = i
                 break
         sciezka = sciezka1[0][:j] + "." + rozszerzenie
-        print(sciezka)
         if rozszerzenie == 'csv':
             with open(sciezka, "w") as plik:
                 pass
@@ -33,7 +30,6 @@ class MenedzerEksportu:
                     plik.write(f"{self.__lista_elementow[i].nazwa};{self.__lista_elementow[i].rodzaj}" + "\n")
         elif rozszerzenie == 'pdf':
             pdf = FPDF()
-            y = 10
             for i in range(len(self.__lista_elementow)):
                 pdf.add_page()
                 pdf.set_font("Arial", size = 15)
