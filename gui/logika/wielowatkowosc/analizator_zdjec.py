@@ -22,8 +22,9 @@ class AnalizatorZdjec(QObject):
         self.semafor = Semaphore(self.MAKS_LICZBA_PROCESOW)
         self.aktualny_watek: Optional[QThread] = None
         self.watki = dict()
-        self.menedzer_analiz = MenedzerAnaliz(self.semafor, self.postep_analizy, utworz_pozycje, self.watki)
-        
+        self.menedzer_analiz: Optional[MenedzerAnaliz]
+        self.utworz_pozycje = utworz_pozycje
+
 
     def analizuj_zdjecia(self, sciezki: List[str]) -> None:
         """
@@ -35,7 +36,9 @@ class AnalizatorZdjec(QObject):
             dodaj_pozycje (Callable[[str, str], None]): funkcja dodajaca pozycje do listy w ui
         """
 
+        self.menedzer_analiz = MenedzerAnaliz(self.semafor, self.postep_analizy, self.utworz_pozycje, self.watki)
         self.menedzer_analiz.ustaw_sciezki_do_analizy(sciezki)
+
         nowy_watek = QThread()
         nowy_watek.finished.connect(nowy_watek.exit)
 
@@ -44,6 +47,7 @@ class AnalizatorZdjec(QObject):
         self.menedzer_analiz.zakonczony.connect(nowy_watek.exit)
 
         nowy_watek.started.connect(self.menedzer_analiz.analizuj)
+
 
         if self.aktualny_watek is not None:
             self.aktualny_watek.exit()
