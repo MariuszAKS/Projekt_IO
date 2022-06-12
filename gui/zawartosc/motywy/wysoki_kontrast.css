@@ -5,8 +5,14 @@ QWidget{
 
 QProgressBar::chunk{
     background-color: #00FF00;
+    margin-right: 48%;
 }
 
+QProgressBar{
+    text-align: right;
+    background-color: black;
+    border: 1px;
+}
 
 QScrollBar::handle {
     background-color:#FFFF00;
