@@ -29,18 +29,14 @@ class LadowaczIkon:
     def zaladuj_jasne_ikony(self):
         self.__zaladuj_niezmienne_ikony()
         self.ui.przycisk_wyczysc.setIcon(self.KOSZ_JASNY)
-        self.ui.przycisk_zmien_uklad.setIcon(self.LISTA_JASNY)
 
     def zaladuj_ciemne_ikony(self):
         self.__zaladuj_niezmienne_ikony()
         self.ui.przycisk_wyczysc.setIcon(self.KOSZ_CIEMNY)
-        self.ui.przycisk_zmien_uklad.setIcon(self.LISTA_CIEMNY)
 
     def zaladuj_kontrastowe_ikony(self):
         self.ui.przycisk_dodaj.setIcon(self.PLUS_KONTRAST)
         self.ui.przycisk_eksport.setIcon(self.DYSKIETKA_KONTRAST)
-        self.ui.przycisk_wyczysc.setIcon(self.KOSZ_KONTRAST)
-        self.ui.przycisk_zmien_uklad.setIcon(self.LISTA_KONTRAST)
 
     def __zaladuj_niezmienne_ikony(self):
         self.ui.przycisk_dodaj.setIcon(self.PLUS)
