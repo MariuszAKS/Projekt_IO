@@ -273,7 +273,7 @@
   </action>
   <action name="akcja_systemowy">
    <property name="text">
-    <string>Systemowy (domyślny)</string>
+    <string>Systemowy</string>
    </property>
   </action>
   <action name="akcja_jasny">
@@ -283,7 +283,7 @@
   </action>
   <action name="akcja_ciemny">
    <property name="text">
-    <string>Ciemny</string>
+    <string>Ciemny (domyślny)</string>
    </property>
   </action>
   <action name="akcja_czcionka">
