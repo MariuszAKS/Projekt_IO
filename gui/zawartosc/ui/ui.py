@@ -27,6 +27,7 @@ class Ui(Ui_MainWindow):
         self.__menedzer_eksportu = MenedzerEksportu(lista_elementow=self.__menedzer_listy.pozycje, rodzic=self.__glowne_okno)
 
         self.__menedzer_motywow.ustaw_ciemny()
+        self.__analizator.zakonczony.connect(self.__aktywuj_przyciski)
         self.__ladowacz_ikon.zaladuj_jasne_ikony()
         self.__dodaj_akcje_przyciskow()
         self.__dodaj_akcje_menu_motywow()
@@ -35,6 +36,8 @@ class Ui(Ui_MainWindow):
 
     def __pobierz_i_analizuj_zdjecia(self):
         sciezki = wybierz_pliki(self.__glowne_okno)
+
+        self.__dezaktywuj_przyciski()
 
         self.__mendzer_paska_ladowania.uruchom_ladowanie(len(sciezki))
         self.__analizator.analizuj_zdjecia(sciezki)
@@ -57,3 +60,13 @@ class Ui(Ui_MainWindow):
 
         self.akcja_wysoki_kontrast.triggered.connect(self.__menedzer_motywow.ustaw_wysoki_kontrast)
         self.akcja_wysoki_kontrast.triggered.connect(self.__ladowacz_ikon.zaladuj_kontrastowe_ikony)
+
+    def __dezaktywuj_przyciski(self):
+        self.przycisk_dodaj.setDisabled(True)
+        self.przycisk_wyczysc.setDisabled(True)
+        self.przycisk_eksport.setDisabled(True)
+
+    def __aktywuj_przyciski(self):
+        self.przycisk_dodaj.setDisabled(False)
+        self.przycisk_wyczysc.setDisabled(False)
+        self.przycisk_eksport.setDisabled(False)

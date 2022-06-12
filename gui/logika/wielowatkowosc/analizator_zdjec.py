@@ -15,6 +15,7 @@ class AnalizatorZdjec(QObject):
     MAKS_LICZBA_PROCESOW = 2
 
     postep_analizy = pyqtSignal()
+    zakonczony = pyqtSignal()
 
     def __init__(self, utworz_pozycje: Callable[[str], ElementListy]) -> None:
         super().__init__()
@@ -43,6 +44,7 @@ class AnalizatorZdjec(QObject):
         nowy_watek.finished.connect(nowy_watek.exit)
 
         self.menedzer_analiz.moveToThread(nowy_watek)
+        self.menedzer_analiz.zakonczony.connect(self.zakonczony.emit)
         self.menedzer_analiz.zakonczony.connect(self.menedzer_analiz.deleteLater)
         self.menedzer_analiz.zakonczony.connect(nowy_watek.exit)
 

@@ -10,12 +10,12 @@ from .analiza import Analiza
 class MenedzerAnaliz(QObject):
     zakonczony = pyqtSignal()
 
-    def __init__(self, semafor, postep_analizy, utworz_pozycje, watki) -> None:
+    def __init__(self, semafor, postep_analizy, utworz_pozycje, watki: Dict[QThread, Analiza]) -> None:
         super().__init__()
         self.semafor = semafor
         self.postep_analizy = postep_analizy
         self.watki = watki
-        
+
         self.pozycje: Dict[str, ElementListy] = dict()
         self.utworz_pozycje = utworz_pozycje
 
@@ -36,6 +36,9 @@ class MenedzerAnaliz(QObject):
 
             self.__zapisz(watek, proces)
             watek.start()
+
+        while self.watki:
+            pass
 
         self.zakonczony.emit()
 
