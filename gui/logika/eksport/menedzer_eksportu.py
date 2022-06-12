@@ -11,6 +11,9 @@ class MenedzerEksportu:
         self.rodzic = rodzic
 
     def eksportuj(self):
+        if len(self.__lista_elementow) == 0:
+            return
+        
         sciezka1 = QFileDialog().getSaveFileName(self.rodzic, 'Open a file', 'C:\\','csv plik (*.csv);;pdf plik (*.pdf)')
         print(sciezka1)
         rozszerzenie = sciezka1[1][:3]
