@@ -5,7 +5,7 @@ from .menedzer_paska_ladowania import MenedzerPaskaLadowania
 from ..motywy.menedzer_motywow import MenedzerMotywow
 from ..designer.gui_designer import Ui_MainWindow
 from ..okno import GlowneOkno
-from ...logika.analizator_zdjec import AnalizatorZdjec
+from ...logika.wielowatkowosc.analizator_zdjec import AnalizatorZdjec
 from ...logika.eksport.menedzer_eksportu import MenedzerEksportu
 from ...logika.wybor_plikow import wybierz_pliki
 
@@ -18,11 +18,11 @@ class Ui(Ui_MainWindow):
         self.__glowne_okno = glowne_okno
         self.setupUi(self.__glowne_okno)
 
-        self.__analizator = AnalizatorZdjec()
+        self.__menedzer_listy = MenedzerListy(lista_elementow=self.verticalLayout_2)
+        self.__analizator = AnalizatorZdjec(self.__menedzer_listy.utworz_pozycje)
         self.__ladowacz_ikon = LadowaczIkon(self)
         self.__mendzer_paska_ladowania = MenedzerPaskaLadowania(self.pasek_ladowania, self.__analizator.postep_analizy)
         self.__menedzer_fontu = MenedzerCzcionki(self.__glowne_okno)
-        self.__menedzer_listy = MenedzerListy(lista_elementow=self.verticalLayout_2)
         self.__menedzer_motywow = MenedzerMotywow(self.__glowne_okno)
         self.__menedzer_eksportu = MenedzerEksportu(lista_elementow=self.__menedzer_listy.pozycje)
 
@@ -35,7 +35,7 @@ class Ui(Ui_MainWindow):
         sciezki = wybierz_pliki(self.__glowne_okno)
 
         self.__mendzer_paska_ladowania.uruchom_ladowanie(len(sciezki))
-        self.__analizator.analizuj_zdjecia(sciezki, self.__menedzer_listy.utworz_pozycje)
+        self.__analizator.analizuj_zdjecia(sciezki)
 
     def __dodaj_akcje_przyciskow(self):
         self.przycisk_dodaj.clicked.connect(self.__pobierz_i_analizuj_zdjecia)
