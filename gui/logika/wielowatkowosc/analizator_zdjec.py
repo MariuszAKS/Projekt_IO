@@ -58,3 +58,4 @@ class AnalizatorZdjec(QObject):
 
     def zmien_limit_procesow(self, nowy_limit: int) -> None:
         self.maks_liczba_procesow = nowy_limit
+        self.semafor = Semaphore(nowy_limit)

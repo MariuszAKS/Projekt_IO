@@ -1,3 +1,4 @@
+from multiprocessing import Semaphore
 from typing import Callable, Dict, List
 
 from PyQt6.QtCore import QThread, QObject, pyqtSignal
@@ -10,7 +11,7 @@ from .analiza import Analiza
 class MenedzerAnaliz(QObject):
     zakonczony = pyqtSignal()
 
-    def __init__(self, semafor, postep_analizy, utworz_pozycje, watki: Dict[QThread, Analiza]) -> None:
+    def __init__(self, semafor: Semaphore, postep_analizy: pyqtSignal, utworz_pozycje: Callable[[str], ElementListy], watki: Dict[QThread, Analiza]) -> None:
         super().__init__()
         self.semafor = semafor
         self.postep_analizy = postep_analizy
