@@ -23,8 +23,11 @@ class MenedzerListy:
         self.__ustaw_nowe_pozycje()
         self.__reverse = not self.__reverse
 
-    def usun_stare_pozycje(self) -> None:
+    def wyczysc_liste(self) -> None:
+        self.usun_stare_pozycje()
         self.pozycje.clear()
+
+    def usun_stare_pozycje(self) -> None:
         for i in reversed(range(self.__lista_elementow.count())):
             self.__lista_elementow.itemAt(i).widget().setParent(None)
 

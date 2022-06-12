@@ -49,7 +49,7 @@ class Ui(Ui_MainWindow):
         self.przycisk_rodzaj.clicked.connect(self.__menedzer_listy.sortuj_po_rodzaju)
         self.przycisk_nazwa.clicked.connect(self.__menedzer_listy.sortuj_po_nazwie)
         self.przycisk_eksport.clicked.connect(self.__menedzer_eksportu.eksportuj)
-        self.przycisk_wyczysc.clicked.connect(self.__menedzer_listy.usun_stare_pozycje)
+        self.przycisk_wyczysc.clicked.connect(self.__menedzer_listy.wyczysc_liste)
         self.akcja_zasoby.triggered.connect(self.__ustawienia_zasobow.otworz)
 
     def __dodaj_akcje_menu_motywow(self):
