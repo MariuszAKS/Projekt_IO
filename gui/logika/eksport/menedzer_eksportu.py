@@ -5,7 +5,6 @@ from typing import List
 
 from ...zawartosc.widgety.element_listy import ElementListy
 from PyQt6.QtWidgets import QFileDialog, QWidget
-# from PyQt6 import QtGui
 from fpdf import FPDF
 
 class MenedzerEksportu:
@@ -28,7 +27,7 @@ class MenedzerEksportu:
         """
         if len(self.__lista_elementow) == 0:
             return
-        
+
         sciezka1 = QFileDialog().getSaveFileName(self.rodzic, 'Open a file', 'C:\\','csv plik (*.csv);;pdf plik (*.pdf)')
         rozszerzenie = sciezka1[1][:3]
         j = 0
