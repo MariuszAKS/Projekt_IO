@@ -24,7 +24,7 @@ class Ui(Ui_MainWindow):
         self.__menedzer_fontu = MenedzerCzcionki(self.__glowne_okno)
         self.__menedzer_listy = MenedzerListy(lista_elementow=self.verticalLayout_2)
         self.__menedzer_motywow = MenedzerMotywow(self.__glowne_okno)
-        self.__menedzer_eksportu = MenedzerEksportu(lista_elementow=self.__menedzer_listy.pozycje)
+        self.__menedzer_eksportu = MenedzerEksportu(lista_elementow=self.__menedzer_listy.pozycje, rodzic=self.__glowne_okno)
 
         self.__menedzer_motywow.ustaw_ciemny()
         self.__ladowacz_ikon.zaladuj_jasne_ikony()
