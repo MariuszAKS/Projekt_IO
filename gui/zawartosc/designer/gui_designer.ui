@@ -249,7 +249,7 @@
     </property>
     <widget class="QMenu" name="menu_motyw">
      <property name="title">
-      <string>Motyw (w trakcie tworzenia)</string>
+      <string>Motyw</string>
      </property>
      <addaction name="akcja_systemowy"/>
      <addaction name="akcja_jasny"/>
@@ -257,7 +257,7 @@
      <addaction name="akcja_wysoki_kontrast"/>
     </widget>
     <addaction name="menu_motyw"/>
-    <addaction name="actionZasoby"/>
+    <addaction name="akcja_zasoby"/>
    </widget>
    <addaction name="menuUstawienia"/>
   </widget>
@@ -306,7 +306,7 @@
     <string>English</string>
    </property>
   </action>
-  <action name="actionZasoby">
+  <action name="akcja_zasoby">
    <property name="text">
     <string>Zasoby</string>
    </property>

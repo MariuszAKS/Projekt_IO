@@ -2,6 +2,7 @@ from .ladowacz_ikon import LadowaczIkon
 from .menedzer_listy import MenedzerListy
 from .menedzer_czcionki import MenedzerCzcionki
 from .menedzer_paska_ladowania import MenedzerPaskaLadowania
+from ..widgety.ustawienia_zasobow import UstawieniaZasobow
 from ..motywy.menedzer_motywow import MenedzerMotywow
 from ..designer.gui_designer import Ui_MainWindow
 from ..okno import GlowneOkno
@@ -25,6 +26,7 @@ class Ui(Ui_MainWindow):
         self.__menedzer_fontu = MenedzerCzcionki(self.__glowne_okno)
         self.__menedzer_motywow = MenedzerMotywow(self.__glowne_okno)
         self.__menedzer_eksportu = MenedzerEksportu(lista_elementow=self.__menedzer_listy.pozycje, rodzic=self.__glowne_okno)
+        self.__ustawienia_zasobow = UstawieniaZasobow(self.__glowne_okno, self.__analizator)
 
         self.__menedzer_motywow.ustaw_ciemny()
         self.__analizator.zakonczony.connect(self.__aktywuj_przyciski)
@@ -48,6 +50,7 @@ class Ui(Ui_MainWindow):
         self.przycisk_nazwa.clicked.connect(self.__menedzer_listy.sortuj_po_nazwie)
         self.przycisk_eksport.clicked.connect(self.__menedzer_eksportu.eksportuj)
         self.przycisk_wyczysc.clicked.connect(self.__menedzer_listy.usun_stare_pozycje)
+        self.akcja_zasoby.triggered.connect(self.__ustawienia_zasobow.otworz)
 
     def __dodaj_akcje_menu_motywow(self):
         self.akcja_systemowy.triggered.connect(self.__menedzer_motywow.ustaw_systemowy)

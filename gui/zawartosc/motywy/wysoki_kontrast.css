@@ -1,5 +1,5 @@
 QWidget{
-    background-color: #111111;
+    background-color: black;
     color: white
 }
 
@@ -43,4 +43,16 @@ QScrollBar::sub-page:vertical {
 
 QScrollBar::add-page:vertical {
     background: black;
+}
+
+QDialog{
+    background: black;
+}
+
+QSlider::handle::horizontal{
+    background-color: yellow;
+}
+
+QSlider, QLabel{
+    background-color: black;
 }

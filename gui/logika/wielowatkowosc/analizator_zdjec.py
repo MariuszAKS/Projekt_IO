@@ -1,6 +1,6 @@
 from __future__ import annotations
 from typing import Callable, List, Optional
-from multiprocessing import Semaphore
+from multiprocessing import Semaphore, cpu_count
 
 from PyQt6.QtCore import QThread, QObject, pyqtSignal
 
@@ -11,8 +11,7 @@ from .menedzer_analizy import MenedzerAnaliz
 class AnalizatorZdjec(QObject):
     '''Klasa sluzaca do przeprowadzania analizy zdjec'''
 
-    # MAKS_LICZBA_PROCESOW = cpu_count() - 1
-    MAKS_LICZBA_PROCESOW = 2
+    maks_liczba_procesow = int(cpu_count()/4)
 
     postep_analizy = pyqtSignal()
     zakonczony = pyqtSignal()
@@ -20,7 +19,7 @@ class AnalizatorZdjec(QObject):
     def __init__(self, utworz_pozycje: Callable[[str], ElementListy]) -> None:
         super().__init__()
         '''Slownik sluzacy do przechowywania referencji do watkow i ich procesow'''
-        self.semafor = Semaphore(self.MAKS_LICZBA_PROCESOW)
+        self.semafor = Semaphore(self.maks_liczba_procesow)
         self.aktualny_watek: Optional[QThread] = None
         self.watki = dict()
         self.menedzer_analiz: Optional[MenedzerAnaliz]
@@ -56,3 +55,6 @@ class AnalizatorZdjec(QObject):
 
         self.aktualny_watek = nowy_watek
         nowy_watek.start()
+
+    def zmien_limit_procesow(self, nowy_limit: int) -> None:
+        self.maks_liczba_procesow = nowy_limit

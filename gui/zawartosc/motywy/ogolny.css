@@ -1,3 +1,6 @@
 QWidget{
     font-size: 16px;
 }
+QDialog{
+    font-size: 20px;
+}

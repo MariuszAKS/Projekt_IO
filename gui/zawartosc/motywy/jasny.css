@@ -42,3 +42,11 @@ QScrollBar::sub-page:vertical {
 QScrollBar::add-page:vertical {
     background: #DEDEDE;
 }
+
+QDialog{
+    background-color: whitesmoke;
+}
+
+QSlider::handle::horizontal{
+    background-color: gray;
+}
