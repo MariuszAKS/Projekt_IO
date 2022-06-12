@@ -2,3 +2,23 @@ QWidget{
     background-color: whitesmoke;
     color: black;
 }
+
+QScrollBar::handle {
+    background-color:#d8d8d8;
+    border-radius:6px;
+    border: 2px solid #cacaca;
+    min-width:25px;
+    min-height:25px;
+}
+
+QScrollBar::left-arrow:horizontal, QScrollBar::right-arrow:horizontal,
+QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal {
+    border: none;
+    background: none;
+    color: none;
+}
+
+QScrollBar::add-line, QScrollBar::sub-line {
+    border:none;
+    background-color:none;
+}

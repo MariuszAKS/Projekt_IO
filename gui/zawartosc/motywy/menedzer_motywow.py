@@ -1,4 +1,5 @@
 from PyQt6.QtWidgets import QMainWindow
+import qdarkstyle
 
 
 class MenedzerMotywow:

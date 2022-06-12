@@ -6,3 +6,23 @@ QWidget{
 QProgressBar::chunk{
     background-color: #00FF00;
 }
+
+
+QScrollBar::handle {
+    background-color:#FFFF00;
+    border-radius:6px;
+    min-width:25px;
+    min-height:25px;
+}
+
+QScrollBar::left-arrow:horizontal, QScrollBar::right-arrow:horizontal,
+QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal {
+    border: none;
+    background: none;
+    color: none;
+}
+
+QScrollBar::add-line, QScrollBar::sub-line {
+    border:none;
+    background-color:none;
+}
