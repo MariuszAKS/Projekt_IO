@@ -1,6 +1,6 @@
 from __future__ import annotations
 from ctypes import c_int16
-from multiprocessing import Process, Value
+from multiprocessing import Process, Value, cpu_count, Semaphore
 from typing import Callable, List, Dict
 
 from PyQt6.QtCore import QThread, QObject, pyqtSignal, pyqtSlot
@@ -13,12 +13,15 @@ from aplikacja_alpha.main import klasyfikuj as funkcja_analizujaca
 class AnalizatorZdjec(QObject):
     '''Klasa sluzaca do przeprowadzania analizy zdjec'''
 
+    MAKS_LICZBA_PROCESOW = cpu_count() - 1
+
     postep_analizy = pyqtSignal()
 
     def __init__(self) -> None:
         super().__init__()
         self.watki: Dict[QThread, _Analiza] = dict()
         '''Slownik sluzacy do przechowywania referencji do watkow i ich procesow'''
+        self.semafor = Semaphore(self.MAKS_LICZBA_PROCESOW)
 
     def analizuj_zdjecia(self, sciezki: List[str], utworz_pozycje: Callable[[str], ElementListy]) -> None:
         """
@@ -49,7 +52,7 @@ class AnalizatorZdjec(QObject):
         return watek
 
     def __utworz_proces(self, sciezka: str, watek_docelowy: QThread, gdy_zakonczony: Callable[[str], str]) -> _Analiza:
-        proces = _Analiza(sciezka)
+        proces = _Analiza(sciezka, self.semafor)
         proces.moveToThread(watek_docelowy)
         proces.zakonczony.connect(gdy_zakonczony)
         proces.zakonczony.connect(self.postep_analizy.emit)
@@ -65,13 +68,15 @@ class AnalizatorZdjec(QObject):
 class _Analiza(QObject):
     zakonczony = pyqtSignal(str)
 
-    def __init__(self, sciezka) -> None:
+    def __init__(self, sciezka, semafor) -> None:
         super().__init__()
         self.sciezka = sciezka
         self.rodzaj = Value(c_int16, -1)
+        self.semafor = semafor
 
     @pyqtSlot()
     def rozpocznij(self) -> None:
+        self.semafor.acquire()
         proces = Process(target=_analizuj, args=(self.sciezka, self.rodzaj))
         proces.start()
         proces.join()
@@ -82,7 +87,9 @@ class _Analiza(QObject):
         except ValueError:
             rodzaj = "Nastąpił błąd w wykonywaniu wątku"
 
+        self.semafor.release()
         self.zakonczony.emit(rodzaj)
+
 
 # Ze względu na zachowanie windowsa, bardzo ważne żeby ta funkcja była globalna (przynajmniej w zakresie tego pliku)
 def _analizuj(sciezka: str, wartosc_zwrotna: Value) -> None:

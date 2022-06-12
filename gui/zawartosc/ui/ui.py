@@ -9,6 +9,8 @@ from ...logika.analizator_zdjec import AnalizatorZdjec
 from ...logika.eksport.menedzer_eksportu import MenedzerEksportu
 from ...logika.wybor_plikow import wybierz_pliki
 
+from PyQt6.QtCore import QThread
+
 
 class Ui(Ui_MainWindow):
     def __init__(self, glowne_okno: GlowneOkno) -> None:
@@ -40,6 +42,7 @@ class Ui(Ui_MainWindow):
         self.przycisk_rodzaj.clicked.connect(self.__menedzer_listy.sortuj_po_rodzaju)
         self.przycisk_nazwa.clicked.connect(self.__menedzer_listy.sortuj_po_nazwie)
         self.przycisk_eksport.clicked.connect(self.__menedzer_eksportu.eksportuj)
+        self.przycisk_wyczysc.clicked.connect(self.__menedzer_listy.usun_stare_pozycje)
 
     def __dodaj_akcje_menu_motywow(self):
         self.akcja_systemowy.triggered.connect(self.__menedzer_motywow.ustaw_systemowy)
