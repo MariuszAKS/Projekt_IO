@@ -1,14 +1,16 @@
 """
 @package docstring
 """
+import time
 from copy import copy
 from typing import List, Tuple, Optional, Dict
 
-from ...zawartosc.widgety.element_listy import ElementListy
 from PyQt6.QtWidgets import QFileDialog, QWidget
 from PyQt6.QtCore import QObject, QThread
 from fpdf import FPDF
-import time
+
+from ...zawartosc.widgety.element_listy import ElementListy
+
 
 class MenedzerEksportu:
     """
@@ -38,11 +40,9 @@ class MenedzerEksportu:
         watek.finished.connect(watek.exit)
         watek.finished.connect(lambda: self.__watki.pop(watek))
 
-
         watek.start()
 
         self.__watki[watek] = proces
-
 
     def wybierz_lokalizacje_zapisu(self) -> Tuple[str, str]:
         return QFileDialog().getSaveFileName(self.rodzic, 'Open a file', 'C:\\','csv plik (*.csv);;pdf plik (*.pdf)')

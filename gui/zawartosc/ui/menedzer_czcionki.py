@@ -1,4 +1,4 @@
-from PyQt6.QtGui import QShortcut, QKeySequence, QFont
+from PyQt6.QtGui import QShortcut, QKeySequence, QFont, QScrollEvent
 from PyQt6.QtWidgets import QApplication
 from PyQt6.QtCore import Qt
 
@@ -6,6 +6,10 @@ from ..okno import GlowneOkno
 
 
 class MenedzerCzcionki:
+    """
+    Klasa ustawiająca skróty klawiszowe do zmiany rozmairu czcionki
+    """
+
     def __init__(self, glowne_okno: GlowneOkno) -> None:
 
         self.__MAX_CZCIONKA = 70
@@ -28,8 +32,12 @@ class MenedzerCzcionki:
 
         self.__ustaw_skrot_na_scroll()
 
-    def __ustaw_skrot_na_scroll(self):
-        def zmien_czcionke(event):
+    def __ustaw_skrot_na_scroll(self) -> None:
+        '''Ustawia skrót to zmiany rozmiaru czcionki na scrollu'''
+
+        def zmien_czcionke(event: QScrollEvent) -> None:
+            '''Funkcja zmieniająca rozmiar czcionki przy scrollowaniu'''
+
             sila_ruchu_scrolla = event.angleDelta().y()
             czy_ctrl_wcisniety = QApplication.keyboardModifiers() & Qt.KeyboardModifier.ControlModifier
 
@@ -43,17 +51,26 @@ class MenedzerCzcionki:
 
         self.__glowne_okno.wheelEvent = zmien_czcionke
 
-    def __powieksz_czcionke(self):
+    def __powieksz_czcionke(self) -> None:
+        '''Powiększa rozmiar czcionki o 1'''
+
         if self.__rozmiar_czcionki >= self.__MAX_CZCIONKA: return
         self.__rozmiar_czcionki += 1
         self.__ustaw_rozmiar_czcionki(self.__rozmiar_czcionki)
 
     def __zmniejsz_czcionke(self):
+        '''Pomniejsza rozmiar czcionki o 1'''
+
         if self.__rozmiar_czcionki <= self.__MIN_CZCIONKA: return
         self.__rozmiar_czcionki -= 1
         self.__ustaw_rozmiar_czcionki(self.__rozmiar_czcionki)
 
-    def __ustaw_rozmiar_czcionki(self, rozmiar: int):
+    def __ustaw_rozmiar_czcionki(self, nowy_rozmiar: int) -> None:
+        """
+        Ustawia rozmiar czcionki
+        :param nowy_rozmiar: Nowy rozmiar czcionki do ustawienia
+        """
+
         czcionka = QFont(self.__glowne_okno.font())
-        czcionka.setPointSize(rozmiar)
+        czcionka.setPointSize(nowy_rozmiar)
         self.__glowne_okno.setFont(czcionka)

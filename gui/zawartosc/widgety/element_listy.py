@@ -8,11 +8,13 @@ from .podglad_zdjecia import PodgladZdjecia
 
 
 class ElementListy(QWidget):
-    def __init__(self, sciezka: str) -> None:
+    '''Widżet pojedynczej pozycji na głównej liście elementów w GUI'''
+
+    def __init__(self, sciezka_zdjecia: str) -> None:
         super().__init__()
 
-        self.nazwa = ntpath.basename(sciezka)
-        self.sciezka = sciezka
+        self.nazwa = ntpath.basename(sciezka_zdjecia)
+        self.sciezka = sciezka_zdjecia
         self.rodzaj = "Analizowanie..."
 
         self.zdjecie = PodgladZdjecia(self.sciezka, self)
@@ -32,12 +34,16 @@ class ElementListy(QWidget):
         self.__etykieta_rodzaj.ustaw_pelna_nazwe(rodzaj)
 
     def __ustaw_wyrownanie(self) -> None:
+        '''Ustawia wyrównanie elementów'''
+
         self.__etykieta_nazwa.setAlignment(Qt.AlignmentFlag.AlignHCenter | Qt.AlignmentFlag.AlignCenter)
         self.zdjecie.setAlignment(Qt.AlignmentFlag.AlignHCenter | Qt.AlignmentFlag.AlignCenter)
         self.__etykieta_rodzaj.setAlignment(Qt.AlignmentFlag.AlignHCenter | Qt.AlignmentFlag.AlignCenter)
 
 
 class Rozstawienie(QHBoxLayout):
+    '''Odpowiednio rozstawia elementy'''
+
     def __init__(self, *widgety: QWidget, rodzic: QWidget) -> None:
         super().__init__(rodzic)
         self.setSizeConstraint(QLayout.SizeConstraint.SetMinimumSize)

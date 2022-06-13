@@ -1,18 +1,21 @@
+from __future__ import annotations
 from ctypes import c_int16
-from multiprocessing import Process, Value
+from multiprocessing import Process, Semaphore, Value
+from typing import Dict
 
-from PyQt6.QtCore import QObject, pyqtSignal, pyqtSlot
+from PyQt6.QtCore import QObject, pyqtSignal, pyqtSlot, QThread
 
 from aplikacja_alpha.main import Rodzaj
 from aplikacja_alpha.main import klasyfikuj as funkcja_analizujaca
+
 
 class Analiza(QObject):
     odczytany_rodzaj = pyqtSignal(str)
     zakonczony = pyqtSignal()
 
-    def __init__(self, sciezka, semafor, watki, watek, postep_analizy) -> None:
+    def __init__(self, sciezka_zdjecia: str, semafor: Semaphore, watki: Dict[QThread, Analiza], watek: QThread, postep_analizy: pyqtSignal) -> None:
         super().__init__()
-        self.sciezka = sciezka
+        self.sciezka = sciezka_zdjecia
         self.rodzaj = Value(c_int16, -1)
         self.semafor = semafor
         self.watki = watki
