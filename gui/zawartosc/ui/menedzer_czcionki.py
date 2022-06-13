@@ -26,10 +26,6 @@ class MenedzerCzcionki:
         self.__skrot_pomniejsz = QShortcut(QKeySequence("Ctrl+-"), glowne_okno)
         self.__skrot_pomniejsz.activated.connect(self.__zmniejsz_czcionke)
 
-        czcionka = glowne_okno.font()
-        czcionka.setPointSize(self.__DOMYSLNA_CZCIONKA)
-        # glowne_okno.setFont(czcionka)
-
         self.__ustaw_skrot_na_scroll()
 
     def __ustaw_skrot_na_scroll(self) -> None:
