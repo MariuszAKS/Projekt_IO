@@ -5,7 +5,7 @@ from multiprocessing import Semaphore, cpu_count
 from PyQt6.QtCore import QThread, QObject, pyqtSignal
 
 from ...zawartosc.widgety.element_listy import ElementListy
-from .menedzer_analizy import MenedzerAnaliz
+from .menedzer_analiz import MenedzerAnaliz
 
 
 class AnalizatorZdjec(QObject):

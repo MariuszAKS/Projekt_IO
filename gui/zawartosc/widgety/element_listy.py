@@ -13,7 +13,7 @@ class ElementListy(QWidget):
     def __init__(self, sciezka_zdjecia: str) -> None:
         super().__init__()
 
-        self.nazwa = ntpath.basename(sciezka_zdjecia)
+        self.nazwa = ntpath.basename(sciezka_zdjecia)[:-4]
         self.sciezka = sciezka_zdjecia
         self.rodzaj = "Analizowanie..."
 

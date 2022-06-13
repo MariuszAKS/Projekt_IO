@@ -16,7 +16,7 @@ class MenedzerPaskaLadowania:
         self.aktualny_stan = 0
         self.wielkosc_kroku = 100
 
-        self.sygnal_postepu.connect(self.zwieksz_postep)
+        self.sygnal_postepu.connect(self.__zwieksz_postep)
 
     def uruchom_ladowanie(self, liczba_elementow: int) -> None:
         """
@@ -30,7 +30,7 @@ class MenedzerPaskaLadowania:
         self.pasek_ladowania.setValue(0)
         self.wielkosc_kroku = 100 / liczba_elementow
 
-    def zwieksz_postep(self) -> None:
+    def __zwieksz_postep(self) -> None:
         '''Zwiększa postęp ładowania paska ładowania o jeden krok'''
 
         self.aktualny_stan += self.wielkosc_kroku
