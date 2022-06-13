@@ -189,7 +189,7 @@
          <bool>true</bool>
         </property>
         <property name="verticalScrollBarPolicy">
-         <enum>Qt::ScrollBarAsNeeded</enum>
+         <enum>Qt::ScrollBarAlwaysOn</enum>
         </property>
         <property name="horizontalScrollBarPolicy">
          <enum>Qt::ScrollBarAlwaysOff</enum>
@@ -208,8 +208,8 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>853</width>
-           <height>711</height>
+           <width>867</width>
+           <height>703</height>
           </rect>
          </property>
          <property name="layoutDirection">
@@ -240,7 +240,7 @@
      <x>0</x>
      <y>0</y>
      <width>1033</width>
-     <height>26</height>
+     <height>32</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuUstawienia">
