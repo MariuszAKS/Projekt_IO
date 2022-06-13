@@ -58,3 +58,4 @@ class MenedzerCzcionki:
         nowy_styl = re.sub(stara_czcionka_widget, nowa_czcionka_widget, stary_styl)
 
         self.__glowne_okno.setStyleSheet(nowy_styl)
+        self.__glowne_okno.resize(self.__glowne_okno.width(), self.__glowne_okno.height())
