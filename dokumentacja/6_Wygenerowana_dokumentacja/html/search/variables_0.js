@@ -1,0 +1,28 @@
+var searchData=
+[
+  ['_5f_5fanalizator_0',['__analizator',['../classui_1_1_ui.html#aa517e43b33d58e973d2128116295ac51',1,'ui.Ui.__analizator()'],['../classustawienia__zasobow_1_1_ustawienia_zasobow.html#a14a4ce2444eb3e5e9ef600cb362972de',1,'ustawienia_zasobow.UstawieniaZasobow.__analizator()']]],
+  ['_5f_5faplikacja_1',['__aplikacja',['../classgui_1_1aplikacja_1_1_aplikacja.html#a29b366059816006242d7c050177ebe47',1,'gui::aplikacja::Aplikacja']]],
+  ['_5f_5fdomyslna_5fczcionka_2',['__DOMYSLNA_CZCIONKA',['../classmenedzer__czcionki_1_1_menedzer_czcionki.html#a07eba16acbb4159881efe16e8b645893',1,'menedzer_czcionki::MenedzerCzcionki']]],
+  ['_5f_5fetykieta_5fnazwa_3',['__etykieta_nazwa',['../classelement__listy_1_1_element_listy.html#ad4d5313d7202107843b55d6784d7fe48',1,'element_listy::ElementListy']]],
+  ['_5f_5fetykieta_5frodzaj_4',['__etykieta_rodzaj',['../classelement__listy_1_1_element_listy.html#a707b5490043ddfe5bd38b0b6af89f548',1,'element_listy::ElementListy']]],
+  ['_5f_5fgdy_5fzamkniete_5',['__gdy_zamkniete',['../classokno_1_1_glowne_okno.html#ae096f317aa80923b90f3b5d8af435ee2',1,'okno::GlowneOkno']]],
+  ['_5f_5fglowne_5fokno_6',['__glowne_okno',['../classmenedzer__motywow_1_1_menedzer_motywow.html#a2d1da155c344a856fac3d17cbb6aff48',1,'menedzer_motywow.MenedzerMotywow.__glowne_okno()'],['../classmenedzer__czcionki_1_1_menedzer_czcionki.html#a5c4e7d6ba6df3d5b77567d32c7c12695',1,'menedzer_czcionki.MenedzerCzcionki.__glowne_okno()'],['../classui_1_1_ui.html#ad61a1b0c5857061bac07d49e52cc258c',1,'ui.Ui.__glowne_okno()'],['../classustawienia__zasobow_1_1_ustawienia_zasobow.html#a0d1efd5a66c7caf5cca7686a16be6abe',1,'ustawienia_zasobow.UstawieniaZasobow.__glowne_okno()']]],
+  ['_5f_5fladowacz_5fikon_7',['__ladowacz_ikon',['../classui_1_1_ui.html#ac417f252fca2fd4dfe4a7a9519cf5e60',1,'ui::Ui']]],
+  ['_5f_5flista_5felementow_8',['__lista_elementow',['../classmenedzer__eksportu_1_1_menedzer_eksportu.html#afcbb360aa03d7f5ea050684730f91dbc',1,'menedzer_eksportu.MenedzerEksportu.__lista_elementow()'],['../classmenedzer__eksportu_1_1_proces_eksportu.html#ad8dfcf1b7d8fd2f01bd19117ffa0420a',1,'menedzer_eksportu.ProcesEksportu.__lista_elementow()'],['../classmenedzer__listy_1_1_menedzer_listy.html#a45db7cc12a616fe3905dc8fb8a4194b1',1,'menedzer_listy.MenedzerListy.__lista_elementow()']]],
+  ['_5f_5fmax_5fczcionka_9',['__MAX_CZCIONKA',['../classmenedzer__czcionki_1_1_menedzer_czcionki.html#ae7861833cddee179ebdb9987dc138185',1,'menedzer_czcionki::MenedzerCzcionki']]],
+  ['_5f_5fmendzer_5fpaska_5fladowania_10',['__mendzer_paska_ladowania',['../classui_1_1_ui.html#a2f69ba5e356909a927c6dd24110f73eb',1,'ui::Ui']]],
+  ['_5f_5fmenedzer_5fczcionki_11',['__menedzer_czcionki',['../classui_1_1_ui.html#a54500a9315e4991943f3a42e3a13afed',1,'ui::Ui']]],
+  ['_5f_5fmenedzer_5feksportu_12',['__menedzer_eksportu',['../classui_1_1_ui.html#a15d38623df4e5553d88251177c35622c',1,'ui::Ui']]],
+  ['_5f_5fmenedzer_5flisty_13',['__menedzer_listy',['../classui_1_1_ui.html#a6dd3bfa27abf7436e5a75dca7272bba3',1,'ui::Ui']]],
+  ['_5f_5fmenedzer_5fmotywow_14',['__menedzer_motywow',['../classui_1_1_ui.html#a72212b2c3fe059292c5ff6f0fe216416',1,'ui::Ui']]],
+  ['_5f_5fmin_5fczcionka_15',['__MIN_CZCIONKA',['../classmenedzer__czcionki_1_1_menedzer_czcionki.html#a344335c64542bb8e06a0c3ce7fa4598f',1,'menedzer_czcionki::MenedzerCzcionki']]],
+  ['_5f_5fokno_16',['__okno',['../classgui_1_1aplikacja_1_1_aplikacja.html#a136c847da309f8d034d38c25ee6482e5',1,'gui::aplikacja::Aplikacja']]],
+  ['_5f_5freverse_17',['__reverse',['../classmenedzer__listy_1_1_menedzer_listy.html#a604cc8b62a5a4ac1d2b9729d18ca3db0',1,'menedzer_listy::MenedzerListy']]],
+  ['_5f_5frozmiar_5fczcionki_18',['__rozmiar_czcionki',['../classmenedzer__czcionki_1_1_menedzer_czcionki.html#aa718d16153deec0f2dd5eb59ce805872',1,'menedzer_czcionki::MenedzerCzcionki']]],
+  ['_5f_5frozstawienie_19',['__rozstawienie',['../classelement__listy_1_1_element_listy.html#aad7c32ad754d7f29f80eb65286681ef7',1,'element_listy::ElementListy']]],
+  ['_5f_5fskrot_5fpomniejsz_20',['__skrot_pomniejsz',['../classmenedzer__czcionki_1_1_menedzer_czcionki.html#ab22796410b853b807ca653f623702bbf',1,'menedzer_czcionki::MenedzerCzcionki']]],
+  ['_5f_5fskrot_5fpowieksz_21',['__skrot_powieksz',['../classmenedzer__czcionki_1_1_menedzer_czcionki.html#a2d702d4ba0b02224b70c4fa28111eccb',1,'menedzer_czcionki::MenedzerCzcionki']]],
+  ['_5f_5fui_22',['__ui',['../classgui_1_1aplikacja_1_1_aplikacja.html#a1c3dce61fc2b9655f86063a29bb577ca',1,'gui::aplikacja::Aplikacja']]],
+  ['_5f_5fustawienia_5fzasobow_23',['__ustawienia_zasobow',['../classui_1_1_ui.html#a54ac36a34be062426a29b5b069aba0a9',1,'ui::Ui']]],
+  ['_5ffolder_5fz_5fikonami_24',['_FOLDER_Z_IKONAMI',['../namespaceladowacz__ikon.html#aa06371f6533085460068e7ff80a563a6',1,'ladowacz_ikon']]]
+];
