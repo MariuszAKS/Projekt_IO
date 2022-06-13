@@ -11,13 +11,14 @@ class UstawieniaZasobow(QDialog):
 
     def __init__(self, glowne_okno: QMainWindow, analizator: AnalizatorZdjec) -> None:
         super().__init__()
-        self.setWindowTitle("Ustawienia zasobów")
+
         self.resize(800, 200)
         self.__glowne_okno = glowne_okno
         self.__analizator = analizator
 
         self.ui = Ui_Dialog()
         self.ui.setupUi(self)
+        self.setWindowTitle("Ustawienia zasobów")
 
         self.ui.suwak.setMaximum(cpu_count())
         self.ui.suwak.valueChanged.connect(lambda: self.ui.wartosc.setText(str(self.ui.suwak.value())))

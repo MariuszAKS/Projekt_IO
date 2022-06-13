@@ -9,5 +9,5 @@ def wybierz_pliki(rodzic: QWidget) -> List[str]:
     :return: Lista ścieżek do wybranych plików
     """
 
-    sciezki = QFileDialog().getOpenFileNames(rodzic, 'Wybierz zdjęcia', 'C:\\', 'Image files (*.png)')
+    sciezki = QFileDialog().getOpenFileNames(rodzic, 'Wybierz zdjęcia', 'C:\\', 'Pliki obrazów (*.png)')
     return sciezki[0]

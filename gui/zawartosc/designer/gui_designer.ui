@@ -130,7 +130,7 @@
      </widget>
     </item>
     <item>
-     <layout class="QVBoxLayout" name="verticalLayout_4">
+     <layout class="QVBoxLayout" name="rozstawienie_srodek">
       <item>
        <layout class="QHBoxLayout" name="pasek_gorny">
         <property name="spacing">
@@ -215,7 +215,7 @@
          <property name="layoutDirection">
           <enum>Qt::LeftToRight</enum>
          </property>
-         <layout class="QVBoxLayout" name="verticalLayout_2">
+         <layout class="QVBoxLayout" name="rozstawienie_listy_elementow">
           <property name="bottomMargin">
            <number>11</number>
           </property>

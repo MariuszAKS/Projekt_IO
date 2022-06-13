@@ -21,7 +21,7 @@ class Ui(Ui_MainWindow):
         self.__glowne_okno = glowne_okno
         self.setupUi(self.__glowne_okno)
 
-        self.__menedzer_listy = MenedzerListy(lista_elementow=self.verticalLayout_2)
+        self.__menedzer_listy = MenedzerListy(lista_elementow=self.rozstawienie_listy_elementow)
         self.__analizator = AnalizatorZdjec(self.__menedzer_listy.utworz_pozycje)
         self.__ladowacz_ikon = LadowaczIkon(self)
         self.__mendzer_paska_ladowania = MenedzerPaskaLadowania(self.pasek_ladowania, self.__analizator.postep_analizy)

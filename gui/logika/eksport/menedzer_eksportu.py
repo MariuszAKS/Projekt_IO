@@ -5,8 +5,8 @@ import time
 from copy import copy
 from typing import List, Tuple, Optional, Dict
 
-from PyQt6.QtWidgets import QFileDialog, QWidget
-from PyQt6.QtCore import QObject, QThread
+from PyQt6.QtWidgets import QFileDialog, QWidget, QMessageBox
+from PyQt6.QtCore import QObject, QThread, pyqtSignal
 from fpdf import FPDF
 
 from ...zawartosc.widgety.element_listy import ElementListy
@@ -35,8 +35,10 @@ class MenedzerEksportu:
         watek = QThread()
 
         proces.moveToThread(watek)
+        proces.zakonczony.connect(watek.exit)
 
         watek.started.connect(proces.eksportuj)
+        watek.finished.connect(self.__pokaz_okienko)
         watek.finished.connect(watek.exit)
         watek.finished.connect(lambda: self.__watki.pop(watek))
 
@@ -44,11 +46,21 @@ class MenedzerEksportu:
 
         self.__watki[watek] = proces
 
+    def __pokaz_okienko(self) -> None:
+        okienko = QMessageBox()
+        okienko.setText("Plik został wygenerowany")
+        okienko.setWindowTitle("Eksport")
+        okienko.setIcon(QMessageBox.Icon.Information)
+        okienko.setStyleSheet("font-size: 16px")
+        okienko.exec()
+
     def __wybierz_lokalizacje_zapisu(self) -> Tuple[str, str]:
-        return QFileDialog().getSaveFileName(self.rodzic, 'Open a file', 'C:\\','csv plik (*.csv);;pdf plik (*.pdf)')
+        return QFileDialog().getSaveFileName(self.rodzic, 'Wybierz miejsce zapisu', 'C:\\','csv plik (*.csv);;pdf plik (*.pdf)')
 
 
 class ProcesEksportu(QObject):
+    zakonczony = pyqtSignal()
+
     def __init__(self, lista_elementow: List[ElementListy], rodzic: QWidget) -> None:
         super().__init__()
         self.__lista_elementow = lista_elementow
@@ -139,3 +151,4 @@ class ProcesEksportu(QObject):
                     print(f'Nastepna strona, y {pdf.get_y()}')
 
             pdf.output(sciezka, 'F')
+        self.zakonczony.emit()
