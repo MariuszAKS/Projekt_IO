@@ -1,0 +1,19 @@
+var searchData=
+[
+  ['pantoea_0',['Pantoea',['../classmain_1_1_rodzaj.html#aefd8d44ab831b16e07f5a8188d4ca5ef',1,'main::Rodzaj']]],
+  ['pasek_5fboczny_1',['pasek_boczny',['../classgui__designer_1_1_ui___main_window.html#a21ae1aefe68ec382a168cb9f3b9b27e5',1,'gui_designer::Ui_MainWindow']]],
+  ['pasek_5fboczny_5frozstawienie_2',['pasek_boczny_rozstawienie',['../classgui__designer_1_1_ui___main_window.html#a5a8c84d899ea4cc5f40768df4d6f668c',1,'gui_designer::Ui_MainWindow']]],
+  ['pasek_5fgorny_3',['pasek_gorny',['../classgui__designer_1_1_ui___main_window.html#a9870562bff12c86377718f342568cbe9',1,'gui_designer::Ui_MainWindow']]],
+  ['pasek_5fladowania_4',['pasek_ladowania',['../classgui__designer_1_1_ui___main_window.html#a86ebf28b86efbfd16b847e92668e20fe',1,'gui_designer.Ui_MainWindow.pasek_ladowania()'],['../classmenedzer__paska__ladowania_1_1_menedzer_paska_ladowania.html#aadd7f9532b9ab52a98a1826dd2ce3c05',1,'menedzer_paska_ladowania.MenedzerPaskaLadowania.pasek_ladowania()']]],
+  ['plus_5',['PLUS',['../classladowacz__ikon_1_1_ladowacz_ikon.html#a65986b144ca15a3b6c12d5bef3ae0504',1,'ladowacz_ikon::LadowaczIkon']]],
+  ['plus_5fkontrast_6',['PLUS_KONTRAST',['../classladowacz__ikon_1_1_ladowacz_ikon.html#af5ae3e0e0050f6375fb236dc1eaf1a40',1,'ladowacz_ikon::LadowaczIkon']]],
+  ['postep_5fanalizy_7',['postep_analizy',['../classanaliza_1_1_analiza.html#aeb40733b0dc52eaab20bcb210415ff74',1,'analiza.Analiza.postep_analizy()'],['../classanalizator__zdjec_1_1_analizator_zdjec.html#aef95309b68cd6f39a945d434e6b36668',1,'analizator_zdjec.AnalizatorZdjec.postep_analizy()'],['../classmenedzer__analiz_1_1_menedzer_analiz.html#a633b1e925ce7b4695c02c927562db180',1,'menedzer_analiz.MenedzerAnaliz.postep_analizy()']]],
+  ['prosty_5fperceptron_8',['prosty_perceptron',['../class_prosty_perceptron_1_1_prosty_perceptron.html#a38f03d68643c370605be6228e569946e',1,'ProstyPerceptron::ProstyPerceptron']]],
+  ['przycisk_5fdodaj_9',['przycisk_dodaj',['../classgui__designer_1_1_ui___main_window.html#aafbaa0afdab9b3dd80922d1cfc2a6e2b',1,'gui_designer::Ui_MainWindow']]],
+  ['przycisk_5feksport_10',['przycisk_eksport',['../classgui__designer_1_1_ui___main_window.html#aeaa9fc7e5beec5842f5056d744ccb9f4',1,'gui_designer::Ui_MainWindow']]],
+  ['przycisk_5fnazwa_11',['przycisk_nazwa',['../classgui__designer_1_1_ui___main_window.html#aa30f5f3717da91033206b1369a76269e',1,'gui_designer::Ui_MainWindow']]],
+  ['przycisk_5frodzaj_12',['przycisk_rodzaj',['../classgui__designer_1_1_ui___main_window.html#a5cee187dfd7abfe117ecf1b197dc2371',1,'gui_designer::Ui_MainWindow']]],
+  ['przycisk_5fwyczysc_13',['przycisk_wyczysc',['../classgui__designer_1_1_ui___main_window.html#a3a523e3237f7e59df57c375675c17250',1,'gui_designer::Ui_MainWindow']]],
+  ['przycisk_5fzdjecie_14',['przycisk_zdjecie',['../classgui__designer_1_1_ui___main_window.html#a9f07dc17f188b431793fce362ac0d7bc',1,'gui_designer::Ui_MainWindow']]],
+  ['pseudomonas_15',['Pseudomonas',['../classmain_1_1_rodzaj.html#ad4be6c4b0521faf03e56afaadd05e49c',1,'main::Rodzaj']]]
+];
