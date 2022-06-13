@@ -1,3 +1,6 @@
+"""
+@package docstring
+"""
 from math import isnan
 import numpy as np
 import skimage.io
@@ -14,6 +17,12 @@ from aplikacja_alpha.krawedzie import Krawedzie
 # zwracająca posegregowane cechy
 
 def generowanie_cech(sciezka_do_pliku: str) -> List[float]:
+    """
+    Metoda służąca do wygenerowania wektora cech danego obrazu
+    :param sciezka_do_pliku: Przechowuje ścieżkę do obrazu
+    :return: Wektor cech wygenerowanych dla danego obrazu
+    """
+    
     print('0. Generacja cech i segregowanie')
     print('ROI: Segmentacja regionow zainteresowania (maska)')
     
