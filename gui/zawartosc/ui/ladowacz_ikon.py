@@ -42,6 +42,7 @@ class LadowaczIkon:
     def zaladuj_kontrastowe_ikony(self) -> None:
         self.ui.przycisk_dodaj.setIcon(self.PLUS_KONTRAST)
         self.ui.przycisk_eksport.setIcon(self.DYSKIETKA_KONTRAST)
+        self.ui.przycisk_wyczysc.setIcon(self.KOSZ_KONTRAST)
 
     def __zaladuj_niezmienne_ikony(self) -> None:
         self.ui.przycisk_dodaj.setIcon(self.PLUS)

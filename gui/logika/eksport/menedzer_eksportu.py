@@ -27,7 +27,7 @@ class MenedzerEksportu:
         self.__watki: Dict[QThread, ProcesEksportu] = dict()
 
     def eksportuj(self) -> None:
-        wybrana_lokalizacja = self.wybierz_lokalizacje_zapisu()
+        wybrana_lokalizacja = self.__wybierz_lokalizacje_zapisu()
 
         proces = ProcesEksportu(self.__lista_elementow, self.rodzic)
         proces.wybrana_lokalizacja = wybrana_lokalizacja
@@ -44,7 +44,7 @@ class MenedzerEksportu:
 
         self.__watki[watek] = proces
 
-    def wybierz_lokalizacje_zapisu(self) -> Tuple[str, str]:
+    def __wybierz_lokalizacje_zapisu(self) -> Tuple[str, str]:
         return QFileDialog().getSaveFileName(self.rodzic, 'Open a file', 'C:\\','csv plik (*.csv);;pdf plik (*.pdf)')
 
 
