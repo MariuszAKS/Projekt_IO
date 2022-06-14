@@ -82,7 +82,7 @@ class ProcesEksportu(QObject):
         print(sciezka1)
         rozszerzenie = sciezka1[1][:3]
 
-        sciezka = sciezka1[0] + "." + rozszerzenie
+        sciezka = sciezka1[0]
         if rozszerzenie == 'csv':
             with open(sciezka, "w") as plik:
                 plik.write(f"Nazwa:;Rodzaj:" + "\n")
